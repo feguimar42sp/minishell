@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/09/26 16:48:17 by fernando         ###   ########.fr       */
+/*   Updated: 2024/10/04 18:56:42 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ typedef struct {
     char		*name;
     f_built_in	func;
 } s_built_in;
+
+typedef struct s_mem_node {
+    char *name;
+    void *ptr;
+    struct s_mem_node *next;
+} t_mem_node;
 
 void		ft_error(void);
 void		free_all(void);
@@ -67,4 +73,8 @@ s_built_in	*fill_commands(void);
 t_pipe      **pipes(void);
 void        to_pipe(int block);
 void        close_pipe(int block);
+void        *ft_malloc(size_t size, const char *name);
+void        add_to_mem_list(const char *name, void *ptr);
+t_mem_node  **mem_list();
+void        ft_free(void *ptr);
 #endif

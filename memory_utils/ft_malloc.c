@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/25 22:48:28 by fernando          #+#    #+#             */
-/*   Updated: 2024/09/23 23:34:27 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/04 18:33:24 by fernando          #+#    #+#             */
+/*   Updated: 2024/10/04 18:51:51 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	main(void)
+void	*ft_malloc(size_t size, const char *name)
 {
-	char	*line;
-	char	*prompt;
+	void	*ptr;
 
-	line = malloc(sizeof(short));
-	if (line == NULL)
-		ft_error();
-	while (line != NULL)
+	ptr = malloc(size);
+	if (!ptr)
 	{
-		prompt = get_prompt();
-		add_to_mem_list("prompt\n", prompt);
-		free(line);
-		line = readline(prompt);
-		add_history(line);
-		check_single_quote(&line);
-		check_double_quote(&line);
-		execute_line(line);
-		free(prompt);
+		ft_error();
 	}
-	free(prompt);
+	add_to_mem_list(name, ptr);
+	return (ptr);
 }

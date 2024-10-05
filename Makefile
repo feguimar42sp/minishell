@@ -6,7 +6,7 @@
 #    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/09/26 15:21:41 by fernando         ###   ########.fr        #
+#    Updated: 2024/10/04 19:16:17 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,13 @@ CFLAGS := -Wall -Wextra -Werror
 LINKER_FLAGS := -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft -lreadline
 
 # Source files
-SRCS := main.c utils/ft_error.c utils/free_all.c ux_ui/get_prompt.c ux_ui/execute_command.c \
+SRCS := main.c utils/ft_error.c memory_utils/free_all.c ux_ui/get_prompt.c ux_ui/execute_command.c \
 	ux_ui/execute_line.c utils/call_program.c ux_ui/search_in_path.c utils/free_split.c \
 	ux_ui/is_command.c ux_ui/change_dir.c pipe_proc/to_pipe.c \
 	treat_command/treat_command.c treat_command/check_double_quote.c \
-	treat_command/check_single_quote.c treat_command/expand_env_var.c statics/pipes.c
+	treat_command/check_single_quote.c treat_command/expand_env_var.c statics/pipes.c \
+	memory_utils/ft_malloc.c statics/mem_list.c memory_utils/add_to_mem_list.c \
+	memory_utils/ft_free.c
 
 BONUS_SRCS := 
 

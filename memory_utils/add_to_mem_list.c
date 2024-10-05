@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   add_to_mem_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/25 22:48:28 by fernando          #+#    #+#             */
-/*   Updated: 2024/09/23 23:34:27 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/04 18:41:15 by fernando          #+#    #+#             */
+/*   Updated: 2024/10/04 18:55:45 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	main(void)
+void	add_to_mem_list(const char *name, void *ptr)
 {
-	char	*line;
-	char	*prompt;
+	t_mem_node	*new_node;
 
-	line = malloc(sizeof(short));
-	if (line == NULL)
-		ft_error();
-	while (line != NULL)
+	new_node = malloc(sizeof(t_mem_node));
+	if (!new_node)
 	{
-		prompt = get_prompt();
-		add_to_mem_list("prompt\n", prompt);
-		free(line);
-		line = readline(prompt);
-		add_history(line);
-		check_single_quote(&line);
-		check_double_quote(&line);
-		execute_line(line);
-		free(prompt);
+		printf("Error: Could not allocate memory for tracking.\n");
+		ft_error();
 	}
-	free(prompt);
+	new_node->name = ft_strdup(name);
+	new_node->ptr = ptr;
+	new_node->next = *mem_list();
+	*mem_list() = new_node;
 }
