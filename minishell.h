@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/04 18:56:42 by fernando         ###   ########.fr       */
+/*   Updated: 2024/10/07 20:16:55 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@
 typedef void (*f_built_in)(char **);
 
 typedef int t_pipe[2];
+
+// added a linked list to store the environment variables for ease of use	
+typedef struct s_envp_lst
+{
+  char	*var;
+  char	*value;
+  struct s_envp_lst *next;
+}	t_envp_lst;
 
 typedef struct {
     char		*name;
