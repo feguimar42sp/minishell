@@ -85,4 +85,7 @@ void        *ft_malloc(size_t size, const char *name);
 void        add_to_mem_list(const char *name, void *ptr);
 t_mem_node  **mem_list();
 void        ft_free(void *ptr);
+
+// function to store environment variable in a linked list
+t_envp_lst	*store_envp(char **envp)
 #endif
