@@ -6,12 +6,13 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 18:41:15 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/04 18:55:45 by fernando         ###   ########.fr       */
+/*   Updated: 2024/10/08 19:48:52 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+// ???
 void	add_to_mem_list(const char *name, void *ptr)
 {
 	t_mem_node	*new_node;
