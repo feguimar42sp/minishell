@@ -12,7 +12,8 @@
 
 #include "../minishell.h"
 
-void	execute_line(char *line)
+// add new argument in function. env_vars: the environment variables
+void	execute_line(char *line, t_envp_lst *env_vars)
 {
 	char	**parsed_line;
 	int		i;
@@ -32,7 +33,7 @@ void	execute_line(char *line)
 	i = 0;
 	while (parsed_line[i] != NULL)
 	{
-		execute_command(parsed_line[i], i);
+		execute_command(parsed_line[i], i, env_vars);
 		i++;
 	}
 	free_split(&parsed_line);
