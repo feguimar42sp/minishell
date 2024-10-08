@@ -36,7 +36,7 @@ SRCS := main.c utils/ft_error.c memory_utils/free_all.c ux_ui/get_prompt.c ux_ui
 	treat_command/treat_command.c treat_command/check_double_quote.c \
 	treat_command/check_single_quote.c treat_command/expand_env_var.c statics/pipes.c \
 	memory_utils/ft_malloc.c statics/mem_list.c memory_utils/add_to_mem_list.c \
-	memory_utils/ft_free.c
+	memory_utils/ft_free.c env_vars.c
 
 BONUS_SRCS := 
 
