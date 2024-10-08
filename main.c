@@ -12,15 +12,13 @@
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **envp)
+int	main(void)
 {
 	t_envp_lst	*env_vars; // variable declared to store environment variables
 	char	*line;
 	char	*prompt;
 
-	(void)ac;
-	(void)av;
-	env_vars = store_envp(envp); // get original envp and store in our own ->
+	env_vars = store_envp(__environ); // get original envp and store in our own ->
 								 // linked list to be able to delete and ->
 								 // add new variables
 	/* this while is here to be able to visualize our own envp:
@@ -40,6 +38,7 @@ int	main(int ac, char **av, char **envp)
 		add_to_mem_list("prompt\n", prompt); // ??
 		line = readline(prompt);
 		add_history(line);
+
 		check_single_quote(&line);
 		check_double_quote(&line);
 		execute_line(line, *env_vars);
