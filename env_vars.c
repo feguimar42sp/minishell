@@ -14,7 +14,6 @@
 
 /*
 // list is only here for reference
-
 typedef struct s_envp_lst
 {
   char			*var;
@@ -81,7 +80,7 @@ t_envp_lst	*store_envp(char **envp)
 	}
 	return (env_var);
 }
-
+/*
 int	main(int argc, char **argv, char **envp)
 {
   t_envp_lst	*lst_env_args;
@@ -96,4 +95,4 @@ int	main(int argc, char **argv, char **envp)
 	}
 
   return (0);
-}
+}*/
