@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:28 by fernando          #+#    #+#             */
-/*   Updated: 2024/09/23 23:34:27 by fernando         ###   ########.fr       */
+/*   Updated: 2024/10/08 19:57:49 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,17 @@ int	main(void)
 //		ft_error();
 	while (1)
 	{
-		prompt = get_prompt();
-		add_to_mem_list("prompt\n", prompt); // ??
-		line = readline(prompt);
-		add_history(line);
+		prompt = get_prompt(); // this function is called to get the username to use as prompt							   // before the command. basically, to prompt the user
+							   // It can also be replaced by just the char ">"
+		add_to_mem_list("prompt\n", prompt); // ???
+		line = readline(prompt); // sytem function called to get the line typed by the user
+		add_history(line); // system function to store string received in command line history
 
+		// the following two functions are used to ?
+		// they replaces space chars for single or double quotes?
 		check_single_quote(&line);
 		check_double_quote(&line);
+
 		execute_line(line, *env_vars);
 		free(prompt);
 	}
