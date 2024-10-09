@@ -45,7 +45,7 @@ int	main(void)
 		check_single_quote(&line);
 		check_double_quote(&line);
 
-		execute_line(line, *env_vars);
+		execute_line(line, env_vars);
 		free(prompt);
 	}
 	//while (line != NULL)

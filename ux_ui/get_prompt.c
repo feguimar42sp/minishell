@@ -15,18 +15,12 @@
 char	*get_user_prompt(void)
 {
 	char	*prompt;
-	char	*hostname;
-	char	*temp;
 	char	*user;
 	char	*at;
 
 	user = ft_strdup(getenv("USER"));
-	hostname = ft_strdup(getenv("HOSTNAME"));
 	at = ft_strdup("@");
-	temp = ft_strjoin(user, at);
-	prompt = ft_strjoin(temp, hostname);
-	free(temp);
-	free(hostname);
+	prompt = ft_strjoin(user, at);
 	free(user);
 	free(at);
 	return (prompt);

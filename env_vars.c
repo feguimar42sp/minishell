@@ -49,10 +49,10 @@ void	add_to_lst(t_envp_lst **env_var, char *env)
 	// for reference: char	*ft_substr(char const *s, size_t start, size_t len)
 	// first str == pos 0 + return value - 1 from function find_pos_strchr
 	new_node->var = ft_substr(env, 0, find_pos_strchr(env, '='));
-	printf("new_node->var = %s\n", new_node->var);
+	//printf("new_node->var = %s\n", new_node->var);
 	// second str == retun value + 1 from function find_pos_strchr until strlen
 	new_node->value = ft_substr(env, find_pos_strchr(env, '=') + 1, ft_strlen(env));
-	printf("new_node->value = %s\n", new_node->value);
+	//printf("new_node->value = %s\n", new_node->value);
 	new_node->next = NULL;
 	if (temp == NULL)
 	{

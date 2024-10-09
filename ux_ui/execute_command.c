@@ -26,13 +26,11 @@ char	*ft_getenv(char *var, t_envp_lst *env_vars)
 //4. return a char * of the value found in the linked list
 
   t_envp_lst	*temp_envp;
-  char			*var_found;
 
   temp_envp = env_vars;
-
   while (env_vars)
   {
-	if (ft_strncmp(var, env_vars->var, ft_strlen(var) == 0)
+	if (ft_strncmp(var, env_vars->var, ft_strlen(var)) == 0)
 	{
 		return (ft_strdup(env_vars->value));
 	}
@@ -54,7 +52,7 @@ void	execute_command(char *command, int block, t_envp_lst *env_vars)
 	//env_path = ft_split(getenv("PATH"), ':'); 
 	// removed the line above and implemented the line below
 	// and replaced the getenv for the ft_getenv
-	env_path = ft_split(ft_getenv("PATH"), ':');
+	env_path = ft_split(ft_getenv("PATH", env_vars), ':');
 	parsed_command = ft_split(command, ' ');
 	i = 0;
 	while (parsed_command[i] != NULL)

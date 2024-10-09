@@ -52,8 +52,8 @@ void		ft_error(void);
 void		free_all(void);
 void		free_split(char ***spl);
 char		*get_prompt(void);
-void		execute_line(char *line);
-void    execute_command(char *command, int block);
+void		execute_line(char *line, t_envp_lst *env_vars);
+void		execute_command(char *command, int block, t_envp_lst *env_vars);
 int			call_program(char *pathname, char **argv, char **envp, int block);
 int			search_in_path(char *pathname, char **argv, char **envp, int block);
 char		*get_dir(void);
@@ -87,5 +87,5 @@ t_mem_node  **mem_list();
 void        ft_free(void *ptr);
 
 // function to store environment variable in a linked list
-t_envp_lst	*store_envp(char **envp)
+t_envp_lst	*store_envp(char **envp);
 #endif
