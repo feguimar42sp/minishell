@@ -53,7 +53,7 @@ void		free_all(void);
 void		free_split(char ***spl);
 char		*get_prompt(void);
 void		execute_line(char *line);
-void    	execute_command(char *command, int block);
+void    execute_command(char *command, int block);
 int			call_program(char *pathname, char **argv, char **envp, int block);
 int			search_in_path(char *pathname, char **argv, char **envp, int block);
 char		*get_dir(void);

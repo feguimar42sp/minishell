@@ -26,7 +26,7 @@ int	search_in_path(char *pathname, char **argv, char **envp, int block)
 	ret = 0;
 	while (envp[i] != NULL)
 	{
-		temp = ft_strjoin(envp[i], pathname);
+		temp = ft_strjoin(envp[i], pathname); // pathname - command
 		if (stat(temp, &fileStat) == 0)
 		{
 			pid = fork();
@@ -35,7 +35,7 @@ int	search_in_path(char *pathname, char **argv, char **envp, int block)
 				to_pipe(block);
 				ret = execve(temp, argv, environ);
 			}
-			wait(NULL);
+			wait(NULL); // to check
 			close_pipe(block);
 			free(temp);
 			break ;
