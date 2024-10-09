@@ -29,9 +29,6 @@ int	main(void)
 		lst_env_args = lst_env_args->next;
 		i++;
 	}*/
-//	line = malloc(sizeof(short));
-//	if (line == NULL)
-//		ft_error();
 	while (1)
 	{
 		prompt = get_prompt(); // this function is called to get the username to use as prompt							   // before the command. basically, to prompt the user
@@ -47,18 +44,6 @@ int	main(void)
 
 		execute_line(line, env_vars);
 		free(prompt);
+		free(line);
 	}
-	//while (line != NULL)
-	//{
-	//	prompt = get_prompt();
-	//	add_to_mem_list("prompt\n", prompt); // ??
-	//	free(line);
-	//	line = readline(prompt);
-	//	add_history(line);
-	//	check_single_quote(&line);
-	//	check_double_quote(&line);
-	//	execute_line(line);
-	//	free(prompt);
-	//}
-	//free(prompt);
 }
