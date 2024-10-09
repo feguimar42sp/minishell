@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/09 19:51:28 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/10/09 20:11:37 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,31 @@ typedef void (*f_built_in)(char **);
 
 typedef int t_pipe[2];
 
-// added a linked list to store the environment variables for ease of use	
-struct s_envp_lst
+// linked list to store the arguments received
+typedef struct s_args_lst
 {
-  char		*var;
-  char		*value;
-  struct	s_envp_lst *next;
-}			t_envp_lst;
+	char				*arg; // single argument
+	int					type; // type of argument - need to be implemented
+	struct s_args_lst	*next;// points to the next argument
+}	s_args_lst
+
+// enum thingy to store the type of arguments the program might receive
+enum e_args
+{
+	command;
+	string;
+	operators;
+	filepaths;
+	env_var;	
+}
+
+// added a linked list to store the environment variables for ease of use	
+typedef struct s_envp_lst
+{
+  char				*var;
+  char				*value;
+  struct s_envp_lst *next;
+}					t_envp_lst;
 
 typedef struct {
     char		*name;
