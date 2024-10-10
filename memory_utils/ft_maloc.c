@@ -1,41 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_maloc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 19:03:50 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 14:18:09 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/06 10:39:16 by fernando          #+#    #+#             */
+/*   Updated: 2024/10/06 10:39:19 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_free(void **ptr)
+void	*ft_maloc(size_t size, const char *name)
 {
-	t_mem_node	*prev;
-	t_mem_node	*to_free;
-	t_mem_node	**current;
+	void	*ptr;
 
-	prev = NULL;
-	current = mem_list();
-	while (*current != NULL)
+	ptr = malloc(size);
+	if (!ptr)
 	{
-		if ((*current)->ptr == *ptr)
-		{
-			to_free = *current;
-			if (prev == NULL)
-				*mem_list() = NULL;
-			else
-				prev->next = to_free->next;
-			free(to_free->name);
-			free(to_free->ptr);
-			free(to_free);
-			*ptr = NULL;
-			return ;
-		}
-		prev = *current;
-		current = &(*current)->next;
+		ft_error();
 	}
+	add_to_mem_list(name, ptr);
+	return (ptr);
 }

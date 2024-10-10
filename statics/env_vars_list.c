@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_to_mem_list.c                                  :+:      :+:    :+:   */
+/*   env_vars_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:41:15 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/04 18:55:45 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/10 16:02:18 by fernando          #+#    #+#             */
+/*   Updated: 2024/10/10 16:40:41 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	add_to_mem_list(const char *name, void *ptr)
+t_envp_lst  **env_vars_list(void)
 {
-	t_mem_node	*new_node;
+    static t_envp_lst   *list;
 
-	new_node = malloc(sizeof(t_mem_node));
-	if (!new_node)
-	{
-		printf("Error: Could not allocate memory for tracking.\n");
-		ft_error();
-	}
-	new_node->name = ft_strdup(name);
-	new_node->ptr = ptr;
-	new_node->next = *mem_list();
-	*mem_list() = new_node;
+    return (&list);
 }

@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/04 18:47:12 by fernando         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_mem_node	**mem_list()
 {
-	static t_mem_node *list;
+	static t_mem_node	*list;
 
 	return (&list);
 }

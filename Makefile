@@ -6,7 +6,7 @@
 #    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/10/08 19:35:00 by sabrifer         ###   ########.fr        #
+#    Updated: 2024/10/10 16:54:12 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,14 +29,19 @@ CFLAGS := -Wall -Wextra -Werror
 # Linker flags
 LINKER_FLAGS := -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft -lreadline
 
+ENV_VARS_FOLDER := env_vars/env_vars.c
+
+MEMORY_UTILS_FORDER := memory_utils/add_to_mem_list.c memory_utils/free_all.c memory_utils/ft_free.c \
+	memory_utils/ft_maloc.c memory_utils/print_all_mem.c
+
+PROMPT_FOLDER := prompt/get_prompt.c
+
+STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c
+
+UTILS_FOLDER := utils/free_split.c utils/ft_error.c
+
 # Source files
-SRCS := main.c utils/ft_error.c memory_utils/free_all.c ux_ui/get_prompt.c ux_ui/execute_command.c \
-	ux_ui/execute_line.c utils/call_program.c ux_ui/search_in_path.c utils/free_split.c \
-	ux_ui/is_command.c ux_ui/change_dir.c pipe_proc/to_pipe.c \
-	treat_command/treat_command.c treat_command/check_double_quote.c \
-	treat_command/check_single_quote.c treat_command/expand_env_var.c statics/pipes.c \
-	memory_utils/ft_malloc.c statics/mem_list.c memory_utils/add_to_mem_list.c \
-	memory_utils/ft_free.c env_vars.c
+SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) $(UTILS_FOLDER)
 
 BONUS_SRCS := 
 
