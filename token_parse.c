@@ -6,12 +6,12 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:13:09 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/10/09 20:20:49 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/10/10 23:35:33 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "minishell.h"
 /*
+#include "minishell.h"
+
 // linked list to store the arguments received
 typedef struct s_args_lst
 {
@@ -27,13 +27,14 @@ enum e_args
 	string;
 	operators;
 	filepaths;
-	env_var;	
+	env_var;
 }
 
 int	main(void)
 {
   char *example = "ls /path/to/directory | grep "pattern" > filtered_list.txt"
   
+	cat filename
+	cat *
 
-
-}
+}*/

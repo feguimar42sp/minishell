@@ -27,6 +27,9 @@ int	main(void)
 			break;
 		add_to_mem_list("line", line);
 		add_history(line);
+
+		// function to do lexing. convert a string into a set of tokens
+		ft_lexer(line);
 		
 		ft_free(( void**)&prompt);
 	}

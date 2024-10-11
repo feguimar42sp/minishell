@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 17:00:19 by fernando         ###   ########.fr       */
+/*   Updated: 2024/10/11 00:11:36 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ typedef struct s_args_lst
 	char				*arg; // single argument
 	int					type; // type of argument - need to be implemented
 	struct s_args_lst	*next;// points to the next argument
-}	T_args_lst;
+}	t_args_lst;
 
 // enum thingy to store the type of arguments the program might receive
 typedef enum e_args
 {
-	command,
+	//command,
 	string,
 	operators,
-	filepaths,
-	env_var	
-}t_e_args;
+	//filepaths,
+	//env_var	
+};
 
 // added a linked list to store the environment variables for ease of use	
 typedef struct s_envp_lst
@@ -82,4 +82,9 @@ void		print_all_mem(void);
 void		load_env_vars(void);
 t_envp_lst  **env_vars_list(void);
 char		*ft_getenv(char *variable);
+
+// function for doing the lexing of the line of arguments
+void	ft_lexer(char *line);
+
+
 #endif
