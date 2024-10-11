@@ -6,7 +6,7 @@
 #    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/10/10 16:54:12 by fernando         ###   ########.fr        #
+#    Updated: 2024/10/11 00:49:12 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,15 @@ MEMORY_UTILS_FORDER := memory_utils/add_to_mem_list.c memory_utils/free_all.c me
 
 PROMPT_FOLDER := prompt/get_prompt.c
 
-STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c
+STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c statics/command_blocks.c
 
 UTILS_FOLDER := utils/free_split.c utils/ft_error.c
 
+PARSE_LINE_FOLDER := parse_line/parse_line.c parse_line/parse_token.c parse_line/last_command_block.c \
+	parse_line/add_to_words.c parse_line/add_command_block.c parse_line/is_word.c
+
 # Source files
-SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) $(UTILS_FOLDER)
+SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) $(UTILS_FOLDER) $(PARSE_LINE_FOLDER)
 
 BONUS_SRCS := 
 

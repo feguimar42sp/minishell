@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 17:00:19 by fernando         ###   ########.fr       */
+/*   Updated: 2024/10/11 00:53:45 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,16 @@ typedef struct s_args_lst
 	struct s_args_lst	*next;// points to the next argument
 }	T_args_lst;
 
+typedef struct s_commandblock
+{
+	char				*words;
+	int					block_order;
+	char				*heredoc;
+	char				*output_file;
+	char				*input_file;
+	struct s_args_lst	*next;
+}	t_commandblock;
+
 // enum thingy to store the type of arguments the program might receive
 typedef enum e_args
 {
@@ -66,20 +76,27 @@ typedef struct s_mem_node {
     struct s_mem_node *next;
 } t_mem_node;
 
-void		ft_error(void);
-void		free_all(void);
-void		free_split(char ***spl);
-char		*get_prompt(void);
-char		*get_user_prompt(void);
-void        *ft_maloc(size_t size, const char *name);
-void        add_to_mem_list(const char *name, void *ptr);
-t_mem_node  **mem_list();
-void        ft_free(void **ptr);
+void			ft_error(void);
+void			free_all(void);
+void			free_split(char ***spl);
+char			*get_prompt(void);
+char			*get_user_prompt(void);
+void        	*ft_maloc(size_t size, const char *name);
+void        	add_to_mem_list(const char *name, void *ptr);
+t_mem_node  	**mem_list();
+void        	ft_free(void **ptr);
 
 // function to store environment variable in a linked list
-t_envp_lst	*store_envp(char **envp);
-void		print_all_mem(void);
-void		load_env_vars(void);
-t_envp_lst  **env_vars_list(void);
-char		*ft_getenv(char *variable);
+t_envp_lst		*store_envp(char **envp);
+void			print_all_mem(void);
+void			load_env_vars(void);
+t_envp_lst  	**env_vars_list(void);
+char			*ft_getenv(char *variable);
+t_commandblock  **command_block_list(void);
+void    		parse_line(char **split_line);
+void    		add_command_block(void);
+void			add_to_words(char *word, t_commandblock *current_block);
+void    		parse_token(char **split_line, int i, t_commandblock *current_block);
+t_commandblock  *last_command_block(void);
+int 			is_word(char *str);
 #endif
