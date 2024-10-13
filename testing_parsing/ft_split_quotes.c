@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split_quotes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabrifer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 22:52:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/10/13 12:09:45 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/10/13 12:35:12 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,11 @@ void	create_node(t_args_lst **args_lst, const char *str, int start, int len)
 
 
 // função para pegar o tamanho da string
-int	count_length(const char *str, int	i, char sep)
+int	count_length(const char *str, int i, char sep)
 {
 	int	j;
 
-	j = 0;
+	j = i + 1;
 	while (str[i + j] != '\0' && str[i + j] != sep)
 		j++;
 	return (j);
@@ -130,44 +130,22 @@ t_args_lst	*ft_lst_split(char const *s, char c)
 	in_dquotes = false; // not inside double quotes
 	while (s[i] != '\0')
 	{
-		//printf("char: [%c]\n", s[i]);
-/*		if (s[i] == '\'')
+		while (s[i] != '\'' && s[i] != '\"' && s[i] == ' ')
+			i++;
+		if (s[i] == '\'')
 		{
-			printf("in_squotes == true\n");
-			in_squotes = true;
+			in_squotes = !in_squotes; // this switches from one to another
 		}
-		else if (s[i] == '\"')
+		if (in_squotes)
 		{
-			printf("in_dquotes == true\n");
-			in_dquotes = true;
-		}*/
-		if (in_squotes == false && in_dquotes == false)
-		{
-			while (s[i] == c) // skip leading spaces
-				i++;
-			j = count_length(s, i, ' '); // counting from first non-space char
-									// up to one before first space
-			if (s[i] != '\0')// && s[i + 1] != '\0')
+			j = count_length(s, i, '\'');
+			j++; // counting extra one for the the single quote char
+			if (s[i] != '\0')
 			{
 				create_node(&split, s, i, j);
-				i = i + j;// + 1; // pointing to the char after the space
+				i = i + j;
 			}
-		}/*
-		else if (in_squotes == true && in_dquotes == true)
-		{
-			printf("if (in_squotes == true && in_dquotes == true)\n");
-			if (in_dquotes == true)
-			{
-				printf("in_dquotes == true\n");
-				j = count_length(s, i, '\"');
-				j++; // counting extra one for the the single quote char
-			}
-			if (s[i] != '\0' && s[i + 1] != '\0')
-			{
-				create_node(&split, s, i, j + 1);
-				i = i + j + 1;
-			}
-		}*/
+		}
 	}
 	return (split);
 }
@@ -177,7 +155,7 @@ int	main(void)
   t_args_lst	*split;
   char			*str;
 
-  str = "echo        \"i              i \" ola";
+  str = "echo        'i              i           kkkk '  o'la";
   printf("[%s]\n", str);
   split = ft_lst_split(str, ' ');
 
