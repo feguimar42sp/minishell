@@ -6,7 +6,7 @@
 /*   By: sabrifer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 22:52:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/10/13 12:35:12 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/10/13 14:11:33 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,28 +104,27 @@ int	count_length(const char *str, int i, char sep)
 	return (j);
 }
 
-// char const *s
-// int i to loop through str and mark beginning of each word
-// int j to mark end of each word
-// bool s_quotes and d_quotes
-// space char
-// t_args_lst to populate arg and type
+void	separate_squotes(char *s, t_args_lst **split, int *len)
+{
+	int		i;
+	bool	in_quotes;
+
+	i = 0;
+	in_quotes = false;
+	
+}
 
 t_args_lst	*ft_lst_split(char const *s, char c)
 {
 	t_args_lst	*split;
-	t_args_lst	*new;
-	char		*str;
 	int		i;
 	int		j;
-	int		x;
 	bool	in_squotes;
 	bool	in_dquotes;
 
 	split = NULL;
 	i = 0;
 	j = 0;
-	x = 0;
 	in_squotes = false; // not inside single quotes
 	in_dquotes = false; // not inside double quotes
 	while (s[i] != '\0')
@@ -135,6 +134,8 @@ t_args_lst	*ft_lst_split(char const *s, char c)
 		if (s[i] == '\'')
 		{
 			in_squotes = !in_squotes; // this switches from one to another
+			if (in_squotes)
+				separate_squotes(s + i, &split, &j);
 		}
 		if (in_squotes)
 		{
