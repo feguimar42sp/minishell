@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:28 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 15:36:59 by fernando         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:55:52 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(void)
 		ft_lexer(line);
 		
 		ft_free(( void**)&prompt);
+		clean_args();
 	}
 	free_all();
 }

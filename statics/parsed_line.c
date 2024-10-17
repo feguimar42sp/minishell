@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lexer.c                                         :+:      :+:    :+:   */
+/*   parsed_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 22:58:42 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/10/17 18:47:47 by feguimar         ###   ########.fr       */
+/*   Created: 2024/10/17 17:55:40 by feguimar          #+#    #+#             */
+/*   Updated: 2024/10/17 18:37:45 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-void	ft_lexer(char *str)
+t_args_lst	**parsed_line(void)
 {
-  char	**split_by_spaces;
+	static t_args_lst	*ret;
 
-  split_by_spaces = ft_split(str, ' ');
-  simple_parse(split_by_spaces);
+	return (&ret);
 }

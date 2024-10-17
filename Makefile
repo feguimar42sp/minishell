@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
+#    By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/10/10 16:54:12 by fernando         ###   ########.fr        #
+#    Updated: 2024/10/17 19:23:46 by feguimar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,17 @@ MEMORY_UTILS_FORDER := memory_utils/add_to_mem_list.c memory_utils/free_all.c me
 
 PROMPT_FOLDER := prompt/get_prompt.c
 
-STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c
+STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c statics/parsed_line.c
 
 UTILS_FOLDER := utils/free_split.c utils/ft_error.c
 
+PARSE_FILES := ft_lexer.c simple_parsing/clean_args.c simple_parsing/simple_parse.c
+
+RUN_PARSED_FOLDER := run_parsed/run_parsed.c
+
 # Source files
-SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) $(UTILS_FOLDER)
+SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) \
+	$(UTILS_FOLDER) $(PARSE_FILES) $(RUN_PARSED_FOLDER)
 
 BONUS_SRCS := 
 

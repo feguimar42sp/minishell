@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lexer.c                                         :+:      :+:    :+:   */
+/*   add_to_string.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 22:58:42 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/10/17 18:47:47 by feguimar         ###   ########.fr       */
+/*   Created: 2024/10/17 15:08:03 by feguimar          #+#    #+#             */
+/*   Updated: 2024/10/17 15:09:30 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-void	ft_lexer(char *str)
+char	*add_to_string(char **str, char *add)
 {
-  char	**split_by_spaces;
+	char	*temp;
 
-  split_by_spaces = ft_split(str, ' ');
-  simple_parse(split_by_spaces);
+	temp = ft_strjoin()
 }
