@@ -178,7 +178,7 @@ int	separator_by_length(char *s)
 	closest = find_pos_strchr(s + 1, ' '); // -1
 	if (find_pos_strchr(s + 1, '\'') < closest && find_pos_strchr(s + 1, '\'') != -1)
 		closest = find_pos_strchr(s + 1, '\'');
-	if (find_pos_strchr(s + 1, '\"') < closest)
+	if (find_pos_strchr(s + 1, '\"') < closest && find_pos_strchr(s + 1, '\"') != -1)
 		closest = find_pos_strchr(s + 1, '\"');
 	if (closest > size)
 		closest = size;
@@ -201,12 +201,10 @@ int	separate_spaces(char *s, t_args_lst **split)
 		len = find_pos_strchr(s + 1, '\"');*/
 	len += 1;
 	// if there's a quote after one or a few non-space was found,->
-	// then check if there's another quote that matches it in the rest of the str
-	// if there's a quote,
-	// the goes back to the main function with the char 'quote'
-	// as position,
-	// so it can go back and enter another if that it meets the requirement to
-	// separate it as a single string
+	// then check if there's another quote that matches it in the rest of the str???
+	//
+	// if there's a quote, then goes back to the main function with the char 'quote'
+	// as position, so it can go back and enter another function
 	i = 0;
 	create_node(split, s, i, len);
 	i = i + len;
