@@ -165,21 +165,21 @@ int	separate_squotes(char *s, t_args_lst **split, bool *s_quotes)
 
 int	separator_by_length(char *s)
 {
-	char	seps[4];
 	int		closest;
 
-	seps = " \'\"";
-	closest = find_pos_str(s + 1, ' ');
-	if (find_pos_str(s + 1, '\'') < closest)
-		closest = find_pos_str(s + 1, '\'');
-	if (find_pos_str(s + 1, '\"') < closest)
-		closest = find_pos_str(s + 1, '\"');
+	closest = find_pos_strchr(s + 1, ' ');
+	if (closest == -1)
+		return (-1);
+	if (find_pos_strchr(s + 1, '\'') < closest && find_pos_strchr(s + 1, '\'') != -1)
+		closest = find_pos_strchr(s + 1, '\'');
+	if (find_pos_strchr(s + 1, '\"') < closest && find_pos_strchr(s + 1, '\"') != -1)
+		closest = find_pos_strchr(s + 1, '\"');
 
-	return ()// this information will be used to know which function to go to ->
+	return (closest);// this information will be used to know which function to go to ->
 			 // spaces, single or double quotes
 }
 
-t_args_lst	*ft_lst_split(char *s, char c)
+t_args_lst	*ft_lst_split(char *s)
 {
 	t_args_lst	*split;
 	char		*str;
@@ -192,15 +192,11 @@ t_args_lst	*ft_lst_split(char *s, char c)
 	j = 0;
 	while (s[i] != '\0')
 	{
-		while (s[i] != '\'' && s[i] != '\"' && s[i] == c && s[i] != '\0') // skip leading spaces
+		while (s[i] != '\'' && s[i] != '\"' && s[i] == ' ' && s[i] != '\0') // skip leading spaces
 			i++;
-		if (s[i] == ' ')
-			end = separator_by_length(s + i + 1);
-		if (s[i] != '\0')            // && s[i + 1] != '\0')
-		{
-			create_node(&split, s, i, j);
-			i = i + j; // + 1; // pointing to the char after the space
-		}
+		end = separator_by_length(s + i + 1);
+		create_node(&split, s, i, end);
+		i = i + end; // + 1; // pointing to the char after the space
 	}
 	return (split);
 }
@@ -210,9 +206,9 @@ int	main(void)
 	t_args_lst	*split;
 	char		*str;
 
-	str = "echo        \"i              i \" ola";
+	str = "echo \"i'i \" ola";
 	printf("[%s]\n", str);
-	split = ft_lst_split(str, ' ');
+	split = ft_lst_split(str);
 	/*  int i = 0;
 		while (split)
 		{
