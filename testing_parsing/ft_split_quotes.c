@@ -176,6 +176,7 @@ int	separator_by_length(char *s)
 
 	size = ft_strlen(s);
 	closest = find_pos_strchr(s + 1, ' '); // -1
+	if (closest == -1)
 	if (find_pos_strchr(s + 1, '\'') < closest && find_pos_strchr(s + 1, '\'') != -1)
 		closest = find_pos_strchr(s + 1, '\'');
 	if (find_pos_strchr(s + 1, '\"') < closest && find_pos_strchr(s + 1, '\"') != -1)
@@ -192,8 +193,9 @@ int	separate_spaces(char *s, t_args_lst **split)
 	int	size;
 
 	size = ft_strlen(s);
-	len = separator_by_length(s);
-	printf("char found at pos %d = [%c]\n", len, s[len]);
+	//len = separator_by_length(s);
+	len = find_pos_strchr(s + 1, ' '); // -1
+	//printf("char found at pos %d = [%c]\n", len, s[len]);
 	/*len = find_pos_strchr(s + 1, ' ');
 	if (find_pos_strchr(s + 1, '\'') < len)
 		len = find_pos_strchr(s + 1, '\'');
