@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:03:28 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/10/17 17:04:07 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/10/17 20:55:49 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,21 +129,6 @@ size_t	ft_strcspn(const char *s, const char *reject)
 		}
 		len++;
 	}
-/*	if (s[len] == '\0')
-	{
-		printf("null character\n");
-		return (-1);
-	}
-*/	return (len);
-}
-
-size_t	ft_strspn(const char *s, const char *accept)
-{
-	size_t	len;
-
-	len = 0;
-	while (s[len] == accept[len])
-		len++;
 	return (len);
 }
 
@@ -173,14 +158,58 @@ t_args_lst	*ft_lst_split(char *str)
 	return (lst);
 }
 
+int	count_len_needed(char *str)
+{
+	static int	count;
+	int			i;
+
+	i = 0;
+	// returns null if char does not exist in str
+	if (ft_strcspn(str, "\'\""))
+ // if it finds a single or double quote, separate the string by before the single
+ // or double quotes, then store in node up to a character that is not space, single
+ // or double quotes. and store in next node the remainder after
+ // the space/singlequote/doublequotes
+ //
+ // if it does not find a single or double quote and it does not have spaces at the end,
+ // store in the same node until it finds a space, single or double quote.
+ // if it has spaces at the end then just copy up to the non-space characters, therefore
+ // deleting the spaces
+		if (str[i] != '\0' && str[i] != '\'' && str[i] != '\"')
+		i++;
+}
+
+//void	create_node(t_args_lst **args_lst, const char *str, int start, int len)
+t_args_lst	*split_final(t_args_lst **lst)
+{
+	t_args_lst	*split;
+	t_args_lst	*new_lst;
+	char		*str;
+
+	split = NULL;
+	new_lst = *lst;
+	int i = 0;
+	int j = 0;
+	while (new_lst)
+	{
+		i = 0;
+		while (new_lst->arg[j] != '\0' && new_lst->arg[j] != ' '
+			&& new_lst->arg[j] != '\'' && new_lst->arg[j] != '\"')
+		{
+			j++;
+		}
+		create_node(&split, new_lst->arg, i, j);
+	}
+}
+
 int	main(void)
 {
 	t_args_lst	*split;
+	t_args_lst	*new_split;
 	char		*str;
 	int			i;
-	str = "echo \"p\"a\'\'\'\'\'ABCDE\"F\"G\'\"ra\"\'b\'\"\"\'\'\"\"\'\'\'ens\'HFDHFDHFDHFDi    ";
-	//str = "echo bom dia 'mundo'";
-	str = "echo \"\"\"\"\"\"T\'u\'d\"o\"                      b\'\'\'\'\"e\"\'\'\"\"\"\"\"\"\'m\'\"\"\"\"\"\"\'?\'";
+	//str = "echo \"p\"a\'\'\'\'\'ABCDE\"F\"G\'\"ra\"\'b\'\"\"\'\'\"\"\'\'\'ens\'";
+	str = "echo bom dia 'mundo'";
 
 	printf("[%s]\n", str);
 	split = ft_lst_split(str);
@@ -191,4 +220,5 @@ int	main(void)
 		split = split->next;
 		i++;
 	}
+	new_split = split_final(&split);
 }
