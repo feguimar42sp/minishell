@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 typedef struct s_args_lst
 {
@@ -20,12 +21,6 @@ typedef struct s_args_lst
 	int type;                // type of argument - need to be implemented
 	struct s_args_lst *next; // points to the next argument
 }			t_args_lst;
-
-typedef struct s_quotes
-{
-	int		single_count;
-	int		double_count;
-}			t_quotes;
 
 enum		e_args
 {
@@ -132,82 +127,86 @@ size_t	ft_strcspn(const char *s, const char *reject)
 	return (len);
 }
 
+int	split_by_quotes(t_args_lst **split, char *str, int i)
+{
+	char	quote;
+	int		len;
+	int		start;
+
+	len = 0;
+	start = i;
+	if (str[start] == '\'')
+		quote = '\'';
+	else if (str[start] == '\"')
+		quote = '\"';
+	start++;
+	while (str[start] != quote && str[start] != '\0')
+	{
+		start++;
+		len++;
+	}
+	len += 2;
+	create_node(split, str, i, len);
+	return(i + len);
+}
+
 t_args_lst	*ft_lst_split(char *str)
 {
-	t_args_lst	*lst;
 	int			i;
-	int			j;
-
-	lst = NULL;
-	i = 0;
-	j = 0;
-	while (str[i] == ' ')
-		i++;
-	while (str[i])
-	{
-		j = ft_strcspn(str + i, " \'\"\0");
-		if (str[i] != '\0')
-		{
-			if ((str + i)[j] != '\0')
-				j++;
-			create_node(&lst, str, i, j);
-			i = i + j;
-		}
-	}
-	return (lst);
-}
-
-int	count_len_needed(t_args_lst *lst)
-{
-	static int	count;
-	int	i;
-
-	count = 0;
-	i = 0;
-
-	while (new_lst)
-	{
-		if (ft_strchr(new_lst->arg, ' '))
-
-		new_lst = new_lst->next;
-	}
-}
-// void	create_node(t_args_lst **args_lst, const char *str, int start, int len)
-t_args_lst	*split_final(t_args_lst **lst)
-{
+	int			start;
+	int			end;
 	t_args_lst	*split;
-	t_args_lst	*new_lst;
-	char		*str;
-	int			i;
-	int			j;
 
 	split = NULL;
-	new_lst = *lst;
 	i = 0;
-	j = 0;
-	while (new_lst)
+	start = 0;
+	end = 0;
+	while (str[i])
 	{
-		if (!ft_strchr(new_lst->arg, '\'') && !ft_strchr(new_lst->arg, '\"'))
+		while ((str[i] == ' ' || str[i] == '\t') && str[i] != '\0') // skip space and tab
 		{
-			if (ft_strchr(new_lst->arg))
-			split->arg = ft_strjoin(split->arg, "");
-
-			count_len_needed)(new_lst);
-			//create_node(&split, new_lst->arg, i, j);
-
+			printf("spaces skipped\n");
+			i++;
 		}
+		if (str[i] == '\'')
+		{
+			printf("single quote found\n");
+			i = split_by_quotes(&split, str, i);
+			printf("value of i 0[%d]\n", i);
+		}
+		else if (str[i] == '\"')
+		{
+			printf("double quote found\n");
+			i = split_by_quotes(&split, str, i);
+			printf("value of i 1[%d]\n", i);
+		}
+		else
+		{
+			end = 0;
+			start = i;
+			while (str[i] != ' ' && str[i] != '\t' && str[i] != '\'' && str[i] != '\"' && str[i] != '\0')
+			{
+				i++;
+				end++;
+			}
+			create_node(&split, str, start, end);
+		}
+		if (str[i] == '\0')
+			break ;
+		printf("here\n");
 	}
+	return (split);
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_args_lst	*split;
 	t_args_lst	*new_split;
 	char		*str;
 	int			i;
 
-	// str = "echo \"p\"a\'\'\'\'\'ABCDE\"F\"G\'\"ra\"\'b\'\"\"\'\'\"\"\'\'\'ens\'";
-	str = "echo bom dia 'mundo'";
+	//str = "echo \"p\"a\'\'\'\'\'ABCDE\"F\"G\'\"ra\"\'b\'\"\"\'\'\"\"\'\'\'ens\'";
+	str = av[1];
 	printf("[%s]\n", str);
 	split = ft_lst_split(str);
 	i = 0;
@@ -217,5 +216,4 @@ int	main(void)
 		split = split->next;
 		i++;
 	}
-//	new_split = split_final(&split);
 }
