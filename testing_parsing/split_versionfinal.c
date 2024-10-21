@@ -132,9 +132,31 @@ void	split_by_redirects(t_args_lst **split, char *str, int *i)
 			len++;
 		}
 	}
-	//len += 1;
 	create_node(split, str, *i, len);
 	*i = *i + len;
+}
+
+void	split_by_spaces(t_args_lst **split, char *str, int *i)
+{
+	int		len;
+	int		start;
+
+	len = 0;
+	start = *i;
+
+	while (str[start] != ' ' && str[start] != '\t' && str[start] != '\''
+			&& str[start] != '\"' && str[start] != '\0'
+			&& str[start] != '<' && str[start] != '>' )
+	{
+		start++;
+		len++;
+	}
+	create_node(split, str, *i, len);
+	*i = *i + len;
+	if ((str[start] == '>' || str[start] == '<') && str[start] != '\0')
+	{
+		split_by_redirects(split, str, i);
+	}	
 }
 
 t_args_lst	*ft_lst_split(char *str)
@@ -155,13 +177,11 @@ t_args_lst	*ft_lst_split(char *str)
 		if (str[i] == '\'' || str[i] == '\"')
 			split_by_quotes(&split, str, &i);
 		else if (str[i] == '<' || str[i] == '>')
-		{
-			printf("str[i] == [%c]\n", str[i]);
 			split_by_redirects(&split, str, &i);
-		}
 		else
 		{
-			len = 0;
+			split_by_spaces(&split, str, &i);
+			/*len = 0;
 			start = i;
 			while (str[i] != ' ' && str[i] != '\t' && str[i] != '\''
 				&& str[i] != '\"' && str[i] != '\0')
@@ -169,7 +189,7 @@ t_args_lst	*ft_lst_split(char *str)
 				i++;
 				len++;
 			}
-			create_node(&split, str, start, len);
+			create_node(&split, str, start, len);*/
 		}
 	}
 	return (split);
@@ -184,7 +204,7 @@ int	main(int ac, char **av)
 
 	//str = "echo \"p\"a\'\'\'\'\'ABCDE\"F\"G\'\"ra\"\'b\'\"\"\'\'\"\"\'\'\'ens\'";
 	//str = "echo \"Hello, World!\" < greetings.txt";
-	str = "command > all_output.txt 2>&1";
+	str = "command >> all_  > output.txt 2<<&1>";
 	// str = av[1];
 	printf("[%s]\n", str);
 	split = ft_lst_split(str);
