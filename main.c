@@ -29,7 +29,7 @@ int	main(void)
 		add_history(line);
 
 		// function to do lexing. convert a string into a set of tokens
-		ft_lexer(line);
+		//ft_lexer(line);
 		
 		ft_free(( void**)&prompt);
 	}
