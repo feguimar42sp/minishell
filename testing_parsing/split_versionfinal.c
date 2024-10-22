@@ -22,7 +22,7 @@ typedef struct s_args_lst
 	struct s_args_lst	*next;
 }						t_args_lst;
 
-enum		e_args
+enum					e_args
 {
 	STRING,
 	OPERATORS,
@@ -95,9 +95,11 @@ void	split_by_quotes(t_args_lst **split, char *str, int *i)
 	len = 0;
 	start = *i;
 	if (str[start] == '\'' || str[start] == '\"')
+	{
 		quote = str[start];
-	start++;
-	len++;
+		start++;
+		len++;
+	}
 	while (str[start] != quote && str[start] != '\0')
 	{
 		start++;
@@ -116,23 +118,10 @@ void	split_by_redirects(t_args_lst **split, char *str, int *i)
 
 	len = 0;
 	start = *i;
-	if (str[start] == '<')
-	{
-		while (str[start] == '<' && str[start] != '\0')
-		{
-			start++;
-			len++;
-		}
-	}
-	else if (str[start] == '>')
-	{
-		while (str[start] == '>' && str[start] != '\0')
-		{
-			start++;
-			len++;
-		}
-	}
-	else if (str[start] == '|')
+	redirect = str[start];
+	start++;
+	len++;
+	while (str[start] == redirect)
 	{
 		start++;
 		len++;
@@ -148,8 +137,9 @@ void	split_by_spaces(t_args_lst **split, char *str, int *i)
 
 	len = 0;
 	start = *i;
-	while (str[start] != ' ' && str[start] != '\t' && str[start] != '\''
-		&& str[start] != '\"' && str[start] != '\0' && str[start] != '<'
+	while (str[start] != ' ' && str[start] != '\t'
+		&& str[start] != '\'' && str[start] != '\"'
+		&& str[start] != '\0' && str[start] != '<'
 		&& str[start] != '>' && str[start] != '|')
 	{
 		start++;
@@ -157,7 +147,8 @@ void	split_by_spaces(t_args_lst **split, char *str, int *i)
 	}
 	create_node(split, str, *i, len);
 	*i = *i + len;
-	if ((str[start] == '>' || str[start] == '<' || str[start] == '|') && str[start] != '\0')
+	if ((str[start] == '>' || str[start] == '<' || str[start] == '|')
+		&& str[start] != '\0')
 	{
 		split_by_redirects(split, str, i);
 	}
@@ -195,10 +186,12 @@ int	main(int ac, char **av)
 	char		*str;
 	int			i;
 
-	// str = "echo \"p\"a\'\'\'\'\'ABCDE\"F\"G\'\"ra\"\'b\'\"\"\'\'\"\"\'\'\'ens\'";
+	str = "echo \"p\"a\'\'\'\'\'ABCDE\"F\"G\'\"ra\"\'b\'\"\"\'\'\"\"\'\'\'ens\'";
 	// str = "echo \"Hello, World!\" < greetings.txt";
-	//str = "command >> all_  > output.txt 2<<&1>";
-	str = "ifconfig|grep \'inet \'|awk \'{print $2}\'";
+	// str = "command >> all_  \"olaola\" | output.txt 2<<&1>";
+	// str = "ifconfig|grep \'inet \'|awk \'{print $2}\'";
+	// str = "\'inet \'|awk";
+	// str = "\'inet \'>>awk";
 	// str = av[1];
 	printf("[%s]\n", str);
 	split = ft_lst_split(str);
