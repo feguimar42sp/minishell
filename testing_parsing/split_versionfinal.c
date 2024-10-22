@@ -113,30 +113,40 @@ void	create_node(t_args_lst **args_lst, const char *str, int start, int len)
 
 void	split_by_quotes(t_args_lst **split, char *str, int *i)
 {
-	char	quote;
+	bool	s_quotes = false;
+	bool	d_quotes = false;
 	int		len;
 	int		start;
 
 	len = 0;
 	start = *i;
-	if (str[start] == '\'' || str[start] == '\"')
-	{
-		quote = str[start];
-		start++;
-		len++;
-	}
 	while (str[start] != '\0')
 	{
-		while (str[start] != quote && str[start] != '\0')
+		if (str[start] == '\'' && d_quotes == false)
 		{
+			s_quotes = !s_quotes;
 			start++;
 			len++;
 		}
-		if (str[start + 1] == ' ' || str[start + 1] == '<'
-			|| str[start + 1] == '>' || str[start + 1] == '|'
-			|| str[start + 1] == '\0')
+		else if (str[start] == '\"' && s_quotes == false)
 		{
-			break ;
+			d_quotes = !d_quotes;
+			start++;
+			len++;
+		}
+		else if (s_quotes == false && d_quotes == false)
+		{
+			if (str[start] == ' ' || str[start] == '<'
+				|| str[start] == '>' || str[start] == '|'
+				|| str[start] == '\0')
+			{
+				break ;
+			}
+			else
+			{
+				start++;
+				len++;
+			}
 		}
 		else
 		{
@@ -144,7 +154,7 @@ void	split_by_quotes(t_args_lst **split, char *str, int *i)
 			len++;
 		}
 	}
-	len += 1;
+	//len += 1;
 	create_node(split, str, *i, len);
 	*i = *i + len;
 }
@@ -265,6 +275,38 @@ t_args_lst	*ft_lst_split(char *str)
 	return (split);
 }
 
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+void	ft_lexer(t_args_lst **split)
+{
+	t_args_lst	*split_new;
+
+	split_new = *split;
+	while (split_new)
+	{
+		if (ft_strcmp(split_new->arg, "|") == 0)
+			split_new->type = OPERATORS;
+		if (ft_strcmp(split_new->arg, "<") == 0)
+			split_new->type = OPERATORS;
+		if (ft_strcmp(split_new->arg, ">") == 0)
+			split_new->type = OPERATORS;
+		if (ft_strcmp(split_new->arg, "<<") == 0)
+			split_new->type = OPERATORS;
+		if (ft_strcmp(split_new->arg, ">>") == 0)
+			split_new->type = OPERATORS;
+		split_new = split_new->next;
+	}
+}
+
+
 int	main(int ac, char **av)
 {
 	t_args_lst	*split;
@@ -273,8 +315,8 @@ int	main(int ac, char **av)
 
 	//str = "echo \"p\"a\'\'\'\'\'ABCDE\"F\"G\'\"ra\"\'b\'\"\"\'\'\"\"\'\'\'ens\'";
 	//str = "echo \"Hello, World!\" < greetings.txt";
-	// str = "command >> all_  \"olaola\" | output.txt 2<<&1>";
-	str = "ifconfig|grep \'inet \'\"dfsddsfsd\"|awk \'{print $2}\'";
+	//str = "command >> all_  \"olaola\" | output.txt 2<<&1>";
+	//str = "ifconfig|grep \'inet \'\"dfsdd|rfsd\"|awk \'{print $2}\'";
 	// str = "\'inet \'|awk";
 	//str = "\'inet \'>>awk";
 	//str = "\'inet >>awk";
@@ -283,14 +325,18 @@ int	main(int ac, char **av)
 	//str = "echo \"p\"a\'\'\'\'\'\'\"ra\"\'b\'\"\"\'\'\"\"\'\'\'éns\'";
 	//str = "echo \"\"\"\"\"\"T\'u\'d\"o\"                      b\'\'\'\'\"e\"\'\'\"\"\"\"\"\"\'m\'\"\"\"\"\"\"\'?\'";
 	//str = "echo \"List of files:\">files.txt | cat files.txt";
-	//str = "echo \"\"\"\"\"\"T\'u\'d\"o b\"\'\'\'\'\"e\"\'\'\"\"\"\"\"\"\'m\'\"\"\"\"\"\"\'?'";
+	//str = "echo \"\"\"\"\"\"T\'u\'d\"o b\"\'\'\'\'\"e\"\'\'\"\"\"\"\"\"\'m\'\"\"\"\"\"\"\'?\'";
+	str = "e\'c\'h\"o\" kgf$?ghf";
+	//str = " bo\'\'m\'\' \"d\"\'i\'\'\'\'\'\'\'\'\'\'\'\'\'\'a\'";
 
 	printf("[%s]\n", str);
 	split = ft_lst_split(str);
+
+	ft_lexer(&split);
 	i = 0;
 	while (split)
 	{
-		printf("node[%d] - split->arg:[%s]\n", i, split->arg);
+		printf("node[%d] - split->arg:[%s] && split->type: [%d]\n", i, split->arg, split->type);
 		split = split->next;
 		i++;
 	}
