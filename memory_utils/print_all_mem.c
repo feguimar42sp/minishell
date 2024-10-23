@@ -19,7 +19,7 @@ void	print_all_mem(void)
 	current = *mem_list();
 	while (current != NULL)
 	{
-		printf("Printing  Memory block: %s, Pointer: %p\n", current->name, current->ptr);
+		//printf("Printing  Memory block: %s, Pointer: %p\n", current->name, current->ptr);
 		current = current->next;
 	}
 }

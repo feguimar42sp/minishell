@@ -34,11 +34,11 @@ typedef int				t_pipe[2];
 typedef enum
 {
 	// command,
-	string,
-	operators,
+	STRING,
+	OPERATORS
 	// filepaths,
 	// env_var
-}						e_args;
+}	e_args;
 
 // linked list to store the arguments received
 typedef struct s_args_lst

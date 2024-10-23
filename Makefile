@@ -15,6 +15,7 @@ NAME := minishell
 BONUS :=
 
 LIBFT_DIR := ./libft
+LIBFT := libft/libft.a
 BONUS_DIR := ./bonus
 
 # Directories
@@ -24,7 +25,7 @@ VPATH := .
 CC := cc
 
 # Compiler flags
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -g
 
 # Linker flags
 LINKER_FLAGS := -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft -lreadline
@@ -57,15 +58,16 @@ BONUS_OBJS := $(BONUS_SRCS:.c=.o)
 HEADERS := minishell.h
 
 # Build target
-all: $(NAME)
+all: lib $(NAME)
+
+lib:
+	make -C $(LIBFT_DIR) bonus
 
 $(NAME): $(LIBFT) $(OBJECTS)
-	make -C $(LIBFT_DIR)
 	$(CC) $(CFLAGS) $(OBJECTS) $(LINKER_FLAGS) -o $(NAME)
 	
-LIBFT := libft/libft.a
 
-$(LIBFT): libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c \
+#$(LIBFT): libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c \
 	libft/ft_isalnum.c libft/ft_isalpha.c libft/ft_isascii.c libft/ft_isdigit.c \
 	libft/ft_isprint.c libft/ft_itoa.c libft/ft_lstadd_back.c \
 	libft/ft_lstadd_front.c libft/ft_lstclear.c libft/ft_lstdelone.c \
@@ -79,7 +81,7 @@ $(LIBFT): libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c \
 	libft/ft_strtrim.c libft/ft_substr.c libft/ft_tolower.c libft/ft_toupper.c \
 	libft/libft.h libft/Makefile
 	
-	make -C $(LIBFT_DIR)
+#	make -C $(LIBFT_DIR)
 
 bonus: $(BONUS_OBJS)
 

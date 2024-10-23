@@ -24,10 +24,10 @@ void	free_all(void)
 	while (current != NULL)
 	{
 		if (current->ptr == NULL)
-			printf("Pointer for '%s' already free.\n", current->name);
+			;//printf("Pointer for '%s' already free.\n", current->name);
 		else
 		{
-			printf("Freeing: %s -> %p\n", current->name, current->ptr);
+			//printf("Freeing: %s -> %p\n", current->name, current->ptr);
 			free(current->ptr);
 		}
 		free(current->name);

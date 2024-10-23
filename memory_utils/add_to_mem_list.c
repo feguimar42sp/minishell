@@ -19,7 +19,7 @@ void	add_to_mem_list(const char *name, void *ptr)
 	new_node = malloc(sizeof(t_mem_node));
 	if (!new_node)
 	{
-		printf("Error: Could not allocate memory for tracking.\n");
+		//printf("Error: Could not allocate memory for tracking.\n");
 		ft_error();
 	}
 	new_node->name = ft_strdup(name);

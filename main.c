@@ -17,13 +17,12 @@ int	main(void)
 	char		*line;
 	char		*prompt;
 	int			i;
-	t_args_lst	*split;
+	t_args_lst	*split = NULL;
 
 	while (1)
 	{
 		prompt = get_prompt();
 		add_to_mem_list("prompt", prompt);
-		ft_free(( void**)&line);
 		line = readline(prompt);
 		if (line == NULL)
 			break;
@@ -32,7 +31,7 @@ int	main(void)
 
 		// function to do lexing. convert a string into a set of tokens
 		//ft_lexer(line);
-		
+		printf("line received = [%s]\n", line);
 		split = ft_lst_split(line);
 		ft_lexer(&split);
 		i = 0;
@@ -42,7 +41,7 @@ int	main(void)
 			split = split->next;
 			i++;
 		}
-
+		//ft_free(( void**)&line);
 		ft_free(( void**)&prompt);
 	}
 	free_all();

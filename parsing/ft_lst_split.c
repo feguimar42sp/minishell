@@ -17,10 +17,9 @@ t_args_lst	*ft_lst_split(char *str)
 			split_by_quotes(&split, str, &i);
 		else if (str[i] == '<' || str[i] == '>' || str[i] == '|')
 			split_by_redirects(&split, str, &i);
-//		else if (str[i] == '$')
-//			split_by_dollarsign(&split, str, &i);
 		else
 			split_by_spaces(&split, str, &i);
 	}
+	add_to_mem_list("split_in_ft_lst_split", &split); // correto?
 	return (split);
 }

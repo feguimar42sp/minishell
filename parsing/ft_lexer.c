@@ -9,15 +9,15 @@ void	ft_lexer(t_args_lst **split)
 	while (split_new)
 	{
 		if (ft_strcmp(split_new->arg, "|") == 0)
-			split_new->type = operators;
+			split_new->type = OPERATORS;
 		if (ft_strcmp(split_new->arg, "<") == 0)
-			split_new->type = operators;
+			split_new->type = OPERATORS;
 		if (ft_strcmp(split_new->arg, ">") == 0)
-			split_new->type = operators;
+			split_new->type = OPERATORS;
 		if (ft_strcmp(split_new->arg, "<<") == 0)
-			split_new->type = operators;
+			split_new->type = OPERATORS;
 		if (ft_strcmp(split_new->arg, ">>") == 0)
-			split_new->type = operators;
+			split_new->type = OPERATORS;
 		split_new = split_new->next;
 	}
 }

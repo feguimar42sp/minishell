@@ -65,7 +65,7 @@ void	add_to_lst(t_envp_lst **env_var, char *env)
 	new_node = (t_envp_lst *)malloc(sizeof(t_envp_lst));
 	if (new_node == NULL)
 	{
-		printf("new_node == null\n");
+		//printf("new_node == null\n");
 		return ;
 	}
 	// for reference: char	*ft_substr(char const *s, size_t start, size_t len)
