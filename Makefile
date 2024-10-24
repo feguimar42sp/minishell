@@ -39,7 +39,7 @@ PROMPT_FOLDER := prompt/get_prompt.c
 
 STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c statics/args_list.c
 
-UTILS_FOLDER := utils/free_split.c utils/ft_error.c
+UTILS_FOLDER := utils/free_split.c utils/ft_error.c utils/ft_lst_tomatrix.c
 
 PARSING_FOLDER := parsing/create_node.c parsing/split_by_quotes.c parsing/split_by_redirects.c \
 	parsing/split_by_spaces.c parsing/unclosed_quotes.c parsing/ft_lexer.c \

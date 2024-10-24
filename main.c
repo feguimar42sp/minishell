@@ -41,6 +41,13 @@ int	main(void)
 			split = split->next;
 			i++;
 		}
+/*		char **str = lst_to_matrix(split);
+		i = 0;
+     		while (str[i] != NULL)
+    		{
+			printf("str[%d] = %s\n", i, str[i]);
+			i++;
+    		}*/
 		//ft_free(( void**)&line);
 		ft_free(( void**)&prompt);
 	}

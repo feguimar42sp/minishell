@@ -99,4 +99,7 @@ bool					unclosed_quotes(char *str);
 t_args_lst				*ft_lst_split(char *str);
 int						ft_strcmp(const char *s1, const char *s2);
 
+// function to convert list to matrix
+char    **lst_to_matrix(t_args_lst *lst);
+
 #endif
