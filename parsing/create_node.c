@@ -9,6 +9,7 @@ void	create_node(t_args_lst **args_lst, const char *str, int start, int len)
 	temp = *args_lst;
 	new->arg = ft_substr(str, start, len);
 	new->type = string;
+	new->next = NULL;
 	if (temp == NULL)
 		*args_lst = new;
 	else

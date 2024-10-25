@@ -6,7 +6,7 @@
 #    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/10/23 15:52:07 by fernando         ###   ########.fr        #
+#    Updated: 2024/10/24 21:49:55 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,14 +38,27 @@ PROMPT_FOLDER := prompt/get_prompt.c
 
 STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c statics/args_list.c
 
-UTILS_FOLDER := utils/free_split.c utils/ft_error.c
+UTILS_FOLDER := utils/free_split.c utils/ft_error.c utils/ft_quote_error.c utils/clear_args_list.c \
+	utils/ft_redirect_error.c
 
 PARSING_FOLDER := parsing/create_node.c parsing/split_by_quotes.c parsing/split_by_redirects.c \
 	parsing/split_by_spaces.c parsing/unclosed_quotes.c parsing/ft_lexer.c \
 	parsing/ft_lst_split.c parsing/ft_strcmp.c
 
+RUN_COMMANDS_FORDER := run_commands/run_commands.c run_commands/parse_redirect.c run_commands/io_redirects.c \
+	run_commands/redirect_output.c run_commands/make_array.c run_commands/open_file.c run_commands/add_word.c \
+	run_commands/run_curr_command.c run_commands/set_process_io.c run_commands/run_last_command.c \
+	run_commands/set_last_process_io.c
+
+EXECUTE_COMMAND_FOLDER := run_commands/execute_command/execute_command.c run_commands/execute_command/search_in_path.c \
+	run_commands/execute_command/run_from_root.c
+
+BUILT_INS_FOLDER := run_commands/built-ins/fill_cmds.c run_commands/built-ins/ft_cd.c run_commands/built-ins/ft_exit_cmd.c \
+	run_commands/built-ins/ft_export.c run_commands/built-ins/ft_pwd.c run_commands/built-ins/is_built_int.c
+
 # Source files
-SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) $(UTILS_FOLDER) $(PARSING_FOLDER)
+SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) \
+	$(UTILS_FOLDER) $(PARSING_FOLDER) $(RUN_COMMANDS_FORDER) $(BUILT_INS_FOLDER) $(EXECUTE_COMMAND_FOLDER)
 
 BONUS_SRCS := 
 
