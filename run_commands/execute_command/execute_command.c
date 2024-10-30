@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 16:10:28 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/24 23:55:33 by fernando         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:39:18 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	execute_command(char **command_line, char **env_path)
 	}
 	else
 	{
+	printf("execute command+++++\n");
 		temp = ft_strjoin("/", command_line[0]);
 		search_in_path(temp, command_line, env_path);
 	}

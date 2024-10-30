@@ -6,7 +6,7 @@
 #    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/10/24 21:49:55 by fernando         ###   ########.fr        #
+#    Updated: 2024/10/30 17:54:05 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(OBJECTS)
 	make -C $(LIBFT_DIR)
 	$(CC) $(CFLAGS) $(OBJECTS) $(LINKER_FLAGS) -o $(NAME)
-	
+
 LIBFT := libft/libft.a
 
 $(LIBFT): libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c \

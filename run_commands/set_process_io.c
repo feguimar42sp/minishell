@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:56:36 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/24 21:45:20 by fernando         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:00:31 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	set_process_io(int *in_f, int *out_f, t_pipe *in_p, t_pipe *out_p)
 		dup2(*out_f, STDOUT_FILENO);
 	else
 	{
-		out_p = malloc(sizeof(t_pipe));
 		pipe(*out_p);
 		dup2((*out_p)[1], STDOUT_FILENO);
 	}

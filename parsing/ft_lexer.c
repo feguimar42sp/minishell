@@ -3,21 +3,21 @@
 
 void	ft_lexer(t_args_lst **split)
 {
-	t_args_lst	*split_new;
+	t_args_lst	*ptr;
 
-	split_new = *split;
-	while (split_new)
+	ptr = *split;
+	while (ptr)
 	{
-		if (ft_strcmp(split_new->arg, "|") == 0)
-			split_new->type = operators;
-		if (ft_strcmp(split_new->arg, "<") == 0)
-			split_new->type = operators;
-		if (ft_strcmp(split_new->arg, ">") == 0)
-			split_new->type = operators;
-		if (ft_strcmp(split_new->arg, "<<") == 0)
-			split_new->type = operators;
-		if (ft_strcmp(split_new->arg, ">>") == 0)
-			split_new->type = operators;
-		split_new = split_new->next;
+		if (ft_strcmp(ptr->arg, "|") == 0)
+			ptr->type = operators;
+		else if (ft_strcmp(ptr->arg, "<") == 0)
+			ptr->type = operators;
+		else if (ft_strcmp(ptr->arg, ">") == 0)
+			ptr->type = operators;
+		else if (ft_strcmp(ptr->arg, "<<") == 0)
+			ptr->type = operators;
+		else if (ft_strcmp(ptr->arg, ">>") == 0)
+			ptr->type = operators;
+		ptr = ptr->next;
 	}
 }
