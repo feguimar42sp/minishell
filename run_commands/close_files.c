@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_array.c                                       :+:      :+:    :+:   */
+/*   close_files.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 10:23:01 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/30 20:42:30 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/30 20:07:12 by fernando          #+#    #+#             */
+/*   Updated: 2024/10/30 20:15:17 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	**make_array(t_args_lst *lst)
+void	close_files(int *in_f, int *out_f, t_pipe **in_p)
 {
-	int			i;
-	t_args_lst	*ptr;
-	char	**ret;
-
-	i = 0;
-	ptr = lst;
-	while (ptr)
+	if (*in_f != -1)
 	{
-		i++;
-		ptr = ptr->next;
+		close(*in_f);
+		*in_f = -1;
 	}
-	ret = malloc(sizeof(char *) * (i + 1));
-	i = 0;
-	ptr = lst;
-	while (ptr)
+	if (*out_f != -1)
 	{
-		ret[i] = ft_strdup(ptr->arg);
-		i++;
-		ptr = ptr->next;
+		close(*out_f);
+		*out_f = -1;
 	}
-	ret[i] = NULL;
-	return (ret);
+	if (*in_p != NULL)
+	{
+		close((**in_p)[1]);
+		close((**in_p)[0]);
+		free(*in_p);
+		*in_p = NULL;
+	}
 }

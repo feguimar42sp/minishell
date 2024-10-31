@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/30 18:16:54 by fernando         ###   ########.fr       */
+/*   Updated: 2024/10/30 19:57:06 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int 					is_output_to_file(char *s);
 int 					is_input_from_file(char *s);
 int 					is_input_from_heredoc(char *s);
 void    				redirect_output(int *out_file, t_args_lst **ptr);
+void					redirect_input(int *file, t_args_lst **ptr);
 void    				ft_redirect_error(void);
 void					run_curr_command(int *in_file, int *out_file, t_pipe **pipeline, t_args_lst **block);
 char					**make_array(t_args_lst *lst);
@@ -129,6 +130,7 @@ void					run_from_root(char *pathname, char **argv, char** env_path);
 void    				run_last_command(int *in_f, int *out_f, t_pipe *in_p, t_args_lst **b);
 void    				set_last_process_io(int *in_f, int *out_f, t_pipe *in_p);
 void					clear_args_list(t_args_lst **l);
+void					close_files(int *in_f, int *out_f, t_pipe **in_p);
 
 
 

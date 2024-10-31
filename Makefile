@@ -6,7 +6,7 @@
 #    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/10/30 17:54:05 by fernando         ###   ########.fr        #
+#    Updated: 2024/10/30 20:13:19 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ RUN_COMMANDS_FORDER := run_commands/run_commands.c run_commands/parse_redirect.c
 	run_commands/set_last_process_io.c
 
 EXECUTE_COMMAND_FOLDER := run_commands/execute_command/execute_command.c run_commands/execute_command/search_in_path.c \
-	run_commands/execute_command/run_from_root.c
+	run_commands/execute_command/run_from_root.c run_commands/redirect_input.c run_commands/close_files.c
 
 BUILT_INS_FOLDER := run_commands/built-ins/fill_cmds.c run_commands/built-ins/ft_cd.c run_commands/built-ins/ft_exit_cmd.c \
 	run_commands/built-ins/ft_export.c run_commands/built-ins/ft_pwd.c run_commands/built-ins/is_built_int.c
