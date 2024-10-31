@@ -3,36 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   env_vars.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 20:47:17 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/10/10 16:54:34 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/31 14:16:40 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/10/31 14:17:34 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	load_env_vars(void)
+char	*parse_var_found(char *str)
 {
-	// fazer a função que cria a lista de env_vars no formato
-// 	typedef struct s_envp_lst
-// {
-//   char				*var;
-//   char				*value;
-//   struct s_envp_lst *next;
-// }				t_envp_lst;
-	//e deixar na estática env_vars_list()
+	char	*var_found;
+	int		start;
+	int		len;
+
+	var_found = NULL;
+	start = 0;
+	len = 0;
+	while (str[len] != '$' && str[len] != '\0')
+			len++;
+	if (str[len] == '$')
+		start = len + 1;
+	while (str[len] != '\0')
+	{
+		if (str[len] == ' ' || str[len] != '_'
+			|| !ft_isalnum(str[len]))
+			break ;
+		len++;
+	}
+	var_found = ft_substr(str, start, len);
+	return (var_found);
 }
 
-char	*ft_getenv(char *variable)
+char	**ft_getenv(char *variable) // modified to char**
 {
+
 	if (variable)
 		return (NULL);
 	return (NULL);
 	// devolve cópia malocada do valor de uma variável de ambiente
 	// ignorar o que está escrito, é só para silencial warning
+
 }
 
+void	search_dollar_sign(t_args_lst *args, t_envp_lst *env_vars)
+{
+	char	*var;
+
+	var = NULL;
+	while (args)
+	{
+		if (ft_strchr(args->arg, '$'))
+		{
+			var = parse_var_found(args->arg);
+			ft_getenv(var);
+		}
+		args = args->next;
+	}
+}
 
 /*
 // list is only here for reference
@@ -46,13 +75,14 @@ typedef struct s_envp_lst
 
 // function that returns the index of where the function strchr finds
 // the char being searched.
+
 int	find_pos_strchr(char *str, char c)
 {
 	char *strchr_return ;
-	strchr_return = ft_strchr(str, c);
+	strchr_return(= ft_strchr(str, c));
 	// find position of first ocurrence of char
 	if (strchr_return != NULL)
-		return (strchr_return - str);
+		return (strchr_return(-str));
 	return (-1); // -1 because it can return any number starting from position 0
 }
 
@@ -65,16 +95,17 @@ void	add_to_lst(t_envp_lst **env_var, char *env)
 	new_node = (t_envp_lst *)malloc(sizeof(t_envp_lst));
 	if (new_node == NULL)
 	{
-		//printf("new_node == null\n");
+		// printf("new_node == null\n");
 		return ;
 	}
 	// for reference: char	*ft_substr(char const *s, size_t start, size_t len)
 	// first str == pos 0 + return value - 1 from function find_pos_strchr
 	new_node->var = ft_substr(env, 0, find_pos_strchr(env, '='));
-	//printf("new_node->var = %s\n", new_node->var);
+	// printf("new_node->var = %s\n", new_node->var);
 	// second str == retun value + 1 from function find_pos_strchr until strlen
-	new_node->value = ft_substr(env, find_pos_strchr(env, '=') + 1, ft_strlen(env));
-	//printf("new_node->value = %s\n", new_node->value);
+	new_node->value = ft_substr(env, find_pos_strchr(env, '=') + 1,
+			ft_strlen(env));
+	// printf("new_node->value = %s\n", new_node->value);
 	new_node->next = NULL;
 	if (temp == NULL)
 	{
@@ -97,8 +128,8 @@ t_envp_lst	*store_envp(char **envp)
 	env_var = NULL;
 	while (envp[i])
 	{
-	  add_to_lst(&env_var, envp[i]);
-	  i++;
+		add_to_lst(&env_var, envp[i]);
+		i++;
 	}
 	return (env_var);
 }
@@ -111,7 +142,8 @@ int	main(int argc, char **argv, char **envp)
 	int i = 0;
 	while (lst_env_args)
 	{
-		//printf("[node %d]\t[var = %s]\t[value = %s]\n", i, lst_env_args->var, lst_env_args->value);
+		//printf("[node %d]\t[var = %s]\t[value = %s]\n", i, lst_env_args->var,
+			lst_env_args->value);
 		lst_env_args = lst_env_args->next;
 		i++;
 	}
