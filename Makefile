@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
+#    By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/10/30 20:13:19 by fernando         ###   ########.fr        #
+#    Updated: 2024/10/31 14:56:11 by feguimar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,10 +55,13 @@ EXECUTE_COMMAND_FOLDER := run_commands/execute_command/execute_command.c run_com
 
 BUILT_INS_FOLDER := run_commands/built-ins/fill_cmds.c run_commands/built-ins/ft_cd.c run_commands/built-ins/ft_exit_cmd.c \
 	run_commands/built-ins/ft_export.c run_commands/built-ins/ft_pwd.c run_commands/built-ins/is_built_int.c
+	
+SET_IO_FOLDER := run_commands/set_io/input_from_file.c run_commands/set_io/input_from_pipe.c run_commands/set_io/output_to_file.c run_commands/set_io/output_to_pipe.c
 
 # Source files
 SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) \
-	$(UTILS_FOLDER) $(PARSING_FOLDER) $(RUN_COMMANDS_FORDER) $(BUILT_INS_FOLDER) $(EXECUTE_COMMAND_FOLDER)
+	$(UTILS_FOLDER) $(PARSING_FOLDER) $(RUN_COMMANDS_FORDER) $(BUILT_INS_FOLDER) \
+	$(EXECUTE_COMMAND_FOLDER) $(SET_IO_FOLDER)
 
 BONUS_SRCS := 
 
