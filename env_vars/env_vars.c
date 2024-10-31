@@ -36,15 +36,21 @@ char	*parse_var_found(char *str)
 	return (var_found);
 }
 
-char	**ft_getenv(char *variable) // modified to char**
+char	*ft_getenv(char *variable)
 {
-
-	if (variable)
-		return (NULL);
-	return (NULL);
 	// devolve cópia malocada do valor de uma variável de ambiente
-	// ignorar o que está escrito, é só para silencial warning
+	t_envp_lst	**lst;
+	t_envp_lst	*current = *lst;
 
+	lst = env_vars_list();
+
+	while (current)
+	{
+		if (ft_strcmp(variable, current->var) == 0)
+			return (current->value);
+		current = current->next;
+	}
+	return (NULL);
 }
 
 void	search_dollar_sign(t_args_lst *args, t_envp_lst *env_vars)
