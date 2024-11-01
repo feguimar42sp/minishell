@@ -15,5 +15,5 @@
 void	input_from_file(int *file)
 {
 	dup2(*file, STDIN_FILENO);
-	close(STDIN_FILENO);
+	close(*file);
 }

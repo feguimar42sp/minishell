@@ -28,7 +28,5 @@ void	close_files(int *in_f, int *out_f, t_pipe **in_p)
 	{
 		close((**in_p)[1]);
 		close((**in_p)[0]);
-		free(*in_p);
-		*in_p = NULL;
 	}
 }

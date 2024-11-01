@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/31 15:00:25 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/10/31 21:06:00 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void					redirect_input(int *file, t_args_lst **ptr);
 void    				ft_redirect_error(void);
 void					run_curr_command(int *in_file, int *out_file, t_pipe **pipeline, t_args_lst **block);
 char					**make_array(t_args_lst *lst);
-void					set_process_io(int *in_f, int *out_f, t_pipe *in_p, t_pipe **out_p);
+void					set_process_io(int *in_f, int *out_f, t_pipe *in_p, t_pipe *out_p);
 void					execute_command(char **command_line, char **env_path);
 int						open_file(t_args_lst **ptr);
 s_built_in				*fill_commands(void);
@@ -131,7 +131,7 @@ void    				run_last_command(int *in_f, int *out_f, t_pipe *in_p, t_args_lst **b
 void    				set_last_process_io(int *in_f, int *out_f, t_pipe *in_p);
 void					clear_args_list(t_args_lst **l);
 void					close_files(int *in_f, int *out_f, t_pipe **in_p);
-void					output_to_pipe(t_pipe **pipe);
+void					output_to_pipe(t_pipe *pipe);
 void					output_to_file(int *file);
 void					input_from_pipe(t_pipe *pipe);
 void					input_from_file(int *file);
