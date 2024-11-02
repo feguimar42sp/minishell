@@ -22,5 +22,8 @@ int		open_file(t_args_lst **ptr);
 void	run_curr_command(int *in_f, int *out_f, t_pipe **in_p, t_args_lst **b);
 void	run_commands(void);
 void	run_last_command(int *in_f, int *out_f, t_pipe *in_p, t_args_lst **b);
+void	parse_redirect(int *in_file, int *out_file, t_args_lst **ptr);
+void	redirect_input(int *file, t_args_lst **ptr);
+void	redirect_output(int *out_file, t_args_lst **ptr);
 
 #endif
