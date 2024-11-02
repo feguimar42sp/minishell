@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/11/02 11:01:47 by fernando          #+#    #+#             */
+/*   Updated: 2024/11/02 11:27:20 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_mem_node	**mem_list(void)
-{
-	static t_mem_node	*list;
+#ifndef UTILS_H
+#define UTILS_H
 
-	return (&list);
-}
+void	clear_args_list(t_args_lst **l);
+void	free_split(char ***spl);
+void	ft_error(void);
+void 	ft_quote_error(void);
+void    ft_redirect_error(void);
+
+#endif

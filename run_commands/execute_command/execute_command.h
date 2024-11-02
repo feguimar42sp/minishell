@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   execute_command.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
+/*   Updated: 2024/11/02 11:20:43 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-t_mem_node	**mem_list(void)
-{
-	static t_mem_node	*list;
+#ifndef EXECUTE_COMMAND_H
+#define EXECUTE_COMMAND_H
 
-	return (&list);
-}
+void	execute_command(char **command_line, char **env_path);
+void	run_from_root(char *pathname, char **argv, char** env_path);
+void	search_in_path(char *pathname, char **argv, char **envp);
+
+#endif
