@@ -29,7 +29,8 @@ CFLAGS := -Wall -Wextra -Werror
 # Linker flags
 LINKER_FLAGS := -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft -lreadline
 
-ENV_VARS_FOLDER := env_vars/env_vars.c
+ENV_VARS_FOLDER := env_vars/expand_environment_vars.c  env_vars/ft_getenv.c \
+				   env_vars/ft_strcspn.c  env_vars/store_environment_vars.c
 
 MEMORY_UTILS_FORDER := memory_utils/add_to_mem_list.c memory_utils/free_all.c memory_utils/ft_free.c \
 	memory_utils/ft_maloc.c memory_utils/print_all_mem.c
