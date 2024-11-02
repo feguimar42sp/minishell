@@ -12,6 +12,26 @@
 
 #include "../minishell.h"
 
+size_t	ft_strcspn(const char *s, const char *reject)
+{
+	size_t	len;
+	size_t	j;
+
+	len = 0;
+	while (s[len])
+	{
+		j = 0;
+		while (reject[j])
+		{
+			if (s[len] == reject[j])
+				return (len);
+			j++;
+		}
+		len++;
+	}
+	return (len);
+}
+
 char	*parse_var_found(char *str)
 {
 	char	*var_found;
@@ -22,13 +42,12 @@ char	*parse_var_found(char *str)
 	start = 0;
 	len = 0;
 	while (str[len] != '$' && str[len] != '\0')
-			len++;
+		len++;
 	if (str[len] == '$')
 		start = len + 1;
 	while (str[len] != '\0')
 	{
-		if (str[len] == ' ' || str[len] != '_'
-			|| !ft_isalnum(str[len]))
+		if (str[len] == ' ' || str[len] != '_' || !ft_isalnum(str[len]))
 			break ;
 		len++;
 	}
@@ -38,12 +57,12 @@ char	*parse_var_found(char *str)
 
 char	*ft_getenv(char *variable)
 {
-	// devolve cópia malocada do valor de uma variável de ambiente
 	t_envp_lst	**lst;
-	t_envp_lst	*current = *lst;
+	t_envp_lst	*current;
 
+	// devolve cópia malocada do valor de uma variável de ambiente
 	lst = env_vars_list();
-
+	current = *lst;
 	while (current)
 	{
 		if (ft_strcmp(variable, current->var) == 0)
@@ -53,17 +72,29 @@ char	*ft_getenv(char *variable)
 	return (NULL);
 }
 
-void	search_dollar_sign(t_args_lst *args, t_envp_lst *env_vars)
+void	handle_environment_vars_expansion(t_args_lst *args)
 {
+	char	*expanded_var;
 	char	*var;
+	char	*value;
+	int		len_before;
+	int		len_after;
 
+	expanded_var = NULL;
 	var = NULL;
+	value = NULL;
 	while (args)
 	{
-		if (ft_strchr(args->arg, '$'))
+		while (ft_strchr(args->arg, '$')) // the position needs to be saved
 		{
+			// while here because it might have multiple $ in a single string
+			len_before = ft_strcspn(args->arg, "$");
+			expanded_var = ft_substr(args->arg, 0, len_before);
 			var = parse_var_found(args->arg);
-			ft_getenv(var);
+			value = ft_getenv(var);
+			expanded_var = ft_strjoin(expanded_var, value);
+			len_after = len_before + ft_strlen(var);
+			expanded_var = ft_strjoin(expanded_var, args->arg + len_after);
 		}
 		args = args->next;
 	}
@@ -84,11 +115,14 @@ typedef struct s_envp_lst
 
 int	find_pos_strchr(char *str, char c)
 {
-	char *strchr_return ;
-	strchr_return(= ft_strchr(str, c));
+	char	*strchr_return;
+
+	strchr_return = ft_strchr(str, c);
 	// find position of first ocurrence of char
 	if (strchr_return != NULL)
-		return (strchr_return(-str));
+	{
+		return (strchr_return - str);
+	}
 	return (-1); // -1 because it can return any number starting from position 0
 }
 
@@ -139,20 +173,20 @@ t_envp_lst	*store_envp(char **envp)
 	}
 	return (env_var);
 }
-/*
+
 int	main(int argc, char **argv, char **envp)
 {
-  t_envp_lst	*lst_env_args;
+	t_envp_lst	*lst_env_args;
+	int			i;
 
-  lst_env_args = store_envp(envp);
-	int i = 0;
+	lst_env_args = store_envp(envp);
+	handle_environment_vars_expansion(t_args_lst *args);
+	i = 0;
 	while (lst_env_args)
 	{
-		//printf("[node %d]\t[var = %s]\t[value = %s]\n", i, lst_env_args->var,
-			lst_env_args->value);
+		// printf("[node %d]\t[var = %s]\t[value = %s]\n", i, lst_env_args->var,
 		lst_env_args = lst_env_args->next;
 		i++;
 	}
-
-  return (0);
-}*/
+	return (0);
+}
