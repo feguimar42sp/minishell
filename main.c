@@ -6,50 +6,46 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:28 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/23 15:54:41 by fernando         ###   ########.fr       */
+/*   Updated: 2024/11/02 18:07:56 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+int	main(int ac, char **av, char **envp)
 {
 	char		*line;
 	char		*prompt;
-	int			i;
-	t_args_lst	*split = NULL;
 
+	(void)ac;
+	(void)av;
 	while (1)
 	{
 		prompt = get_prompt();
 		add_to_mem_list("prompt", prompt);
+		ft_free((void **)&line);
 		line = readline(prompt);
 		if (line == NULL)
-			break;
+			break ;
 		add_to_mem_list("line", line);
 		add_history(line);
 
-		// function to do lexing. convert a string into a set of tokens
-		//ft_lexer(line);
-		printf("line received = [%s]\n", line);
-		split = ft_lst_split(line);
-		ft_lexer(&split);
-		i = 0;
-		while (split)
+		t_envp_lst *env_vars = store_envp(envp);
+		*env_vars_list() = env_vars;
+		clear_args_list(args_list());
+		*args_list() = ft_lst_split(line);
+		ft_lexer(args_list());
+/*		t_envp_lst *temp = *env_vars_list();
+		int	i = 0;
+		while (temp)
 		{
-			printf("node[%d] - split->arg:[%s] && split->type: [%d]\n", i, split->arg, split->type);
-			split = split->next;
+			printf("[node %d]\t[var = %s]\t[value = %s]\n", i, temp->var, temp->value);
+			temp = temp->next;
 			i++;
 		}
-/*		char **str = lst_to_matrix(split);
-		i = 0;
-     		while (str[i] != NULL)
-    		{
-			printf("str[%d] = %s\n", i, str[i]);
-			i++;
-    		}*/
-		//ft_free(( void**)&line);
-		ft_free(( void**)&prompt);
+*/		handle_environment_vars_expansion(args_list());
+		run_commands();
+		ft_free((void **)&prompt);
 	}
 	free_all();
 }
