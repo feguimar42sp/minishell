@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:28 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/02 18:07:56 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/11/03 13:55:45 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int ac, char **av, char **envp)
 	(void)av;
 	line = NULL;
 	env_vars = NULL;
+	handle_signals();
 	while (1)
 	{
 		prompt = get_prompt();
