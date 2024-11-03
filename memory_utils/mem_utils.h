@@ -21,4 +21,8 @@ void	ft_free(void **ptr);
 void	*ft_maloc(size_t size, const char *name);
 void	print_all_mem(void);
 
+// functions to free args list
+void	free_lst(t_args_lst *node);
+void	free_args_lst(t_args_lst **args_lst);
+
 #endif
