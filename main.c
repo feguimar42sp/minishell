@@ -48,6 +48,7 @@ int	main(int ac, char **av, char **envp)
 */		handle_environment_vars_expansion(args_list());
 		run_commands();
 		ft_free((void **)&prompt);
+		free_args_lst(args_list());
 	}
 	free_all();
 	rl_clear_history();
