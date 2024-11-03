@@ -48,4 +48,5 @@ int	main(int ac, char **av, char **envp)
 		ft_free((void **)&prompt);
 	}
 	free_all();
+	rl_clear_history();
 }
