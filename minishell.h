@@ -37,6 +37,7 @@
 # include "prompt/prompt.h"
 # include "parsing/parsing.h"
 # include "memory_utils/mem_utils.h"
+# include "env_vars/env_vars.h"
 
 //debug
 	void print_args_lst(t_args_lst	*ptr);
