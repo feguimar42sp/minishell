@@ -31,6 +31,8 @@ int	main(int ac, char **av, char **envp)
 		line = readline(prompt);
 		if (line == NULL)
 			break ;
+		if (ft_strcmp(line, "exit") == 0)
+			break ;
 		add_to_mem_list("line", line);
 		add_history(line);
 		env_vars = store_envp(envp);

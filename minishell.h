@@ -39,8 +39,11 @@
 # include "parsing/parsing.h"
 # include "memory_utils/mem_utils.h"
 # include "env_vars/env_vars.h"
+# include "handle_signals.h"
 
 //debug
+void	handle_sigquit_signal(void);
+void	handle_signals(void);
 	void print_args_lst(t_args_lst	*ptr);
 	void print_split(char **s);
 #endif

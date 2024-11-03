@@ -46,7 +46,7 @@ PARSING_FOLDER := parsing/create_node.c parsing/split_by_quotes.c parsing/split_
 	parsing/split_by_spaces.c parsing/unclosed_quotes.c parsing/ft_lexer.c \
 	parsing/ft_lst_split.c parsing/ft_strcmp.c
 
-RUN_COMMANDS_FORDER := run_commands/run_commands.c run_commands/parse_redirect.c \
+RUN_COMMANDS_FOLDER := run_commands/run_commands.c run_commands/parse_redirect.c \
 	run_commands/redirect_output.c run_commands/make_array.c run_commands/open_file.c run_commands/add_word.c \
 	run_commands/run_curr_command.c run_commands/run_last_command.c
 
@@ -60,8 +60,8 @@ SET_IO_FOLDER := run_commands/set_io/input_from_file.c run_commands/set_io/input
 	run_commands/set_io/io_redirects.c run_commands/set_io/output_to_file.c run_commands/set_io/output_to_pipe.c \
 	run_commands/set_io/set_last_process_io.c run_commands/set_io/set_process_io.c
 # Source files
-SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) \
-	$(UTILS_FOLDER) $(PARSING_FOLDER) $(RUN_COMMANDS_FORDER) $(BUILT_INS_FOLDER) \
+SRCS := main.c handle_signals.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) \
+	$(UTILS_FOLDER) $(PARSING_FOLDER) $(RUN_COMMANDS_FOLDER) $(BUILT_INS_FOLDER) \
 	$(EXECUTE_COMMAND_FOLDER) $(SET_IO_FOLDER)
 
 BONUS_SRCS := 
