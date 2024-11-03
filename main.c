@@ -16,9 +16,12 @@ int	main(int ac, char **av, char **envp)
 {
 	char		*line;
 	char		*prompt;
+	t_envp_lst	*env_vars;
 
 	(void)ac;
 	(void)av;
+	line = NULL;
+	env_vars = NULL;
 	while (1)
 	{
 		prompt = get_prompt();
@@ -29,8 +32,7 @@ int	main(int ac, char **av, char **envp)
 			break ;
 		add_to_mem_list("line", line);
 		add_history(line);
-
-		t_envp_lst *env_vars = store_envp(envp);
+		env_vars = store_envp(envp);
 		*env_vars_list() = env_vars;
 		clear_args_list(args_list());
 		*args_list() = ft_lst_split(line);
