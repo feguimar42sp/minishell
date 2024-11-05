@@ -30,7 +30,10 @@ int	main(int ac, char **av, char **envp)
 		ft_free((void **)&line);
 		line = readline(prompt);
 		if (line == NULL)
+		{
+			// this break handles ctrl + d (sigquit)
 			break ;
+		}
 		if (ft_strcmp(line, "exit") == 0)
 			break ;
 		add_to_mem_list("line", line);
