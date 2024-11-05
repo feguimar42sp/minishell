@@ -35,7 +35,10 @@ int	main(int ac, char **av, char **envp)
 			break ;
 		}
 		if (ft_strcmp(line, "exit") == 0)
+		{
+			// this break handles the work 'exit' in case ctrl + d doesn't work
 			break ;
+		}
 		add_to_mem_list("line", line);
 		add_history(line);
 		env_vars = store_envp(envp);
