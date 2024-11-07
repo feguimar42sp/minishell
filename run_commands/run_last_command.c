@@ -20,7 +20,7 @@ void	run_last_command(int *in_f, int *out_f, t_pipe *in_p, t_args_lst **b)
 	pid = fork();
 	if (pid == 0)
 	{
-		env_path = ft_split(getenv("PATH"), ':');
+		env_path = ft_split(ft_getenv("PATH"), ':');
 		command_line = make_array(*b);
 		set_last_process_io(in_f, out_f, in_p);
 		execute_command(command_line, env_path);
