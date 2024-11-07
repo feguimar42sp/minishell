@@ -21,7 +21,7 @@ void	run_curr_command(int *in_f, int *out_f, t_pipe **in_p, t_args_lst **b)
 
 	out_p = malloc(sizeof(t_pipe));
 	pipe(*out_p);
-	env_path = ft_split(getenv("PATH"), ':');
+	env_path = ft_split(ft_getenv("PATH"), ':');
 	command_line = make_array(*b);
 	pid = fork();
 	if (pid == 0)
