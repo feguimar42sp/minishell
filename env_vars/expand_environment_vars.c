@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:00:57 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/02 22:37:04 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:37:25 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ char	*parse_var_found(char *str)
 			len--;
 			break ;
 		}
+		else if (str[i] == '?')
+		{
+			len++;
+			break ;
+		}
 		else if (!ft_isalnum(str[i]) && str[i] != '_' && str[i] != '\0')
 		{
 			len--;
@@ -54,6 +59,11 @@ char	*get_var_value(char *var)
 {
 	char	*value;
 
+	if (ft_strcmp(var, "?") == 0)
+	{
+		value = ft_itoa(*current_exit_code());
+		return (value);
+	}
 	value = ft_getenv(var);
 	if (value == NULL)
 		value = ft_strdup("");

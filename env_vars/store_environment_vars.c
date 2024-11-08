@@ -49,6 +49,13 @@ void	add_to_lst(t_envp_lst **env_var, char *env)
 	temp->next = new_node;
 }
 
+void	init_current_exit_status_var(void)
+{
+	int current_exit_status = -1;
+
+	*current_exit_code() = current_exit_status;
+}
+
 // function to store the envps for later user.
 t_envp_lst	*store_envp(char **envp)
 {
@@ -57,6 +64,7 @@ t_envp_lst	*store_envp(char **envp)
 
 	i = 0;
 	env_var = NULL;
+	init_current_exit_status_var();
 	while (envp[i])
 	{
 		add_to_lst(&env_var, envp[i]);
