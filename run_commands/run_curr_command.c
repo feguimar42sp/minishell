@@ -18,7 +18,9 @@ void	run_curr_command(int *in_f, int *out_f, t_pipe **in_p, t_args_lst **b)
 	t_pipe	*out_p;
 	pid_t	pid;
 	char	**env_path;
+	int		status;
 
+	status = 0;
 	out_p = malloc(sizeof(t_pipe));
 	pipe(*out_p);
 	env_path = ft_split(ft_getenv("PATH"), ':');
@@ -31,8 +33,9 @@ void	run_curr_command(int *in_f, int *out_f, t_pipe **in_p, t_args_lst **b)
 			set_process_io(in_f, out_f, *in_p, out_p);
 			execute_command(command_line, env_path);
 		}
-		waitpid(pid, current_exit_code(), 0);
+		waitpid(pid, &status, 0);
 	}
+	*current_exit_code() = status;
 	if ((*in_p) != NULL)
 		free((*in_p));
 	close((*out_p)[1]);
