@@ -34,7 +34,7 @@ int	main(int ac, char **av, char **envp)
 			// this break handles ctrl + d (sigquit)
 			break ;
 		}
-		if (ft_strcmp(line, "exit") == 0)
+		if (ft_strcmp(line, "exitnowpls") == 0)
 		{
 			// this break handles the work 'exit' in case ctrl + d doesn't work
 			break ;
