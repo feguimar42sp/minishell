@@ -28,4 +28,8 @@ char		*parse_var_found(char *str);
 char		*ft_getenv(char *variable);
 size_t		ft_strcspn(const char *s, const char *reject);
 
+// function to free env var list
+void	env_free_lst(t_envp_lst *node);
+void	free_env_lst(t_envp_lst **env_lst);
+
 #endif

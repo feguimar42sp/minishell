@@ -34,4 +34,6 @@ void	run_last_command(int *in_f, int *out_f, t_pipe *in_p, t_args_lst **b)
 	*current_exit_code() = status;
 	close_files(in_f, out_f, &in_p);
 	clear_args_list(b);
+	ft_free_split(env_path);
+	ft_free_split(command_line);
 }

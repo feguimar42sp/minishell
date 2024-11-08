@@ -25,4 +25,6 @@ void	print_all_mem(void);
 void	free_lst(t_args_lst *node);
 void	free_args_lst(t_args_lst **args_lst);
 
+// function to free split
+void	ft_free_split(char **arr);
 #endif

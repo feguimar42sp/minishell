@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/25 22:48:28 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/03 13:55:45 by sabrifer         ###   ########.fr       */
+/*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/11/08 01:06:38 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	main(int ac, char **av, char **envp)
 	(void)ac;
 	(void)av;
 	line = NULL;
-	env_vars = NULL;
+	env_vars = store_envp(envp);
+	*env_vars_list() = env_vars;
 	handle_signals();
 	while (1)
 	{
@@ -34,15 +35,8 @@ int	main(int ac, char **av, char **envp)
 			// this break handles ctrl + d (sigquit)
 			break ;
 		}
-		if (ft_strcmp(line, "exitnowpls") == 0)
-		{
-			// this break handles the work 'exit' in case ctrl + d doesn't work
-			break ;
-		}
 		add_to_mem_list("line", line);
 		add_history(line);
-		env_vars = store_envp(envp);
-		*env_vars_list() = env_vars;
 		clear_args_list(args_list());
 		*args_list() = ft_lst_split(line);
 		ft_lexer(args_list());
@@ -56,9 +50,10 @@ int	main(int ac, char **av, char **envp)
 		}
 */		handle_environment_vars_expansion(args_list());
 		run_commands();
-		ft_free((void **)&prompt);
 		free_args_lst(args_list());
+		ft_free((void **)&prompt);
 	}
+	free_env_lst(env_vars_list());
 	free_all();
 	rl_clear_history();
 }

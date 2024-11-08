@@ -21,6 +21,5 @@ void	ft_exit_cmd(char **argv)
 		return ;
 	
 	*current_exit_code() = i;
-	printf("value of i = [%d]\n", i);
 	exit(i);
 }

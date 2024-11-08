@@ -30,10 +30,10 @@ CFLAGS := -g -Wall -Wextra -Werror
 LINKER_FLAGS := -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft -lreadline
 
 ENV_VARS_FOLDER := env_vars/expand_environment_vars.c  env_vars/ft_getenv.c \
-				   env_vars/ft_strcspn.c  env_vars/store_environment_vars.c
+				   env_vars/ft_strcspn.c env_vars/store_environment_vars.c env_vars/free_env_list.c 
 
 MEMORY_UTILS_FORDER := memory_utils/add_to_mem_list.c memory_utils/free_all.c memory_utils/ft_free.c \
-	memory_utils/ft_maloc.c memory_utils/print_all_mem.c memory_utils/free_args_list.c
+	memory_utils/ft_maloc.c memory_utils/print_all_mem.c memory_utils/free_args_list.c memory_utils/ft_free_split.c
 
 PROMPT_FOLDER := prompt/get_prompt.c
 
@@ -77,8 +77,8 @@ HEADERS := minishell.h
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJECTS)
-	make -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) $(OBJECTS) $(LINKER_FLAGS) -o $(NAME)
+	@make -C $(LIBFT_DIR)
+	@$(CC) $(CFLAGS) $(OBJECTS) $(LINKER_FLAGS) -o $(NAME)
 
 LIBFT := libft/libft.a
 
@@ -96,7 +96,7 @@ $(LIBFT): libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c \
 	libft/ft_strtrim.c libft/ft_substr.c libft/ft_tolower.c libft/ft_toupper.c \
 	libft/libft.h libft/Makefile
 	
-	make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 
 bonus: $(BONUS_OBJS)
 
@@ -104,24 +104,25 @@ bonus: $(BONUS_OBJS)
 
 # Run Norminette on all .c files from this project, sparing dependencies
 norminette:
-	norminette $(SRCS)
-	norminette $(HEADERS)
+	@norminette $(SRCS)
+	@norminette $(HEADERS)
 
 # Clean
 clean:
-	rm -f $(OBJECTS)
+	@rm -f $(OBJECTS)
 # 	make -C $(BONUS_DIR) clean
-	make -C $(LIBFT_DIR) clean
+	@make -C $(LIBFT_DIR) clean
 
 # Full clean
 fclean:
-	make clean
-	make -C $(LIBFT_DIR) fclean
+	@make clean
+	@make -C $(LIBFT_DIR) fclean
 # 	make -C $(BONUS_DIR) fclean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 	
 
 # Rebuild
 re: fclean all
 
 .PHONY: all clean fclean re
+.SILENT: all clean fclean re

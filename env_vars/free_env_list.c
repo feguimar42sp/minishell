@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_args_list.c                                   :+:      :+:    :+:   */
+/*   free_env_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 12:51:21 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/03 12:51:25 by sabrifer         ###   ########.fr       */
+/*   Created: 2024/11/08 01:07:06 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/11/08 01:08:45 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	free_lst(t_args_lst *node)
+void	env_free_lst(t_envp_lst *node)
 {
 	if (!node)
 		return ;
-	free_lst(node -> next);
-	free(node->arg);
+	env_free_lst(node -> next);
+	free(node->var);
+	free(node->value);
 	free(node);
 	node = NULL;
 }
 
-void	free_args_lst(t_args_lst **args_lst)
+void	free_env_lst(t_envp_lst **env_lst)
 {
-	if (!args_lst || !*args_lst)
+	if (!env_lst || !*env_lst)
 		return ;
-	free_lst(*args_lst);
-	*args_lst = NULL;
+	env_free_lst(*env_lst);
+	*env_lst = NULL;
 }

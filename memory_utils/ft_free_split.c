@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_args_list.c                                   :+:      :+:    :+:   */
+/*   ft_free_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 12:51:21 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/03 12:51:25 by sabrifer         ###   ########.fr       */
+/*   Created: 2024/11/08 01:39:44 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/11/08 01:42:41 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	free_lst(t_args_lst *node)
+void ft_free_split(char **arr)
 {
-	if (!node)
-		return ;
-	free_lst(node -> next);
-	free(node->arg);
-	free(node);
-	node = NULL;
-}
+	int	i;
 
-void	free_args_lst(t_args_lst **args_lst)
-{
-	if (!args_lst || !*args_lst)
-		return ;
-	free_lst(*args_lst);
-	*args_lst = NULL;
+	i = 0;
+    if (!arr)
+		return;
+	while (arr[i])
+    {
+        free(arr[i]);
+        i++;
+    }
+	free(arr);
 }
