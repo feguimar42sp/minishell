@@ -16,8 +16,6 @@ void	execute_command(char **command_line, char **env_path)
 {
 	char		*temp;
 
-	if (is_built_in(command_line[0], command_line))
-		return ;
 	if (command_line[0][0] == '/')
 	{
 		temp = ft_strdup(command_line[0]);

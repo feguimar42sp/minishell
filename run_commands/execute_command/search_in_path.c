@@ -6,13 +6,11 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 09:32:05 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/24 21:27:58 by fernando         ###   ########.fr       */
+/*   Updated: 2024/11/07 18:59:51 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-extern char	**environ;
 
 void	search_in_path(char *pathname, char **argv, char **envp)
 {
@@ -25,7 +23,10 @@ void	search_in_path(char *pathname, char **argv, char **envp)
 	{
 		temp = ft_strjoin(envp[i], pathname);
 		if (stat(temp, &fileStat) == 0)
-			execve(temp, argv, environ);
+		{
+			if(execve(temp, argv, envp) == -1)
+				exit(EXIT_FAILURE);
+		}
 		free(temp);
 		i++;
 	}

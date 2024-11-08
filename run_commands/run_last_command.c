@@ -17,16 +17,18 @@ void	run_last_command(int *in_f, int *out_f, t_pipe *in_p, t_args_lst **b)
 	pid_t	pid;
 	char	**env_path;
 
-	pid = fork();
-	if (pid == 0)
+	env_path = ft_split(ft_getenv("PATH"), ':');
+	command_line = make_array(*b);
+	if (!is_built_in(command_line[0], command_line))
 	{
-		env_path = ft_split(ft_getenv("PATH"), ':');
-		command_line = make_array(*b);
-		set_last_process_io(in_f, out_f, in_p);
-		execute_command(command_line, env_path);
-	}
-	else
+		pid = fork();
+		if (pid == 0)
+		{
+			set_last_process_io(in_f, out_f, in_p);
+			execute_command(command_line, env_path);
+		}
 		waitpid(pid, NULL, 0);
+	}
 	close_files(in_f, out_f, &in_p);
 	clear_args_list(b);
 }

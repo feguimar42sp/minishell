@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/31 21:56:21 by fernando         ###   ########.fr       */
+/*   Updated: 2024/11/07 23:47:03 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@ void	run_curr_command(int *in_f, int *out_f, t_pipe **in_p, t_args_lst **b)
 	pipe(*out_p);
 	env_path = ft_split(ft_getenv("PATH"), ':');
 	command_line = make_array(*b);
-	pid = fork();
-	if (pid == 0)
+	if (!is_built_in(command_line[0], command_line))
 	{
-		set_process_io(in_f, out_f, *in_p, out_p);
-		execute_command(command_line, env_path);
+		pid = fork();
+		if (pid == 0)
+		{
+			set_process_io(in_f, out_f, *in_p, out_p);
+			execute_command(command_line, env_path);
+		}
+		waitpid(pid, current_exit_code(), 0);
 	}
-	else
-		waitpid(pid, NULL, 0);
 	if ((*in_p) != NULL)
 		free((*in_p));
 	close((*out_p)[1]);
