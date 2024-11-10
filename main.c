@@ -40,15 +40,7 @@ int	main(int ac, char **av, char **envp)
 		clear_args_list(args_list());
 		*args_list() = ft_lst_split(line);
 		ft_lexer(args_list());
-/*		t_envp_lst *temp = *env_vars_list();
-		int	i = 0;
-		while (temp)
-		{
-			printf("[node %d]\t[var = %s]\t[value = %s]\n", i, temp->var, temp->value);
-			temp = temp->next;
-			i++;
-		}
-*/		handle_environment_vars_expansion(args_list());
+		handle_environment_vars_expansion(args_list());
 		run_commands();
 		free_args_lst(args_list());
 		ft_free((void **)&prompt);

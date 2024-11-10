@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 21:29:44 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/07 23:07:22 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/11/10 11:44:41 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ void	run_from_root(char *pathname, char **argv, char** env_path)
 
 	if (stat(pathname, &fileStat) == 0)
 	{
+		printf("searching for command here\n");
 		if (execve(pathname, argv, env_path) == -1)
 			exit(EXIT_FAILURE);
 	}
-	return ;
+	exit(EXIT_FAILURE);
 }

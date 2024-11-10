@@ -27,6 +27,7 @@
 # include <time.h>
 # include <unistd.h>
 # include <signal.h>
+# include <errno.h>
 # include "minishell_typedefs.h"
 # include "memory_utils/mem_utils.h"
 # include "utils/utils.h"

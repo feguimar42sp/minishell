@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:57:33 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/30 19:55:25 by fernando         ###   ########.fr       */
+/*   Updated: 2024/11/10 11:27:53 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -29,9 +29,13 @@ void	run_last_command(int *in_f, int *out_f, t_pipe *in_p, t_args_lst **b)
 			set_last_process_io(in_f, out_f, in_p);
 			execute_command(command_line, env_path);
 		}
-		waitpid(pid, &status, 0);
+		waitpid(pid, &status, WUNTRACED);
+		if (WIFEXITED(status)) // catch status
+			status = WEXITSTATUS(status);
 	}
+	printf("VALUE HERE: %d\n", status);
 	*current_exit_code() = status;
+	printf("VALUE HERE: %d\n", *current_exit_code());
 	close_files(in_f, out_f, &in_p);
 	clear_args_list(b);
 	ft_free_split(env_path);
