@@ -3,43 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   search_in_path.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 09:32:05 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/10 11:44:45 by sabrifer         ###   ########.fr       */
+/*   Created: 2024/11/12 22:32:47 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/11/12 23:09:25 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	search_in_path(char *pathname, char **argv, char **envp)
+char	*find_path(char *pathname, char **envp)
 {
-	struct stat	fileStat;
-	char		*temp;
-	int			i;
-	char	*a_value;
+	char	*temp;
+	int		i;
 
 	i = 0;
+	if (pathname[1] == '.')
+	{
+		temp = ft_strdup(pathname + 1);
+		return (temp);
+	}
 	while (envp[i] != NULL)
 	{
 		temp = ft_strjoin(envp[i], pathname);
-		if (stat(temp, &fileStat) == 0)
-		{
-			execve(temp, argv, envp);
-			if(execve(temp, argv, envp) == -1)
-			{
-				a_value = strerror(errno);
-				printf("strerror value: %s\n", a_value);
-				printf("execve == -1\n");
-				free(temp);
-				exit(EXIT_FAILURE);
-			}
-		}
+		if (access(temp, F_OK | X_OK) == 0)
+			break ;
 		free(temp);
+		temp = NULL;
 		i++;
 	}
-	a_value = strerror(errno);
-	printf("strerror value: %s\n", a_value);
-	printf("execve != -1, another error was found and reached end of function\n");
-	exit(EXIT_FAILURE);
+	return (temp);
+}
+
+void	search_in_path(char *pathname, char **argv, char **envp, char **real_envp_arr)
+{
+	struct stat	path_data;
+	char		*path;
+
+	path = find_path(pathname, envp);
+	if (path == NULL)
+	{
+		printf("if (path == NULL)\n");
+		exit(127);
+	}
+	if (access(path, F_OK) != 0)
+	{
+		printf("if (access(temp, F_OK) != 0)\n");
+		exit(127);
+	}
+	stat(path, &path_data);
+	if (S_ISDIR(path_data.st_mode) != 0)
+	{
+		printf("if (S_ISDIR(path_data.st_mode) != 0)\n");
+		exit(126);
+	}
+	if (access(path, X_OK) != 0)
+	{
+		printf("if (access(temp, X_OK) != 0)\n");
+		exit(126);
+	}
+	execve(path, argv, real_envp_arr);
 }

@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/07 23:47:03 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/11/12 23:09:37 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	run_curr_command(int *in_f, int *out_f, t_pipe **in_p, t_args_lst **b)
 			execute_command(command_line, env_path);
 		}
 		waitpid(pid, &status, 0);
+		if (WIFEXITED(status)) // catch status
+			status = WEXITSTATUS(status);
 	}
 	*current_exit_code() = status;
 	if ((*in_p) != NULL)
