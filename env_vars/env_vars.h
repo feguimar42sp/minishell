@@ -24,7 +24,14 @@ int			find_pos_strchr(char *str, char c);
 void		handle_environment_vars_expansion(t_args_lst **arg_lst);
 char		*parse_var_found(char *str);
 
-// functions implemented from library functions
+// function that help joining strings
+char	*join_prefix_and_value(char *s1, char *s2);
+char	*join_suffix(char *s1, char *s2);
+char	*get_prefix(char *str);
+char	*get_final_joined_str(char *str, char *prefix, char *prefix_value,
+		int var_size);
+
+
 char		*ft_getenv(char *variable);
 size_t		ft_strcspn(const char *s, const char *reject);
 

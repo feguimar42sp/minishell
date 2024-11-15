@@ -30,7 +30,8 @@ CFLAGS := -g -Wall -Wextra -Werror
 LINKER_FLAGS := -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft -lreadline
 
 ENV_VARS_FOLDER := env_vars/expand_environment_vars.c  env_vars/ft_getenv.c \
-				   env_vars/ft_strcspn.c env_vars/store_environment_vars.c env_vars/free_env_list.c 
+				   env_vars/ft_strcspn.c env_vars/store_environment_vars.c env_vars/free_env_list.c \
+				   env_vars/str_concat_utils.c
 
 MEMORY_UTILS_FORDER := memory_utils/add_to_mem_list.c memory_utils/free_all.c memory_utils/ft_free.c \
 	memory_utils/ft_maloc.c memory_utils/print_all_mem.c memory_utils/free_args_list.c memory_utils/ft_free_split.c
