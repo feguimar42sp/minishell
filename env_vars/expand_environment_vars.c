@@ -79,7 +79,7 @@ char	*get_var_value(char *var)
 		value = ft_strdup("");
 	return (value);
 }
-
+/*
 char	*expand_variable(char *str)
 {
 	char	*prefix;
@@ -105,7 +105,7 @@ char	*expand_variable(char *str)
 	free(prefix_value);
 	free(var);
 	return (result);
-}
+}*/
 
 char	*ft_expand(char **str, int *i)
 {
@@ -115,8 +115,8 @@ char	*ft_expand(char **str, int *i)
 	int		new_len;
 	int		pos;
 
-	value = "THISISMEDATA";
-	var = "data";
+	var = parse_var_found(*str);
+	value = get_var_value(var);
 	new_len = strlen(*str) - strlen(var) + strlen(value);
 	expanded = (char *)malloc(sizeof(char) * (new_len + 1));
 	if (!expanded)
@@ -132,7 +132,7 @@ char	*ft_expand(char **str, int *i)
 			
 void	search_and_expand(char **str)
 {
-	int	i;
+	int	i = 0;
 
 	while (*str[i])
 	{
@@ -141,10 +141,9 @@ void	search_and_expand(char **str)
 			if (*str[i + 1] == ' ')
 				i++;
 			else
-			{
-				
-			}
+				ft_expand(str, &i);
 		}
+		i++;
 	}
 }
 
