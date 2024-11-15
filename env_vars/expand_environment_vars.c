@@ -114,6 +114,9 @@ char	*expand_variable(char *str)
 	prefix = ft_substr(str, 0, len_before);
 	if (!prefix)
 		return (NULL);
+	printf("char: [%c]\n", str[len_before]);
+//	if (str[len_before + 1] == ' ')
+//		str[len_before] = -42;
 	var = parse_var_found(str);
 	value = get_var_value(var);
 	prefix_value = join_prefix_and_value(prefix, value);
@@ -128,6 +131,47 @@ char	*expand_variable(char *str)
 	return (final_result);
 }
 
+char	*ft_expand(char **str, int *i)
+{
+	char	*value;
+	char	*var;
+	char	*expanded;
+	int		new_len;
+	int		pos;
+
+	value = "THISISMEDATA";
+	var = "data";
+	new_len = strlen(*str) - strlen(var) + strlen(value);
+	expanded = (char *)malloc(sizeof(char) * (new_len + 1));
+	if (!expanded)
+		return (NULL);
+	memcpy(expanded, *str, *i);
+	memcpy(expanded + *i, value, strlen(value));
+	pos = *i + strlen(var) + 1;
+	strcpy(expanded + *i + strlen(value), *str + pos);
+	if (*str)
+		free(*str);
+	return (expanded);
+}
+			
+void	search_and_expand(char **str)
+{
+	int	i;
+
+	while (*str[i])
+	{
+		if (*str[i] == '$')
+		{
+			if (*str[i + 1] == ' ')
+				i++;
+			else
+			{
+				
+			}
+		}
+	}
+}
+
 void	handle_environment_vars_expansion(t_args_lst **arg_lst)
 {
 	t_args_lst	*args;
@@ -135,12 +179,16 @@ void	handle_environment_vars_expansion(t_args_lst **arg_lst)
 	args = *arg_lst;
 	while (args)
 	{
-		while (ft_strchr(args->arg, '$'))
+		if (ft_strchr(args->arg, '$'))
+			search_and_expand(&args->arg);
+		args = args->next;
+	}
+/*		while (ft_strchr(args->arg, '$'))
 		{
 			if (args->arg[0] == '\'')
 				break ;
 			args->arg = expand_variable(args->arg);
 		}
 		args = args->next;
-	}
+	}*/
 }
