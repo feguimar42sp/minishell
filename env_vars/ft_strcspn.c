@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   statics.h                                          :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 11:09:05 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/20 13:31:17 by feguimar         ###   ########.fr       */
+/*   Created: 2024/11/02 20:00:57 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/11/02 20:08:34 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-#ifndef STATICS_H
-#define STATICS_H
+size_t	ft_strcspn(const char *s, const char *reject)
+{
+	size_t	len;
+	size_t	j;
 
-t_args_lst	**args_list(void);
-t_envp_lst  **env_vars_list(void);
-t_mem_node	**mem_list(void);
-int			*exit_status(void);
-int			*current_exit_code(void);
-
-#endif
+	len = 0;
+	while (s[len])
+	{
+		j = 0;
+		while (reject[j])
+		{
+			if (s[len] == reject[j])
+				return (len);
+			j++;
+		}
+		len++;
+	}
+	return (len);
+}

@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   statics.h                                          :+:      :+:    :+:   */
+/*   current_exit_code.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 11:09:05 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/20 13:31:17 by feguimar         ###   ########.fr       */
+/*   Created: 2024/11/07 15:13:34 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/11/07 15:14:33 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-#ifndef STATICS_H
-#define STATICS_H
+int	*current_exit_code(void)
+{
+    static int	exit_code = -1;
 
-t_args_lst	**args_list(void);
-t_envp_lst  **env_vars_list(void);
-t_mem_node	**mem_list(void);
-int			*exit_status(void);
-int			*current_exit_code(void);
-
-#endif
+    return (&exit_code);
+}

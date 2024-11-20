@@ -6,7 +6,7 @@
 #    By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/11/20 11:49:59 by feguimar         ###   ########.fr        #
+#    Updated: 2024/11/20 13:30:52 by feguimar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,14 +29,16 @@ CFLAGS := -Wall -Wextra -Werror
 # Linker flags
 LINKER_FLAGS := -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft -lreadline
 
-ENV_VARS_FOLDER := env_vars/env_vars.c
+ENV_VARS_FOLDER := env_vars/expand_environment_vars.c env_vars/free_env_list.c env_vars/ft_getenv.c \
+	env_vars/ft_strcspn.c env_vars/store_environment_vars.c
 
 MEMORY_UTILS_FORDER := memory_utils/add_to_mem_list.c memory_utils/free_all.c memory_utils/ft_free.c \
 	memory_utils/ft_maloc.c memory_utils/print_all_mem.c
 
 PROMPT_FOLDER := prompt/get_prompt.c
 
-STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c statics/args_list.c statics/exit_status.c
+STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c statics/args_list.c statics/exit_status.c \
+	statics/current_exit_code.c
 
 UTILS_FOLDER := utils/free_split.c utils/ft_error.c utils/ft_quote_error.c utils/clear_args_list.c \
 	utils/ft_redirect_error.c
@@ -58,10 +60,13 @@ BUILT_INS_FOLDER := run_commands/built-ins/fill_cmds.c run_commands/built-ins/ft
 SET_IO_FOLDER := run_commands/set_io/input_from_file.c run_commands/set_io/input_from_pipe.c \
 	run_commands/set_io/io_redirects.c run_commands/set_io/output_to_file.c run_commands/set_io/output_to_pipe.c \
 	run_commands/set_io/set_last_process_io.c run_commands/set_io/set_process_io.c
+
+SIGNALS_FOLDER := signals/handle_signals.c
+
 # Source files
 SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) \
 	$(UTILS_FOLDER) $(PARSING_FOLDER) $(RUN_COMMANDS_FORDER) $(BUILT_INS_FOLDER) \
-	$(EXECUTE_COMMAND_FOLDER) $(SET_IO_FOLDER)
+	$(EXECUTE_COMMAND_FOLDER) $(SET_IO_FOLDER) $(SIGNALS_FOLDER)
 
 BONUS_SRCS := 
 

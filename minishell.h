@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/02 11:36:04 by fernando         ###   ########.fr       */
+/*   Updated: 2024/11/20 13:32:22 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 # include "prompt/prompt.h"
 # include "parsing/parsing.h"
 # include "memory_utils/mem_utils.h"
+# include "signals/handle_signals.h"
+# include "env_vars/env_vars.h"
 
 //debug
 	void print_args_lst(t_args_lst	*ptr);
