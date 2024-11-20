@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit_cmd.c                                      :+:      :+:    :+:   */
+/*   loop_pid.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 20:37:10 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/20 16:16:08 by feguimar         ###   ########.fr       */
+/*   Created: 2024/11/20 14:59:32 by feguimar          #+#    #+#             */
+/*   Updated: 2024/11/20 15:04:52 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+# include "../minishell.h"
 
-void	ft_exit_cmd(char **argv)
+pid_t	*loop_pid()
 {
-	static int	i;
+	static int a;
 
-	i = 2;
-	if (argv == NULL)
-		return ;
-	printf("%i\n", *program_pid());
-	kill(*program_pid(), SIGTERM);
+	return (&a);
 }

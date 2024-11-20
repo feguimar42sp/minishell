@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 14:16:40 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/20 13:33:21 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:49:20 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,16 @@ t_envp_lst	*store_envp(char **envp)
 		i++;
 	}
 	return (env_var);
+}
+
+void	print_env(t_envp_lst *l)
+{
+	if (l == NULL)
+		return;
+	
+	while (l)
+	{
+		printf("%s  %s\n", l->var, l->value);
+		l = l->next;
+	}
 }

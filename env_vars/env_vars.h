@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_vars.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 21:00:40 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/02 21:05:04 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:49:39 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ size_t		ft_strcspn(const char *s, const char *reject);
 // function to free env var list
 void	env_free_lst(t_envp_lst *node);
 void	free_env_lst(t_envp_lst **env_lst);
+
+void	print_env(t_envp_lst *l);
 
 #endif
