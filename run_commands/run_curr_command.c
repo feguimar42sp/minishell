@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_curr_command.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/31 21:56:21 by fernando         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:15:40 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	run_curr_command(int *in_f, int *out_f, t_pipe **in_p, t_args_lst **b)
 		execute_command(command_line, env_path);
 	}
 	else
-		waitpid(pid, NULL, 0);
+		waitpid(pid, exit_status(), 0);
 	if ((*in_p) != NULL)
 		free((*in_p));
 	close((*out_p)[1]);
