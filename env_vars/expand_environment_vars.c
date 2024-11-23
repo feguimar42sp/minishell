@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:00:57 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/22 22:37:05 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/11/23 19:18:55 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,15 @@ char	*get_var_value(char *var)
 {
 	char	*value;
 
+	value = NULL;
 	if (ft_strcmp(var, "?") == 0)
 	{
 		value = ft_itoa(*current_exit_code());
 		return (value);
 	}
-	value = ft_strdup(ft_getenv(var));
-	if (value == NULL)
+	if (ft_getenv(var))
+		value = ft_strdup(ft_getenv(var));
+	else
 		value = ft_strdup("");
 	return (value);
 }
@@ -62,36 +64,51 @@ char	*ft_expand(char **str, int *i)
 	int		new_len;
 	int		pos;
 
-	var = parse_var_found(*str);
+	var = parse_var_found((*str) + *i);
 	value = get_var_value(var);
-	new_len = strlen(*str) - strlen(var) + strlen(value);
+	new_len = ft_strlen(*str) - ft_strlen(var) + ft_strlen(value);
 	expanded = (char *)malloc(sizeof(char) * (new_len + 1));
 	if (!expanded)
 		return (NULL);
-	memcpy(expanded, *str, *i);
-	memcpy(expanded + *i, value, strlen(value));
+	ft_memcpy(expanded, *str, *i);
+	ft_memcpy(expanded + *i, value, ft_strlen(value));
 	pos = *i + strlen(var) + 1;
 	strcpy(expanded + *i + strlen(value), *str + pos);
+		// needs to be replaced by ft_strcpy
 	return (expanded);
+}
+
+void	update_quotes(char c, bool *single_quotes, bool *double_quotes)
+{
+	if (c == '\"' && *single_quotes == false)
+		*double_quotes = !*double_quotes;
+	if (c == '\'' && *double_quotes == false)
+		*single_quotes = !*single_quotes;
 }
 
 void	search_and_expand(char **str)
 {
 	bool	single_quotes;
+	bool	double_quotes;
 	char	*temp;
 	int		i;
 
-	temp = NULL;
 	single_quotes = false;
+	double_quotes = false;
+	temp = NULL;
 	i = 0;
 	while ((*str)[i] && (*str)[i + 1])
 	{
-		if ((*str)[i] == '\'')
-			single_quotes = !single_quotes;
+		update_quotes((*str)[i], &single_quotes, &double_quotes);
 		if ((*str)[i] == '$' && !single_quotes)
 		{
-			if ((*str)[i + 1] == '$' && (*str)[i + 1] != '\0')
+			if ((*str)[i + 1] == '$'/* && (*str)[i + 1] != '\0'*/)
 				i++;
+			else if ((*str)[i + 1] == '\"')
+			{
+				(*str) = ft_strdup("");
+				printf("found null char\n");
+			}
 			else if ((*str)[i + 1] != ' ' && (*str)[i + 1] != '\"')
 			{
 				temp = ft_expand(str, &i);
@@ -111,6 +128,7 @@ void	handle_environment_vars_expansion(t_args_lst **arg_lst)
 	args = *arg_lst;
 	while (args)
 	{
+		printf("args->arg = |%s|\n", args->arg);
 		if (ft_strchr(args->arg, '$'))
 			search_and_expand(&args->arg);
 		args = args->next;
