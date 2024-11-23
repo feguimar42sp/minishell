@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:00:57 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/13 13:35:54 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/11/22 22:37:05 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,40 +23,19 @@ char	*parse_var_found(char *str)
 	i = 0;
 	start = 0;
 	len = 0;
-	while (str[i] != '$' && str[i] != '\0') // skip until $ is found
-		i++;
-	if (str[i] == '$') // set start of str and increase len by 1
-	{
-		i++;
-		start = i;
-		len++;
-	}
-	else
+	if (!ft_strchr(str, '$'))
 		return (NULL);
-	if (str[i] == ' ' || str[i] == '\0') // if it finds a space or null, then print the dollar sign
+	start = (int)(ft_strchr(str, '$') - str) + 1;
+	i = start;
+	len++;
+	while ((ft_isalnum(str[i]) || str[i] == '_') && str[i] != '\0')
 	{
 		len++;
-		var_found = ft_strdup("$"); 
+		i++;
 	}
-	else if (str[i] == '?')
-	{
-		len++;
-		var_found = ft_substr(str, start, len);
-	}
-	else
-	{
-		while (str[i] != '\0') // while to find the length of substr
-		{
-			if (!ft_isalnum(str[i]) && str[i] != '_' && str[i] != '\0')
-			{
-				len--;
-				break ;
-			}
-			len++;
-			i++;
-		}
-		var_found = ft_substr(str, start, len);
-	}
+	if (str[i] != '?')
+		len--;
+	var_found = ft_substr(str, start, len);
 	return (var_found);
 }
 
@@ -69,43 +48,11 @@ char	*get_var_value(char *var)
 		value = ft_itoa(*current_exit_code());
 		return (value);
 	}
-	else if (ft_strcmp(var, "$") == 0)
-	{
-		value = ft_strdup(var);
-		return (value);
-	}
 	value = ft_strdup(ft_getenv(var));
 	if (value == NULL)
 		value = ft_strdup("");
 	return (value);
 }
-/*
-char	*expand_variable(char *str)
-{
-	char	*prefix;
-	char	*prefix_value;
-	char	*result;
-	char	*value;
-	char	*var;
-
-	len_before = ft_strcspn(str, "$");
-	prefix = ft_substr(str, 0, len_before);
-	if (!prefix)
-		return (NULL);
-	printf("char: [%c]\n", str[len_before]);
-//	if (str[len_before + 1] == ' ')
-//		str[len_before] = -42;
-	var = parse_var_found(str);
-	value = get_var_value(var);
-	printf("value found = [%s]\n", value);
-	prefix_value = join_prefix_and_value(prefix, value);
-	free (value);
-	result = get_final_joined_str(str, prefix, prefix_value, ft_strlen(var));
-	free(prefix);
-	free(prefix_value);
-	free(var);
-	return (result);
-}*/
 
 char	*ft_expand(char **str, int *i)
 {
@@ -125,23 +72,33 @@ char	*ft_expand(char **str, int *i)
 	memcpy(expanded + *i, value, strlen(value));
 	pos = *i + strlen(var) + 1;
 	strcpy(expanded + *i + strlen(value), *str + pos);
-	if (*str)
-		free(*str);
 	return (expanded);
 }
-			
+
 void	search_and_expand(char **str)
 {
-	int	i = 0;
+	bool	single_quotes;
+	char	*temp;
+	int		i;
 
-	while (*str[i])
+	temp = NULL;
+	single_quotes = false;
+	i = 0;
+	while ((*str)[i] && (*str)[i + 1])
 	{
-		if (*str[i] == '$')
+		if ((*str)[i] == '\'')
+			single_quotes = !single_quotes;
+		if ((*str)[i] == '$' && !single_quotes)
 		{
-			if (*str[i + 1] == ' ')
+			if ((*str)[i + 1] == '$' && (*str)[i + 1] != '\0')
 				i++;
-			else
-				ft_expand(str, &i);
+			else if ((*str)[i + 1] != ' ' && (*str)[i + 1] != '\"')
+			{
+				temp = ft_expand(str, &i);
+				(*str) = ft_strdup(temp);
+				free(temp);
+				temp = NULL;
+			}
 		}
 		i++;
 	}
@@ -158,12 +115,4 @@ void	handle_environment_vars_expansion(t_args_lst **arg_lst)
 			search_and_expand(&args->arg);
 		args = args->next;
 	}
-/*		while (ft_strchr(args->arg, '$'))
-		{
-			if (args->arg[0] == '\'')
-				break ;
-			args->arg = expand_variable(args->arg);
-		}
-		args = args->next;
-	}*/
 }
