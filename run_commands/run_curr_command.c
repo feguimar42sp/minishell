@@ -43,7 +43,6 @@ void	run_curr_command(int *in_f, int *out_f, t_pipe **in_p, t_args_lst **b)
 	close((*out_p)[1]);
 	*in_p = out_p;
 	clear_args_list(b);
-	//free_split(&env_path);
 	ft_free_split(env_path);
 	ft_free_split(command_line);
 }
