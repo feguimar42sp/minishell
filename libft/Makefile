@@ -6,11 +6,15 @@
 #    By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/09 16:11:32 by feguimar          #+#    #+#              #
-#    Updated: 2023/11/19 16:39:23 by feguimar         ###   ########.fr        #
+#    Updated: 2024/11/26 11:12:45 by sabrifer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+
+COMPILER = cc
+
+FLAGS = -Wall -Wextra -Werror -g
 
 CREATE_LIB = ar -rcs 
 
@@ -28,29 +32,25 @@ BONUS_SOURCES = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
 	ft_lstiter.c ft_lstmap.c
 
 
-
 OBJECTS = $(SOURCES:.c=.o)
+
 BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
-
-COMPILER = cc
-FLAGS = -Wall -Wextra -Werror -g
-
-all: $(NAME)
-
-$(NAME): $(OBJECTS)
-
-bonus: $(OBJECTS) $(BONUS_OBJECTS)
-	
 
 %.o: %.c
 	$(COMPILER) $(FLAGS) -c $< -o $@
-	$(CREATE_LIB) $(NAME) $@
+
+$(NAME): $(OBJECTS)
+	$(CREATE_LIB) $(NAME) $(OBJECTS)
+
+bonus: $(BONUS_OBJECTS)
+	$(CREATE_LIB) $(NAME) $(BONUS_OBJECTS)
+
+all: $(NAME)
 
 clean:
 	rm -f $(OBJECTS) $(BONUS_OBJECTS)
 
-fclean: 
-	make clean
+fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
