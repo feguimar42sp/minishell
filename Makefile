@@ -6,7 +6,7 @@
 #    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/10/23 15:52:07 by fernando         ###   ########.fr        #
+#    Updated: 2024/11/25 20:14:04 by sabrifer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,28 +25,48 @@ VPATH := .
 CC := cc
 
 # Compiler flags
-CFLAGS := -Wall -Wextra -Werror -g
+CFLAGS := -g -Wall -Wextra -Werror
 
 # Linker flags
 LINKER_FLAGS := -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft -lreadline
 
-ENV_VARS_FOLDER := env_vars/env_vars.c
+ENV_VARS_FOLDER := env_vars/expand_environment_vars.c  env_vars/ft_getenv.c \
+				   env_vars/ft_strcspn.c env_vars/store_environment_vars.c env_vars/free_env_list.c \
 
 MEMORY_UTILS_FORDER := memory_utils/add_to_mem_list.c memory_utils/free_all.c memory_utils/ft_free.c \
-	memory_utils/ft_maloc.c memory_utils/print_all_mem.c
+	memory_utils/ft_maloc.c memory_utils/print_all_mem.c memory_utils/free_args_list.c memory_utils/ft_free_split.c
 
 PROMPT_FOLDER := prompt/get_prompt.c
 
-STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c statics/args_list.c
+STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c statics/args_list.c statics/current_exit_code.c
 
-UTILS_FOLDER := utils/free_split.c utils/ft_error.c utils/ft_lst_tomatrix.c
+UTILS_FOLDER := utils/free_split.c utils/ft_error.c utils/ft_quote_error.c utils/clear_args_list.c \
+				utils/ft_redirect_error.c
 
 PARSING_FOLDER := parsing/create_node.c parsing/split_by_quotes.c parsing/split_by_redirects.c \
 	parsing/split_by_spaces.c parsing/unclosed_quotes.c parsing/ft_lexer.c \
 	parsing/ft_lst_split.c parsing/ft_strcmp.c
 
+RUN_COMMANDS_FOLDER := run_commands/run_commands.c run_commands/parse_redirect.c \
+	run_commands/redirect_output.c run_commands/make_array.c run_commands/open_file.c run_commands/add_word.c \
+	run_commands/run_curr_command.c run_commands/run_last_command.c
+
+EXECUTE_COMMAND_FOLDER := run_commands/execute_command/execute_command.c run_commands/execute_command/search_in_path.c \
+	run_commands/execute_command/run_from_root.c run_commands/redirect_input.c run_commands/close_files.c
+
+BUILT_INS_FOLDER := run_commands/built-ins/fill_cmds.c run_commands/built-ins/ft_cd.c run_commands/built-ins/ft_exit_cmd.c \
+	run_commands/built-ins/ft_export.c run_commands/built-ins/ft_pwd.c run_commands/built-ins/is_built_int.c
+	
+SET_IO_FOLDER := run_commands/set_io/input_from_file.c run_commands/set_io/input_from_pipe.c \
+	run_commands/set_io/io_redirects.c run_commands/set_io/output_to_file.c run_commands/set_io/output_to_pipe.c \
+	run_commands/set_io/set_last_process_io.c run_commands/set_io/set_process_io.c
+
+SIGNALS_FOLDER := signals/handle_signals.c
+
 # Source files
-SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) $(UTILS_FOLDER) $(PARSING_FOLDER)
+SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) \
+	$(UTILS_FOLDER) $(PARSING_FOLDER) $(RUN_COMMANDS_FOLDER) $(BUILT_INS_FOLDER) \
+	$(EXECUTE_COMMAND_FOLDER) $(SET_IO_FOLDER) $(SIGNALS_FOLDER)
 
 BONUS_SRCS := 
 
@@ -64,8 +84,10 @@ lib:
 	make -C $(LIBFT_DIR) bonus
 
 $(NAME): $(LIBFT) $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) $(LINKER_FLAGS) -o $(NAME)
-	
+	@make -C $(LIBFT_DIR)
+	@$(CC) $(CFLAGS) $(OBJECTS) $(LINKER_FLAGS) -o $(NAME)
+
+LIBFT := libft/libft.a
 
 #$(LIBFT): libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c \
 	libft/ft_isalnum.c libft/ft_isalpha.c libft/ft_isascii.c libft/ft_isdigit.c \
@@ -81,7 +103,7 @@ $(NAME): $(LIBFT) $(OBJECTS)
 	libft/ft_strtrim.c libft/ft_substr.c libft/ft_tolower.c libft/ft_toupper.c \
 	libft/libft.h libft/Makefile
 	
-#	make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 
 bonus: $(BONUS_OBJS)
 
@@ -89,24 +111,25 @@ bonus: $(BONUS_OBJS)
 
 # Run Norminette on all .c files from this project, sparing dependencies
 norminette:
-	norminette $(SRCS)
-	norminette $(HEADERS)
+	@norminette $(SRCS)
+	@norminette $(HEADERS)
 
 # Clean
 clean:
-	rm -f $(OBJECTS)
+	@rm -f $(OBJECTS)
 # 	make -C $(BONUS_DIR) clean
-	make -C $(LIBFT_DIR) clean
+	@make -C $(LIBFT_DIR) clean
 
 # Full clean
 fclean:
-	make clean
-	make -C $(LIBFT_DIR) fclean
+	@make clean
+	@make -C $(LIBFT_DIR) fclean
 # 	make -C $(BONUS_DIR) fclean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 	
 
 # Rebuild
 re: fclean all
 
 .PHONY: all clean fclean re
+.SILENT: all clean fclean re

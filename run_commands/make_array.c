@@ -1,20 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   make_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/24 10:23:01 by fernando          #+#    #+#             */
+/*   Updated: 2024/10/30 20:42:30 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_mem_node	**mem_list(void)
+char	**make_array(t_args_lst *lst)
 {
-	static t_mem_node	*list;
+	int			i;
+	t_args_lst	*ptr;
+	char	**ret;
 
-	return (&list);
+	i = 0;
+	ptr = lst;
+	while (ptr)
+	{
+		i++;
+		ptr = ptr->next;
+	}
+	ret = malloc(sizeof(char *) * (i + 1));
+	i = 0;
+	ptr = lst;
+	while (ptr)
+	{
+		ret[i] = ft_strdup(ptr->arg);
+		i++;
+		ptr = ptr->next;
+	}
+	ret[i] = NULL;
+	return (ret);
 }

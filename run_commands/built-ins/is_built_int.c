@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   is_built_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/24 20:33:14 by fernando          #+#    #+#             */
+/*   Updated: 2024/10/24 21:20:19 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-t_mem_node	**mem_list(void)
+int	is_built_in(char *pathname, char **argv)
 {
-	static t_mem_node	*list;
+	s_built_in	*cmds;
+	int			i;
 
-	return (&list);
+	cmds = fill_commands();
+	i = 0;
+	while (i < BUILT_INS)
+	{
+		if (ft_strcmp(pathname, cmds[i].name) == 0)
+		{
+			cmds[i].func(argv);
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }

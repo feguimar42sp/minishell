@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 17:44:17 by  feguimar         #+#    #+#             */
-/*   Updated: 2023/11/03 17:25:46 by feguimar         ###   ########.fr       */
+/*   Created: 2024/11/03 12:15:51 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/11/03 12:20:31 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,28 @@
 
 char	*ft_substr(char const *s, size_t start, size_t len)
 {
-	size_t	size;
-	size_t	trim;
-	char	*ret;
-	char	*ret_f;
+	char	*sub;
+	size_t	i;
 
-	if ((start >= (size_t)ft_strlen(s)) || (len == 0))
-		return (ft_strdup(""));
-	size = ft_strlen(s + start);
-	if (size < len)
-		trim = size;
-	else
-		trim = len;
-	ret = ft_strdup(s + start);
-	if (ret == NULL)
-		return (ret);
-	ret[trim] = '\0';
-	ret_f = ft_strdup(ret);
-	free(ret);
-	return (ret_f);
+	if (s == NULL || start >= (size_t)ft_strlen(s))
+	{
+		sub = (char *)malloc(1);
+		if (sub == NULL)
+			return (NULL);
+		sub[0] = '\0';
+		return (sub);
+	}
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	sub = (char *)malloc((len + 1) * sizeof(char));
+	if (sub == NULL)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		sub[i] = s[start + i];
+		i++;
+	}
+	sub[i] = '\0';
+	return (sub);
 }

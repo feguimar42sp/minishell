@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   redirect_output.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/23 20:33:46 by fernando          #+#    #+#             */
+/*   Updated: 2024/10/30 19:23:28 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_mem_node	**mem_list(void)
+void	redirect_output(int *out_file, t_args_lst **ptr)
 {
-	static t_mem_node	*list;
-
-	return (&list);
+	if ((*ptr)->next == NULL)
+	{
+		ft_redirect_error();
+		return ;
+	}
+	if ((*ptr)->next->type != string)
+	{
+		ft_redirect_error();
+		return ;
+	}
+	if (*out_file != -1)
+		close(*out_file);
+	*out_file = open_file(ptr);
 }

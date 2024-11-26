@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   output_to_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/31 14:48:28 by feguimar          #+#    #+#             */
+/*   Updated: 2024/10/31 21:03:52 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-t_mem_node	**mem_list(void)
+void	output_to_file(int *file)
 {
-	static t_mem_node	*list;
-
-	return (&list);
+	dup2(*file, STDOUT_FILENO);
+    close(*file);
 }

@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   ft_exit_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/24 20:37:10 by fernando          #+#    #+#             */
+/*   Updated: 2024/11/07 15:24:33 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-t_mem_node	**mem_list(void)
+void	ft_exit_cmd(char **argv)
 {
-	static t_mem_node	*list;
+	static int	i;
 
-	return (&list);
+	i = 2;
+	if (argv == NULL)
+		return ;
+	
+	*current_exit_code() = i;
+	exit(i);
 }

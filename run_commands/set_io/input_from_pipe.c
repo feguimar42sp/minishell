@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   input_from_pipe.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/31 14:47:57 by feguimar          #+#    #+#             */
+/*   Updated: 2024/10/31 21:35:53 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-t_mem_node	**mem_list(void)
+void	input_from_pipe(t_pipe *pipe)
 {
-	static t_mem_node	*list;
-
-	return (&list);
+	close((*pipe)[1]);
+	dup2((*pipe)[0], STDIN_FILENO);
+    close((*pipe)[0]);
 }

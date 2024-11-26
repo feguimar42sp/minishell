@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/11/02 20:00:57 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/11/02 20:08:12 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_mem_node	**mem_list(void)
+char	*ft_getenv(char *variable)
 {
-	static t_mem_node	*list;
+	t_envp_lst	**lst;
+	t_envp_lst	*current;
 
-	return (&list);
+	lst = env_vars_list();
+	current = *lst;
+	while (current)
+	{
+		if (ft_strcmp(variable, current->var) == 0)
+			return (current->value);
+		current = current->next;
+	}
+	return (NULL);
 }

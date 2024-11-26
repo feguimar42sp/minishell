@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   built_ins.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
+/*   Updated: 2024/11/02 11:17:17 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-t_mem_node	**mem_list(void)
-{
-	static t_mem_node	*list;
+#ifndef BUILT_INS_H
+#define BUILT_INS_H
 
-	return (&list);
-}
+s_built_in	*fill_commands(void);
+void		ft_cd(char **argv);
+void		ft_exit_cmd(char **argv);
+void		ft_export(char **argv);
+void		ft_pwd(char **argv);
+int			is_built_in(char *pathname, char **argv);
+
+#endif

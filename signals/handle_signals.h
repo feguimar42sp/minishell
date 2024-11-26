@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   handle_signals.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/11/03 13:58:39 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/11/25 20:10:42 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_mem_node	**mem_list(void)
-{
-	static t_mem_node	*list;
+#ifndef HANDLE_SIGNALS_H
+# define HANDLE_SIGNALS_H
 
-	return (&list);
-}
+void	handle_sigquit_signal(void);
+void	handle_signals(void);
+void	handle_sigint_signal(int sig);
+
+#endif

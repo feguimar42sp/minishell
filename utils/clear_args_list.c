@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   clear_args_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/23 19:00:00 by fernando          #+#    #+#             */
+/*   Updated: 2024/10/30 20:17:27 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_mem_node	**mem_list(void)
+void	clear_args_list(t_args_lst **l)
 {
-	static t_mem_node	*list;
+	t_args_lst	*curr;
+	t_args_lst	*prev;
 
-	return (&list);
+	curr = *l;
+	if (curr == NULL)
+		return ;
+	while (curr)
+	{
+		free(curr->arg);
+		prev = curr;
+		curr = curr->next;
+		free(prev);
+	}
+	*l = NULL;
 }

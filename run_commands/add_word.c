@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   add_word.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/23 19:44:17 by fernando          #+#    #+#             */
+/*   Updated: 2024/10/30 17:17:42 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_mem_node	**mem_list(void)
+void	add_word(t_args_lst **block, t_args_lst *ptr)
 {
-	static t_mem_node	*list;
+	t_args_lst	*new;
+	t_args_lst	*temp;
 
-	return (&list);
+	new = (t_args_lst *)malloc(sizeof(t_args_lst));
+	temp = *block;
+	new->arg = ft_strdup(ptr->arg);
+	new->type = string;
+	new->next = NULL;
+	if (temp == NULL)
+		*block = new;
+	else
+	{
+		while (temp->next != NULL)
+			temp = temp->next;
+		temp->next = new;
+	}
 }

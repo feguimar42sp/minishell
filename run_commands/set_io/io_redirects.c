@@ -1,20 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   io_redirects.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/23 20:27:20 by fernando          #+#    #+#             */
+/*   Updated: 2024/10/30 19:20:24 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-t_mem_node	**mem_list(void)
+int	is_output_to_file(char *s)
 {
-	static t_mem_node	*list;
+	if (ft_strcmp(s, ">") == 0)
+		return (1);
+	if (ft_strcmp(s, ">>") == 0)
+		return (1);
+	return (0);
+}
 
-	return (&list);
+int	is_input_from_file(char *s)
+{
+	if (ft_strcmp(s, "<") == 0)
+		return (1);
+	return (0);
+}
+
+int	is_input_from_heredoc(char *s)
+{
+	if (ft_strcmp(s, "<<") == 0)
+		return (1);
+	return (0);
 }

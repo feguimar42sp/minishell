@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   free_args_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/11/03 12:51:21 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/11/03 12:51:25 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_mem_node	**mem_list(void)
+void	free_lst(t_args_lst *node)
 {
-	static t_mem_node	*list;
+	if (!node)
+		return ;
+	free_lst(node -> next);
+	free(node->arg);
+	free(node);
+	node = NULL;
+}
 
-	return (&list);
+void	free_args_lst(t_args_lst **args_lst)
+{
+	if (!args_lst || !*args_lst)
+		return ;
+	free_lst(*args_lst);
+	*args_lst = NULL;
 }

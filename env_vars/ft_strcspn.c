@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/11/02 20:00:57 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/11/02 20:08:34 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_mem_node	**mem_list(void)
+size_t	ft_strcspn(const char *s, const char *reject)
 {
-	static t_mem_node	*list;
+	size_t	len;
+	size_t	j;
 
-	return (&list);
+	len = 0;
+	while (s[len])
+	{
+		j = 0;
+		while (reject[j])
+		{
+			if (s[len] == reject[j])
+				return (len);
+			j++;
+		}
+		len++;
+	}
+	return (len);
 }

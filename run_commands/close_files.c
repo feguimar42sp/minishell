@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   close_files.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2024/10/30 20:07:12 by fernando          #+#    #+#             */
+/*   Updated: 2024/10/30 20:15:17 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_mem_node	**mem_list(void)
+void	close_files(int *in_f, int *out_f, t_pipe **in_p)
 {
-	static t_mem_node	*list;
-
-	return (&list);
+	if (*in_f != -1)
+	{
+		close(*in_f);
+		*in_f = -1;
+	}
+	if (*out_f != -1)
+	{
+		close(*out_f);
+		*out_f = -1;
+	}
+	if (*in_p != NULL)
+	{
+		close((**in_p)[1]);
+		close((**in_p)[0]);
+	}
 }
