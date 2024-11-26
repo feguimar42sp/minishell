@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/08 01:06:38 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:04:07 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@ int	main(int ac, char **av, char **envp)
 	{
 		prompt = get_prompt();
 		line = readline(prompt);
-		if (line == NULL)
+		free(prompt);
+		if (line)
 		{
-			// this break handles ctrl + d (sigquit) this here needs to be fixed still
-			break ;
+			add_history(line);
+			clear_args_list(args_list());
+			*args_list() = ft_lst_split(line);
+			free(line);
+			ft_lexer(args_list());
+			handle_environment_vars_expansion(args_list());
+			run_commands();
+			free_args_lst(args_list());
 		}
-		add_history(line);
-		clear_args_list(args_list());
-		*args_list() = ft_lst_split(line);
-		ft_lexer(args_list());
-		handle_environment_vars_expansion(args_list());
-		run_commands();
-		free_args_lst(args_list());
+		else
+			break ; // deals with ctrl + d (sigquit)
 	}
 	free_env_lst(env_vars_list());
-	free_all();
 	rl_clear_history();
-	return (0);
 }

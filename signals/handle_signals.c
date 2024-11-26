@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:56:29 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/25 20:11:23 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:02:01 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ void	handle_signals(void)
 	struct sigaction	action;
 	// handles ctrl + \ by ignoring it
 	handle_sigquit_signal();
-	// handles ctrl + c by doing nothing
+	
 
+	// handles ctrl + c by doing nothing
 	action.sa_handler = handle_sigint_signal;
 	sigemptyset(&action.sa_mask);
 	action.sa_flags = SA_SIGINFO;
