@@ -27,15 +27,12 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		prompt = get_prompt();
-		add_to_mem_list("prompt", prompt);
-		ft_free((void **)&line);
 		line = readline(prompt);
 		if (line == NULL)
 		{
-			// this break handles ctrl + d (sigquit)
+			// this break handles ctrl + d (sigquit) this here needs to be fixed still
 			break ;
 		}
-		add_to_mem_list("line", line);
 		add_history(line);
 		clear_args_list(args_list());
 		*args_list() = ft_lst_split(line);
@@ -43,9 +40,9 @@ int	main(int ac, char **av, char **envp)
 		handle_environment_vars_expansion(args_list());
 		run_commands();
 		free_args_lst(args_list());
-		ft_free((void **)&prompt);
 	}
 	free_env_lst(env_vars_list());
 	free_all();
 	rl_clear_history();
+	return (0);
 }
