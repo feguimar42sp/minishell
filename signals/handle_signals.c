@@ -6,11 +6,11 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:56:29 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/04 19:23:36 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/11/25 20:11:23 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	handle_sigquit_signal(void)
 {

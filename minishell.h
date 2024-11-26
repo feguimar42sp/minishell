@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/02 11:36:04 by fernando         ###   ########.fr       */
+/*   Updated: 2024/11/25 20:12:24 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include <signal.h>
 # include <errno.h>
 # include "minishell_typedefs.h"
+# include "signals/handle_signals.h"
 # include "memory_utils/mem_utils.h"
 # include "utils/utils.h"
 # include "statics/statics.h"
@@ -40,7 +41,6 @@
 # include "parsing/parsing.h"
 # include "memory_utils/mem_utils.h"
 # include "env_vars/env_vars.h"
-# include "handle_signals.h"
 
 //debug
 void	handle_sigquit_signal(void);

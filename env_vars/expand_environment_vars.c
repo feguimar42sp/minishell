@@ -105,10 +105,7 @@ void	search_and_expand(char **str)
 			if ((*str)[i + 1] == '$'/* && (*str)[i + 1] != '\0'*/)
 				i++;
 			else if ((*str)[i + 1] == '\"')
-			{
 				(*str) = ft_strdup("");
-				printf("found null char\n");
-			}
 			else if ((*str)[i + 1] != ' ' && (*str)[i + 1] != '\"')
 			{
 				temp = ft_expand(str, &i);
@@ -128,7 +125,7 @@ void	handle_environment_vars_expansion(t_args_lst **arg_lst)
 	args = *arg_lst;
 	while (args)
 	{
-		printf("args->arg = |%s|\n", args->arg);
+		//printf("args->arg = |%s|\n", args->arg);
 		if (ft_strchr(args->arg, '$'))
 			search_and_expand(&args->arg);
 		args = args->next;

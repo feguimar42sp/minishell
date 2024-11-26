@@ -14,7 +14,7 @@
 
 int	*current_exit_code(void)
 {
-    static int	exit_code = -1;
+    static int	exit_code = 0;
 
     return (&exit_code);
 }
