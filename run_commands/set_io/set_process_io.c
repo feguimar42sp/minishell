@@ -3,21 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   set_process_io.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:56:36 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/02 10:52:37 by fernando         ###   ########.fr       */
+/*   Updated: 2024/11/27 19:00:16 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	set_process_io(int *input_file, int *output_file, t_pipe *incomming_pipe, t_pipe *outgoing_pipe)
+void	set_process_io(int *output_file, t_pipe *incomming_pipe, t_pipe *outgoing_pipe)
 {
-	if (*input_file != -1)
-		input_from_file(input_file);
-	else if (incomming_pipe)
-		input_from_pipe(incomming_pipe);
+	input_from_pipe(incomming_pipe);
 	if (*output_file != -1)
 		output_to_file(output_file);
 	else if (outgoing_pipe)

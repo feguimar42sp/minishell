@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect_input.c                                   :+:      :+:    :+:   */
+/*   dump_from_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 01:25:10 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/27 19:37:33 by feguimar         ###   ########.fr       */
+/*   Created: 2024/11/27 19:04:18 by feguimar          #+#    #+#             */
+/*   Updated: 2024/11/27 19:13:51 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	redirect_input(t_pipe *file, t_args_lst **ptr)
+void	dump_from_file(int in_file, int out_file)
 {
-	int	in_f;
     char *buffer;
+    ssize_t bytesRead;
 
-	if ((*ptr)->next == NULL)
-	{
-		ft_redirect_error();
-		return ;
-	}
-	if ((*ptr)->next->type != string)
-	{
-		ft_redirect_error();
-		return ;
-	}
-	(*ptr) = (*ptr)->next;
-	in_f = open((*ptr)->arg, O_RDONLY);
-	if (in_f == -1)
-	{
-        printf("Failed to open file\n");
-        return;
-    }
 	buffer = malloc(sizeof(char) * 1024);
-	dump_from_file(in_f, (*file)[1]);
+	bytesRead = 1;
+    while (bytesRead > 0)
+	{
+		bytesRead = read(in_file, buffer, sizeof(buffer));
+        write(out_file, buffer, bytesRead);
+    }
 }

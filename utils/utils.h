@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:01:47 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/02 11:27:20 by fernando         ###   ########.fr       */
+/*   Updated: 2024/11/27 19:09:14 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ void	free_split(char ***spl);
 void	ft_error(void);
 void 	ft_quote_error(void);
 void    ft_redirect_error(void);
+void	dump_from_file(int in_file, int out_file);
 
 #endif

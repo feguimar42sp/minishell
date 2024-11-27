@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
+#    By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/11/25 20:14:04 by sabrifer         ###   ########.fr        #
+#    Updated: 2024/11/27 19:38:34 by feguimar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ PROMPT_FOLDER := prompt/get_prompt.c
 STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c statics/args_list.c statics/current_exit_code.c
 
 UTILS_FOLDER := utils/free_split.c utils/ft_error.c utils/ft_quote_error.c utils/clear_args_list.c \
-				utils/ft_redirect_error.c
+				utils/ft_redirect_error.c utils/dump_from_file.c
 
 PARSING_FOLDER := parsing/create_node.c parsing/split_by_quotes.c parsing/split_by_redirects.c \
 	parsing/split_by_spaces.c parsing/unclosed_quotes.c parsing/ft_lexer.c \
@@ -59,7 +59,7 @@ BUILT_INS_FOLDER := run_commands/built-ins/fill_cmds.c run_commands/built-ins/ft
 	
 SET_IO_FOLDER := run_commands/set_io/input_from_file.c run_commands/set_io/input_from_pipe.c \
 	run_commands/set_io/io_redirects.c run_commands/set_io/output_to_file.c run_commands/set_io/output_to_pipe.c \
-	run_commands/set_io/set_last_process_io.c run_commands/set_io/set_process_io.c
+	run_commands/set_io/set_last_process_io.c run_commands/set_io/set_process_io.c run_commands/set_io/heredoc.c
 
 SIGNALS_FOLDER := signals/handle_signals.c
 
