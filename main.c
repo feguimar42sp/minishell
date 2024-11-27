@@ -37,6 +37,7 @@ int	main(int ac, char **av, char **envp)
 			free(line);
 			ft_lexer(args_list());
 			handle_environment_vars_expansion(args_list());
+			remove_outer_quotes(args_list());
 			run_commands();
 			free_args_lst(args_list());
 		}

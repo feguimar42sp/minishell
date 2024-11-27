@@ -41,6 +41,7 @@
 # include "parsing/parsing.h"
 # include "memory_utils/mem_utils.h"
 # include "env_vars/env_vars.h"
+# include "syntax/handle_syntax.h"
 
 //debug
 void	handle_sigquit_signal(void);
