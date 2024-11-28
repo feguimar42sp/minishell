@@ -27,6 +27,7 @@ void	handle_sigint_signal(int sig)
 	rl_replace_line("", 0); // because line was stored in the buffer
 							// this one replaces what was stored with the text passed as argument
 	rl_redisplay(); // display prompt again
+	*current_exit_code() = 130;
 }
 
 void	handle_signals(void)
