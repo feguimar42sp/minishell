@@ -42,7 +42,10 @@ int	main(int ac, char **av, char **envp)
 			free_args_lst(args_list());
 		}
 		else
+		{
+			printf("Exit\n");
 			break ; // deals with ctrl + d (sigquit)
+		}
 	}
 	free_env_lst(env_vars_list());
 	rl_clear_history();
