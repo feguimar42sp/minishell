@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_io.h                                           :+:      :+:    :+:   */
+/*   expand_env_vars_heredoc.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 11:09:05 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/29 15:15:00 by feguimar         ###   ########.fr       */
+/*   Created: 2024/11/29 15:21:14 by feguimar          #+#    #+#             */
+/*   Updated: 2024/11/29 19:33:55 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-#ifndef SET_IO_H
-#define SET_IO_H
+char	*expand_env_vars_heredoc(char *line)
+{
+	int		total_chars;
+	int		i;
+	char	*return_string;
 
-void	input_from_file(int *file);
-void	input_from_pipe(t_pipe *pipe);
-int		is_output_to_file(char *s);
-int		is_input_from_file(char *s);
-int		is_input_from_heredoc(char *s);
-void	output_to_file(int *file);
-void	output_to_pipe(t_pipe *pipe);
-void	set_last_process_io(int *out_f, t_pipe *in_p);
-void	set_process_io(int *output_file, t_pipe *incomming_pipe, t_pipe *outgoing_pipe);
-
-#endif
+	i = 0;
+	total_chars = strlen_expanded(line);
+	return_string = malloc(total_chars + 2);
+	i = 0;
+	expand_vars_to_string(return_string, line);
+	return (return_string);
+}

@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_io.h                                           :+:      :+:    :+:   */
+/*   ft_envlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 11:09:05 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/29 15:15:00 by feguimar         ###   ########.fr       */
+/*   Created: 2024/11/29 16:21:32 by feguimar          #+#    #+#             */
+/*   Updated: 2024/11/29 19:42:46 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-#ifndef SET_IO_H
-#define SET_IO_H
+int	ft_envlen(char *line, int i)
+{
+	char 	*env_var;
+	int		var_size;
+	char	*var_name;
+	int		j;
 
-void	input_from_file(int *file);
-void	input_from_pipe(t_pipe *pipe);
-int		is_output_to_file(char *s);
-int		is_input_from_file(char *s);
-int		is_input_from_heredoc(char *s);
-void	output_to_file(int *file);
-void	output_to_pipe(t_pipe *pipe);
-void	set_last_process_io(int *out_f, t_pipe *in_p);
-void	set_process_io(int *output_file, t_pipe *incomming_pipe, t_pipe *outgoing_pipe);
-
-#endif
+	var_size = 1;
+	while(not_end_env_var(line[i + var_size]))
+		var_size++;
+	var_name = malloc(sizeof(char) * (var_size));
+	i++;
+	j = 0;
+	while(not_end_env_var(line[i]))
+		var_name[j++] = line[i++];
+	var_name[j] = '\0';
+	env_var = ft_getenv(var_name);
+	if (env_var != NULL)
+		j = ft_strlen(env_var);
+	else
+		j = 2;
+	free(var_name);
+	return (j);
+}

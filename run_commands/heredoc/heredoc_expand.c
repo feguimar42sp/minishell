@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_io.h                                           :+:      :+:    :+:   */
+/*   heredoc_expand.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 11:09:05 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/29 15:15:00 by feguimar         ###   ########.fr       */
+/*   Created: 2024/11/27 16:30:07 by feguimar          #+#    #+#             */
+/*   Updated: 2024/11/29 19:29:38 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-#ifndef SET_IO_H
-#define SET_IO_H
+void	heredoc_expand(t_pipe *file, t_args_lst **ptr)
+{
+	char		*line;
+	char		*expan_line;
 
-void	input_from_file(int *file);
-void	input_from_pipe(t_pipe *pipe);
-int		is_output_to_file(char *s);
-int		is_input_from_file(char *s);
-int		is_input_from_heredoc(char *s);
-void	output_to_file(int *file);
-void	output_to_pipe(t_pipe *pipe);
-void	set_last_process_io(int *out_f, t_pipe *in_p);
-void	set_process_io(int *output_file, t_pipe *incomming_pipe, t_pipe *outgoing_pipe);
-
-#endif
+	line = NULL;
+	(*ptr) = (*ptr)->next;
+	while (1)
+	{
+		line = readline(">>");
+		if ((line != NULL) && (ft_strcmp((*ptr)->arg, line) != 0))
+		{
+			expan_line = expand_env_vars_heredoc(line);
+			free(line);
+			write((*file)[1], expan_line, ft_strlen(expan_line));
+			free(expan_line);
+		}
+		else
+			break ;
+	}
+	free(line);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/25 20:12:24 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:57:53 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # include "memory_utils/mem_utils.h"
 # include "env_vars/env_vars.h"
 # include "syntax/handle_syntax.h"
+# include "run_commands/heredoc/heredoc.h"
 
 //debug
 void	handle_sigquit_signal(void);

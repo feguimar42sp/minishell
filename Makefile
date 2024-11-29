@@ -6,7 +6,7 @@
 #    By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/11/27 19:38:34 by feguimar         ###   ########.fr        #
+#    Updated: 2024/11/29 17:27:36 by feguimar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,16 +59,21 @@ BUILT_INS_FOLDER := run_commands/built-ins/fill_cmds.c run_commands/built-ins/ft
 	
 SET_IO_FOLDER := run_commands/set_io/input_from_file.c run_commands/set_io/input_from_pipe.c \
 	run_commands/set_io/io_redirects.c run_commands/set_io/output_to_file.c run_commands/set_io/output_to_pipe.c \
-	run_commands/set_io/set_last_process_io.c run_commands/set_io/set_process_io.c run_commands/set_io/heredoc.c
+	run_commands/set_io/set_last_process_io.c run_commands/set_io/set_process_io.c
 
 SIGNALS_FOLDER := signals/handle_signals.c
 
 SYNTAX_FOLDER := syntax/handle_syntax.c syntax/remove_outer_quotes.c
 
+HEREDOC_FOLDER := run_commands/heredoc/expand_env_vars_heredoc.c run_commands/heredoc/expand_vars_to_string.c \
+	run_commands/heredoc/ft_envlen.c run_commands/heredoc/get_var_value_heredoc.c run_commands/heredoc/heredoc_expand.c \
+	run_commands/heredoc/heredoc.c run_commands/heredoc/not_end_env_var.c run_commands/heredoc/strlen_expanded.c
+
 # Source files
 SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) \
 	$(UTILS_FOLDER) $(PARSING_FOLDER) $(RUN_COMMANDS_FOLDER) $(BUILT_INS_FOLDER) \
-	$(EXECUTE_COMMAND_FOLDER) $(SET_IO_FOLDER) $(SIGNALS_FOLDER) $(SYNTAX_FOLDER)
+	$(EXECUTE_COMMAND_FOLDER) $(SET_IO_FOLDER) $(SIGNALS_FOLDER) $(SYNTAX_FOLDER) \
+	$(HEREDOC_FOLDER)
 
 BONUS_SRCS := 
 
