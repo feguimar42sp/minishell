@@ -1,6 +1,33 @@
 
 #include "../minishell.h"
 
+int	is_operator(char *str)
+{
+	if (ft_strcmp(str, "|") == 0)
+		return (1);
+	else if (ft_strcmp(str, "<") == 0)
+		return (1);
+	else if (ft_strcmp(str, ">") == 0)
+		return (1);
+	else if (ft_strcmp(str, "<<") == 0)
+		return (1);
+	else if (ft_strcmp(str, ">>") == 0)
+		return (1);
+	return (0);
+}
+
+int	is_str_quoted(char *str)
+{
+	int	len;
+
+	len = ft_strlen(str);
+	if (str[0] == '\'' && str[len] == '\'')
+		return (1);
+	else if (str[0] == '\"' && str[len] == '\"')
+		return (1);
+	return (1);
+}
+
 void	ft_lexer(t_args_lst **split)
 {
 	t_args_lst	*ptr;
@@ -8,16 +35,10 @@ void	ft_lexer(t_args_lst **split)
 	ptr = *split;
 	while (ptr)
 	{
-		if (ft_strcmp(ptr->arg, "|") == 0)
+		if (is_operator(ptr->arg))
 			ptr->type = operators;
-		else if (ft_strcmp(ptr->arg, "<") == 0)
-			ptr->type = operators;
-		else if (ft_strcmp(ptr->arg, ">") == 0)
-			ptr->type = operators;
-		else if (ft_strcmp(ptr->arg, "<<") == 0)
-			ptr->type = operators;
-		else if (ft_strcmp(ptr->arg, ">>") == 0)
-			ptr->type = operators;
+		if (is_str_quoted(ptr->arg))
+			ptr->is_quoted = true; // add new var to struct args_lst
 		ptr = ptr->next;
 	}
 }
