@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 16:58:07 by feguimar          #+#    #+#             */
-/*   Updated: 2024/11/29 19:23:00 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/11/30 15:00:06 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ char	*get_var_value_heredoc(char *line, int i)
 	var_name[j] = '\0';
 	env_var = ft_getenv(var_name);
 	free(var_name);
+	if (env_var == NULL)
+		return ("\0");
 	return (env_var);
 }

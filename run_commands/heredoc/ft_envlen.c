@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 16:21:32 by feguimar          #+#    #+#             */
-/*   Updated: 2024/11/29 19:42:46 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/11/30 14:58:04 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_envlen(char *line, int i)
 	if (env_var != NULL)
 		j = ft_strlen(env_var);
 	else
-		j = 2;
+		j = 0;
 	free(var_name);
 	return (j);
 }
