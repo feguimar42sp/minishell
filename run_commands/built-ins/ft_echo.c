@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   built_ins.h                                        :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/30 15:33:02 by feguimar         ###   ########.fr       */
+/*   Created: 2024/11/30 15:31:02 by feguimar          #+#    #+#             */
+/*   Updated: 2024/11/30 15:53:38 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-#ifndef BUILT_INS_H
-#define BUILT_INS_H
+void	ft_echo(char **argv)
+{
+	int		i;
+	int		end_line;
 
-s_built_in	*fill_commands(void);
-void		ft_cd(char **argv);
-void		ft_exit_cmd(char **argv);
-void		ft_export(char **argv);
-void		ft_pwd(char **argv);
-int			is_built_in(char *pathname, char **argv);
-void		ft_echo(char **argv);
-void		ft_env(char **argv);
-void		ft_unset(char **argv);
-
-#endif
+	i = 1;
+	end_line = 1;
+	if (argv[1] != NULL)
+		if (ft_strncmp( argv[1], "-n", 3) == 0)
+		{
+			i = 2;
+			end_line = 0;
+		}
+	while(argv[i] != NULL)
+	{
+		write(1, argv[i], ft_strlen(argv[i]));
+		if (argv[i + 1])
+			write(1, " ", 1);
+		i++;
+	}
+	if (end_line)
+		printf("\n");
+}

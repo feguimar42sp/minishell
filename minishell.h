@@ -6,13 +6,13 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/29 17:57:53 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/11/30 15:33:50 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-# define BUILT_INS 4
+# define BUILT_INS 7
 
 # include <fcntl.h>
 # include <stdbool.h>

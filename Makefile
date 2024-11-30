@@ -6,7 +6,7 @@
 #    By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/11/29 17:27:36 by feguimar         ###   ########.fr        #
+#    Updated: 2024/11/30 15:30:26 by feguimar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,8 +54,10 @@ RUN_COMMANDS_FOLDER := run_commands/run_commands.c run_commands/parse_redirect.c
 EXECUTE_COMMAND_FOLDER := run_commands/execute_command/execute_command.c run_commands/execute_command/search_in_path.c \
 	run_commands/execute_command/run_from_root.c run_commands/redirect_input.c run_commands/close_files.c
 
-BUILT_INS_FOLDER := run_commands/built-ins/fill_cmds.c run_commands/built-ins/ft_cd.c run_commands/built-ins/ft_exit_cmd.c \
-	run_commands/built-ins/ft_export.c run_commands/built-ins/ft_pwd.c run_commands/built-ins/is_built_int.c
+BUILT_INS_FOLDER := run_commands/built-ins/fill_cmds.c run_commands/built-ins/ft_cd.c \
+	run_commands/built-ins/ft_echo.c run_commands/built-ins/ft_env.c run_commands/built-ins/ft_exit_cmd.c \
+	run_commands/built-ins/ft_export.c run_commands/built-ins/ft_pwd.c run_commands/built-ins/ft_unset.c \
+	run_commands/built-ins/is_built_int.c
 	
 SET_IO_FOLDER := run_commands/set_io/input_from_file.c run_commands/set_io/input_from_pipe.c \
 	run_commands/set_io/io_redirects.c run_commands/set_io/output_to_file.c run_commands/set_io/output_to_pipe.c \
