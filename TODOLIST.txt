@@ -1,0 +1,51 @@
+========================================================================================
+       					TO-DO LIST
+========================================================================================
+
+
+[X] Display a prompt when waiting for a new command.
+	- [ ] delete or correct where its written 'HOSTNAME'.
+
+[X] Have a working history
+	- [ ] test.
+
+[X] Program is able to search and search the right executable based on the PATH variable
+	- [ ] test.
+
+[X] Program is able to search and search the right executable based on an absolute path.
+	- [ ] test.
+
+[X] Implement redirections
+	- [X] < - redirect input
+	- [X] > - redirect output
+	- [X] >> - redirect output in append mode.
+	- [X] << - HEREDOC
+		- [X] implement variable expansion
+		- [ ] implement when it should NOT expand variables
+		- [ ] test signals
+		- [ ] test single and double quotes
+
+[X] Implement pipes
+
+[X] Handle environment variables
+	- [X] variable expansion
+	- [X] handle expansion of $?
+
+[X] Signals
+	- [X] ctrl-c
+	- [X] ctrl-d
+	- [X] ctrl-\
+
+[ ] Builtins
+	- [ ] echo with option -n
+	- [ ] cd with only a relative or absolute path
+	- [ ] pwd with no options
+	- [ ] export with no options
+	- [ ] unset with no options
+	- [ ] env with no options or arguments
+	- [ ] exit with no options
+
+
+----------------------------------------------------------------------------------------
+Notes: Mark tasks with [x].
+
