@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-bool	unclosed_quotes(char *str)
+bool	quotes_are_balanced(char *str)
 {
 	int		i;
 	bool	s_quotes;
