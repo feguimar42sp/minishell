@@ -25,7 +25,7 @@ s_built_in	*fill_commands(void)
 		ret[3].name = ft_strdup("exit");
 		ret[4].name = ft_strdup("env");
 		ret[5].name = ft_strdup("echo");
-		ret[7].name = ft_strdup("unset");
+		ret[6].name = ft_strdup("unset");
 		ret[0].func = ft_cd;
 		ret[1].func = ft_pwd;
 		ret[2].func = ft_export;
