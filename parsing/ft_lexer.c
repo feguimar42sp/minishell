@@ -21,11 +21,11 @@ int	is_str_quoted(char *str)
 	int	len;
 
 	len = ft_strlen(str);
-	if (str[0] == '\'' && str[len] == '\'')
+	if (str[0] == '\'' && str[len - 1] == '\'')
 		return (1);
-	else if (str[0] == '\"' && str[len] == '\"')
+	else if (str[0] == '\"' && str[len - 1] == '\"')
 		return (1);
-	return (1);
+	return (0);
 }
 
 void	ft_lexer(t_args_lst **split)
