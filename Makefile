@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+         #
+#    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/11/30 15:30:26 by feguimar         ###   ########.fr        #
+#    Updated: 2024/12/01 22:30:06 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,10 @@ LINKER_FLAGS := -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft -lreadline
 
 ENV_VARS_FOLDER := env_vars/expand_environment_vars.c  env_vars/ft_getenv.c \
 				   env_vars/ft_strcspn.c env_vars/store_environment_vars.c env_vars/free_env_list.c \
+
+ENV_VARS_UTILS_FOLDER := env_vars/env_vars_utils/add_env_var.c env_vars/env_vars_utils/find_previous_var_in_list.c \
+	env_vars/env_vars_utils/find_var_node.c env_vars/env_vars_utils/remove_env_var.c \
+	env_vars/env_vars_utils/remove_first_env_var.c env_vars/env_vars_utils/list_env_vars_ordered.c
 
 MEMORY_UTILS_FORDER := memory_utils/add_to_mem_list.c memory_utils/free_all.c memory_utils/ft_free.c \
 	memory_utils/ft_maloc.c memory_utils/print_all_mem.c memory_utils/free_args_list.c memory_utils/ft_free_split.c
@@ -75,7 +79,7 @@ HEREDOC_FOLDER := run_commands/heredoc/expand_env_vars_heredoc.c run_commands/he
 SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) \
 	$(UTILS_FOLDER) $(PARSING_FOLDER) $(RUN_COMMANDS_FOLDER) $(BUILT_INS_FOLDER) \
 	$(EXECUTE_COMMAND_FOLDER) $(SET_IO_FOLDER) $(SIGNALS_FOLDER) $(SYNTAX_FOLDER) \
-	$(HEREDOC_FOLDER)
+	$(HEREDOC_FOLDER) $(ENV_VARS_UTILS_FOLDER)
 
 BONUS_SRCS := 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_outer_quotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:45:22 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/27 17:19:38 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/12/01 22:27:20 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 char	*remove_quotes(char **str)
 {
 	char	*realloc_str;
-	int		len;
+	//int		len;
 	int		new_len;
 
-	len = ft_strlen(*str);
+	//len = ft_strlen(*str);
 	new_len = ft_strlen(*str) - 2;
 	realloc_str = (char *)malloc(sizeof(char) * (new_len + 1));
 	if (!realloc_str)

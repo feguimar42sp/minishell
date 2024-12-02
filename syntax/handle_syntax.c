@@ -17,6 +17,8 @@ bool	handle_syntax(t_args_lst **arg_lst)
 	t_args_lst	*args;
 
 	args = *arg_lst;
+	if (args == NULL)
+		return (false);
 
 	return (false);
 }
