@@ -14,6 +14,26 @@
 
 void	ft_env(char **argv)
 {
-	if (argv == NULL)
-		return ;
+	char	**command;
+	char	**env;
+	pid_t	pid;
+
+	env = split_env(argv);
+	command = split_command(argv);
+	pid = fork();
+	if (pid == 0)
+	{
+		ft_export(env);
+		*args_list() = ft_lst_split(command);
+		ft_lexer(args_list());
+		handle_environment_vars_expansion(args_list());
+		remove_outer_quotes(args_list());
+		run_commands();
+		free_args_lst(args_list());
+	}
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		status = WEXITSTATUS(status);
+	*current_exit_code() = status;
+
 }
