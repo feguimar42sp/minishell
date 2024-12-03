@@ -10,7 +10,8 @@ void	split_by_quotes(t_args_lst **split, char *str, int *i)
 	while(str[next_char] != '\0')
 	{
 		//if (str[next_char] == str[*i])
-		temp = ft_substr(str, *i, next_char);
+		//temp = ft_substr(str, *i, next_char);
+		temp = ft_substr(str, next_char, ft_strlen(str) - next_char);
 		if (quotes_are_balanced(temp))
 		{
 			if (str[next_char] == '<' || str[next_char] == '>'

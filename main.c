@@ -34,16 +34,10 @@ int	main(int ac, char **av, char **envp)
 			add_history(line);
 			clear_args_list(args_list());
 			*args_list() = ft_lst_split(line);
-			t_args_lst *lst = *args_list();
-			while (lst)
-			{
-				printf("NODE = |%s|\n", lst->arg);
-				lst = lst->next;
-			}
 			free(line);
 			ft_lexer(args_list());
 			handle_environment_vars_expansion(args_list());
-	//		remove_outer_quotes(args_list());
+			remove_outer_quotes(args_list());
 			run_commands();
 			free_args_lst(args_list());
 		}
