@@ -37,8 +37,8 @@ void	ft_lexer(t_args_lst **split)
 	{
 		if (is_operator(ptr->arg))
 			ptr->type = operators;
-		if (is_str_quoted(ptr->arg))
-			ptr->is_quoted = true;
+		//if (is_str_quoted(ptr->arg))
+		//	ptr->is_quoted = true;
 		ptr = ptr->next;
 	}
 }
