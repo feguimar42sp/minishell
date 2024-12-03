@@ -6,7 +6,7 @@
 #    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/12/01 22:30:06 by fernando         ###   ########.fr        #
+#    Updated: 2024/12/02 22:27:53 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,8 @@ EXECUTE_COMMAND_FOLDER := run_commands/execute_command/execute_command.c run_com
 BUILT_INS_FOLDER := run_commands/built-ins/fill_cmds.c run_commands/built-ins/ft_cd.c \
 	run_commands/built-ins/ft_echo.c run_commands/built-ins/ft_env.c run_commands/built-ins/ft_exit_cmd.c \
 	run_commands/built-ins/ft_export.c run_commands/built-ins/ft_pwd.c run_commands/built-ins/ft_unset.c \
-	run_commands/built-ins/is_built_int.c
+	run_commands/built-ins/is_built_int.c run_commands/built-ins/split_env.c run_commands/built-ins/has_equal_sign.c \
+	run_commands/built-ins/split_command.c
 	
 SET_IO_FOLDER := run_commands/set_io/input_from_file.c run_commands/set_io/input_from_pipe.c \
 	run_commands/set_io/io_redirects.c run_commands/set_io/output_to_file.c run_commands/set_io/output_to_pipe.c \

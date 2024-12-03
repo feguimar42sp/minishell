@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_built_int.c                                     :+:      :+:    :+:   */
+/*   split_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 20:33:14 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/03 00:52:42 by fernando         ###   ########.fr       */
+/*   Created: 2024/12/02 13:30:50 by fernando          #+#    #+#             */
+/*   Updated: 2024/12/02 22:33:23 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	is_built_in(char *pathname, char **argv)
+char	**split_env(char **argv)
 {
-	s_built_in	*cmds;
-	int			i;
+	int		i;
+	char	**ret;
 
-	cmds = fill_commands();
-	i = 0;
-	while (i < BUILT_INS)
+	i = 1;
+	while (has_equal_sign(argv[i]))
+		i++;
+	ret = malloc(sizeof(char *) * (i + 1));
+	ret[0] = ft_strdup(argv[0]);
+	i = 1;
+	while (has_equal_sign(argv[i]))
 	{
-		if (ft_strcmp(pathname, cmds[i].name) == 0)
-		{
-			cmds[i].func(argv);
-			return (1);
-		}
+		ret[i] = ft_strdup(argv[i]);
 		i++;
 	}
-	return (0);
+	ret[i] = NULL;
+	return (ret);
 }
