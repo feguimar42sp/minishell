@@ -1,32 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_built_int.c                                     :+:      :+:    :+:   */
+/*   split_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 20:33:14 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/03 00:52:42 by fernando         ###   ########.fr       */
+/*   Created: 2024/12/02 13:45:59 by fernando          #+#    #+#             */
+/*   Updated: 2024/12/03 01:47:22 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	is_built_in(char *pathname, char **argv)
+char	*split_command(char **argv)
 {
-	s_built_in	*cmds;
-	int			i;
+	int		i;
+	int		start;
+	char	*ret;
+	int		total;
 
-	cmds = fill_commands();
-	i = 0;
-	while (i < BUILT_INS)
+	start = 1;
+	while (has_equal_sign(argv[start]))
+		start++;
+	i = start;
+	total = 0;
+	while (argv[i] != NULL)
 	{
-		if (ft_strcmp(pathname, cmds[i].name) == 0)
-		{
-			cmds[i].func(argv);
-			return (1);
-		}
+		total = total + ft_strlen(argv[i]) + 3;
 		i++;
 	}
-	return (0);
+	ret = malloc(sizeof(char *) * (total + 1));
+	ft_bzero(ret, total + 1);
+	i = start;
+	while (argv[i] != NULL)
+	{
+		ft_strlcat(ret, argv[i], total + 1);
+		ft_strlcat(ret, " ", total + 1);
+		i++;
+	}
+	return (ret);
 }

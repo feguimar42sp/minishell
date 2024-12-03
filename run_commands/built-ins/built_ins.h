@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/30 15:33:02 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:13:58 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,8 @@ int			is_built_in(char *pathname, char **argv);
 void		ft_echo(char **argv);
 void		ft_env(char **argv);
 void		ft_unset(char **argv);
+int 		has_equal_sign(char *str);
+char		**split_env(char **argv);
+char    	*split_command(char **argv);
 
 #endif

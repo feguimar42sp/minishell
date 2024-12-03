@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_built_int.c                                     :+:      :+:    :+:   */
+/*   has_equal_sign.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 20:33:14 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/03 00:52:42 by fernando         ###   ########.fr       */
+/*   Created: 2024/12/02 13:39:52 by fernando          #+#    #+#             */
+/*   Updated: 2024/12/02 22:13:24 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	is_built_in(char *pathname, char **argv)
+int	has_equal_sign(char *str)
 {
-	s_built_in	*cmds;
-	int			i;
-
-	cmds = fill_commands();
-	i = 0;
-	while (i < BUILT_INS)
-	{
-		if (ft_strcmp(pathname, cmds[i].name) == 0)
-		{
-			cmds[i].func(argv);
-			return (1);
-		}
-		i++;
-	}
-	return (0);
+	if (ft_strchr(str, '=') == NULL)
+		return (0);
+	return (1);
 }
