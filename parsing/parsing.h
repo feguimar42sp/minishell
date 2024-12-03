@@ -23,6 +23,6 @@ void		split_by_quotes(t_args_lst **split, char *str, int *i);
 void		split_by_redirects(t_args_lst **split, char *str, int *i);
 int 		ends_space_block(char c);
 void		split_by_spaces(t_args_lst **split, char *str, int i);
-bool		unclosed_quotes(char *str);
+bool		quotes_are_balanced(char *str);
 
 #endif

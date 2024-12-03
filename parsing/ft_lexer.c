@@ -20,8 +20,8 @@ int	is_str_quoted(char *str)
 {
 	int	len;
 
-	len = ft_strlen(str);
-	if (str[0] == '\'' && str[len - 1] == '\'')
+	len = ft_strlen(str) - 1;
+	if (str[0] == '\'' && str[len] == '\'')
 		return (1);
 	else if (str[0] == '\"' && str[len - 1] == '\"')
 		return (1);
@@ -37,7 +37,7 @@ void	ft_lexer(t_args_lst **split)
 	{
 		if (is_operator(ptr->arg))
 			ptr->type = operators;
-		if (is_str_quoted(ptr->arg))
+		if (is_str_quoted(ptr->arg) == 1)
 			ptr->is_quoted = true;
 		ptr = ptr->next;
 	}

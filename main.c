@@ -37,6 +37,13 @@ int	main(int ac, char **av, char **envp)
 			free(line);
 			ft_lexer(args_list());
 			handle_environment_vars_expansion(args_list());
+			t_args_lst *lst = *args_list();
+			while (lst)
+			{
+				printf("NODE = |%s|\t", lst->arg);
+				printf("NODE = |%d|\n", lst->is_quoted);
+				lst = lst->next;
+			}
 			remove_outer_quotes(args_list());
 			run_commands();
 			free_args_lst(args_list());

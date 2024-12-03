@@ -7,16 +7,14 @@ t_args_lst	*ft_lst_split(char *str)
 
 	split = NULL;
 	i = 0;
-	if (!unclosed_quotes(str))
+	if (!quotes_are_balanced(str))
 		return (NULL);
 	while (i < ft_strlen(str))
 	{
 		if (str[i] == ' ' || str[i] == '\t')
 			i++;
 		else if (str[i] == '\'' || str[i] == '\"')
-		{
 			split_by_quotes(&split, str, &i);
-		}
 		else if (str[i] == '<' || str[i] == '>' || str[i] == '|')
 			split_by_redirects(&split, str, &i);
 		else

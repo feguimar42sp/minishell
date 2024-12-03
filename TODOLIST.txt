@@ -9,11 +9,22 @@
 [X] Have a working history
 	- [ ] test.
 
+[ ] Parsing
+	- [X] separate command line by spaces and quotes
+	- [X] tokenize strings by strings, operators.
+	- [X] also tokenize when a string has quotes around it
+
+[ ] Syntax
+	- [X] remove outer quotes
+	- [ ] remove quotes within string, without removing quotes that are only chars
+
 [X] Program is able to search and search the right executable based on the PATH variable
 	- [ ] test.
+	- [ ] return correct signals
 
 [X] Program is able to search and search the right executable based on an absolute path.
 	- [ ] test.
+	- [ ] return correct signals
 
 [X] Implement redirections
 	- [X] < - redirect input
@@ -21,7 +32,8 @@
 	- [X] >> - redirect output in append mode.
 	- [X] << - HEREDOC
 		- [X] implement variable expansion
-		- [ ] implement when it should NOT expand variables
+		- [ ] implement when it should NOT expand variables (identify delimeter enclosed
+			by single or double quotes)
 		- [ ] test signals
 		- [ ] test single and double quotes
 
