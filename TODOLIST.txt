@@ -49,11 +49,11 @@
 	- [X] ctrl-\
 
 [ ] Builtins
-	- [ ] echo with option -n
-	- [ ] cd with only a relative or absolute path
-	- [ ] pwd with no options
+	- [X] echo with option -n
+	- [X] cd with only a relative or absolute path
+	- [X] pwd with no options
 	- [ ] export with no options
-	- [ ] unset with no options
+	- [X] unset with no options
 	- [ ] env with no options or arguments
 	- [ ] exit with no options
 
