@@ -21,5 +21,6 @@ void	ft_error(void);
 void 	ft_quote_error(void);
 void    ft_redirect_error(void);
 void	dump_from_file(int in_file, int out_file);
+int 	compare_str(char *str1, char *str2);
 
 #endif

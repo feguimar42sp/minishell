@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:31:14 by feguimar          #+#    #+#             */
-/*   Updated: 2024/12/03 01:49:44 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:49:40 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ void	ft_env(char **argv)
 	pid_t	pid;
 	int		status;
 
+	if (argv[1] == NULL)
+	{
+		print_env_vars_list(*env_vars_list(), "");
+		return ;
+	}
 	env = split_env(argv);
 	command = split_command(argv);
 	clear_args_list(args_list());
@@ -26,7 +31,8 @@ void	ft_env(char **argv)
 	pid = fork();
 	if (pid == 0)
 	{
-		ft_export(env);
+		if (env[1] != NULL)
+			ft_export(env);
 		free_split(&env);
 		free(command);
 		ft_lexer(args_list());

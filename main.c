@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/29 19:36:20 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:06:34 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,6 @@ int	main(int ac, char **av, char **envp)
 			free(line);
 			ft_lexer(args_list());
 			handle_environment_vars_expansion(args_list());
-			t_args_lst *lst = *args_list();
-			while (lst)
-			{
-				printf("NODE = |%s|\t", lst->arg);
-				printf("NODE = |%d|\n", lst->is_quoted);
-				lst = lst->next;
-			}
 			remove_outer_quotes(args_list());
 			run_commands();
 			free_args_lst(args_list());

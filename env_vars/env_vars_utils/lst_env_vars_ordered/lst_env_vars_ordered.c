@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_env_vars_ordered.c                            :+:      :+:    :+:   */
+/*   lst_env_vars_ordered.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/01 22:50:35 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/01 22:50:40 by fernando         ###   ########.fr       */
+/*   Created: 2024/12/04 15:42:03 by fernando          #+#    #+#             */
+/*   Updated: 2024/12/04 16:22:27 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../../../minishell.h"
 
-void    list_env_vars_ordered(void)
+void	list_env_vars_ordered(void)
 {
-    if (true)
-        return ;
+	t_envp_lst	*src;
+	t_envp_lst	*ordered;
+	t_envp_lst	*new;
+
+	src = *env_vars_list();
+	ordered = NULL;
+	while (src != NULL)
+	{
+		new = var_dup(src);
+		add_in_place(new, &ordered);
+		src = src->next;
+	}
+	print_env_vars_list(ordered, "declare -x");
+	clear_env_vars_lst(&ordered);
 }

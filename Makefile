@@ -6,7 +6,7 @@
 #    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/12/02 22:27:53 by fernando         ###   ########.fr        #
+#    Updated: 2024/12/04 16:28:29 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ ENV_VARS_FOLDER := env_vars/expand_environment_vars.c  env_vars/ft_getenv.c \
 
 ENV_VARS_UTILS_FOLDER := env_vars/env_vars_utils/add_env_var.c env_vars/env_vars_utils/find_previous_var_in_list.c \
 	env_vars/env_vars_utils/find_var_node.c env_vars/env_vars_utils/remove_env_var.c \
-	env_vars/env_vars_utils/remove_first_env_var.c env_vars/env_vars_utils/list_env_vars_ordered.c
+	env_vars/env_vars_utils/remove_first_env_var.c
 
 MEMORY_UTILS_FORDER := memory_utils/add_to_mem_list.c memory_utils/free_all.c memory_utils/ft_free.c \
 	memory_utils/ft_maloc.c memory_utils/print_all_mem.c memory_utils/free_args_list.c memory_utils/ft_free_split.c
@@ -45,7 +45,7 @@ PROMPT_FOLDER := prompt/get_prompt.c
 STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c statics/args_list.c statics/current_exit_code.c
 
 UTILS_FOLDER := utils/free_split.c utils/ft_error.c utils/ft_quote_error.c utils/clear_args_list.c \
-				utils/ft_redirect_error.c utils/dump_from_file.c
+				utils/ft_redirect_error.c utils/dump_from_file.c utils/compare_str.c
 
 PARSING_FOLDER := parsing/create_node.c parsing/split_by_quotes.c parsing/split_by_redirects.c \
 	parsing/split_by_spaces.c parsing/unclosed_quotes.c parsing/ft_lexer.c \
@@ -76,11 +76,15 @@ HEREDOC_FOLDER := run_commands/heredoc/expand_env_vars_heredoc.c run_commands/he
 	run_commands/heredoc/ft_envlen.c run_commands/heredoc/get_var_value_heredoc.c run_commands/heredoc/heredoc_expand.c \
 	run_commands/heredoc/heredoc.c run_commands/heredoc/not_end_env_var.c run_commands/heredoc/strlen_expanded.c
 
+LST_ENV_VARS_ORDERED_FOLDER := env_vars/env_vars_utils/lst_env_vars_ordered/add_in_place.c \
+	env_vars/env_vars_utils/lst_env_vars_ordered/lst_env_vars_ordered.c env_vars/env_vars_utils/lst_env_vars_ordered/var_dup.c \
+	env_vars/env_vars_utils/lst_env_vars_ordered/print_env_vars_list.c env_vars/env_vars_utils/lst_env_vars_ordered/clear_env_vars_lst.c
+
 # Source files
 SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) \
 	$(UTILS_FOLDER) $(PARSING_FOLDER) $(RUN_COMMANDS_FOLDER) $(BUILT_INS_FOLDER) \
 	$(EXECUTE_COMMAND_FOLDER) $(SET_IO_FOLDER) $(SIGNALS_FOLDER) $(SYNTAX_FOLDER) \
-	$(HEREDOC_FOLDER) $(ENV_VARS_UTILS_FOLDER)
+	$(HEREDOC_FOLDER) $(ENV_VARS_UTILS_FOLDER) $(LST_ENV_VARS_ORDERED_FOLDER)
 
 BONUS_SRCS := 
 

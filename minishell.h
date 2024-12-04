@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/01 22:35:24 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:24:03 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # include "syntax/handle_syntax.h"
 # include "run_commands/heredoc/heredoc.h"
 # include "env_vars/env_vars_utils/env_vars_utils.h"
+# include "env_vars/env_vars_utils/lst_env_vars_ordered/lst_env_vars_ordered.h"
 
 //debug
 void	handle_sigquit_signal(void);

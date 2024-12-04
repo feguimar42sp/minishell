@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:45:22 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/01 22:27:20 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/03 21:37:58 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ void	check_quotes_and_remove(char **str)
 {
 	bool	single_quotes;
 	bool	double_quotes;
-	char	*temp;
+	//char	*temp;
 	int		i;
 
 	single_quotes = false;
 	double_quotes = false;
 	i = 0;
-	temp = NULL;
+	//temp = NULL;
 	while ((*str)[i])
 	{
 		if ((*str)[i] == '\'' && !double_quotes)
