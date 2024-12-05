@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lst_split.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 20:06:18 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/12/05 20:06:20 by sabrifer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 t_args_lst	*ft_lst_split(char *str)
@@ -20,10 +32,9 @@ t_args_lst	*ft_lst_split(char *str)
 		else
 		{
 			split_by_spaces(&split, str, i);
-			while(!ends_space_block(str[i]))
+			while (!ends_space_block(str[i]))
 				i++;
 		}
 	}
-	add_to_mem_list("split_in_ft_lst_split", &split); // correto?
 	return (split);
 }
