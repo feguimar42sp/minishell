@@ -4,7 +4,8 @@
 
 
 [X] Display a prompt when waiting for a new command.
-	- [ ] delete or correct where its written 'HOSTNAME'.
+	- [X] delete or correct where its written 'HOSTNAME'.
+	- [X] added a colour to the prompt
 
 [X] Have a working history
 	- [ ] test.
