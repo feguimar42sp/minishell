@@ -33,10 +33,10 @@
 	- [X] >> - redirect output in append mode.
 	- [X] << - HEREDOC
 		- [X] implement variable expansion
-		- [ ] implement when it should NOT expand variables (identify delimeter enclosed
+		- [X] implement when it should NOT expand variables (identify delimeter enclosed
 			by single or double quotes)
+		- [X] test single and double quotes
 		- [ ] test signals
-		- [ ] test single and double quotes
 
 [X] Implement pipes
 
