@@ -6,14 +6,16 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/02 11:09:20 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:03:52 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-
 #ifndef PROMPT_H
-#define PROMPT_H
+# define PROMPT_H
+
+# include "../minishell.h"
+# define GREEN "\x1b[32m"
+# define COLOR_RESET "\x1b[0m"
 
 char	*get_user_prompt(void);
 char	*get_dir(void);
