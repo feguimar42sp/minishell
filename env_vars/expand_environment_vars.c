@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:00:57 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/06 14:55:49 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/12/06 15:24:41 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,7 @@ char	*ft_expand(char **str, int *i)
 	ft_memcpy(expanded, *str, *i);
 	ft_memcpy(expanded + *i, value, ft_strlen(value));
 	pos = *i + strlen(var) + 1;
-	// ************
 	ft_strcpy(expanded + *i + strlen(value), *str + pos);
-	// ************
 	return (expanded);
 }
 
@@ -85,6 +83,27 @@ void	update_quotes(char c, bool *single_quotes, bool *double_quotes)
 		*double_quotes = !*double_quotes;
 	if (c == '\'' && *double_quotes == false)
 		*single_quotes = !*single_quotes;
+}
+
+void	handle_dollar_expansion(char **str, int index, bool *single_quotes)
+{
+	char	*temp;
+
+	temp = NULL;
+	if ((*str)[index] == '$' && !*single_quotes)
+	{
+		if ((*str)[index + 1] == '$')
+			index++;
+		else if ((*str)[index + 1] == '\"')
+			(*str) = ft_strdup("");
+		else if ((*str)[index + 1] != ' ' && (*str)[index + 1] != '\"')
+		{
+			temp = ft_expand(str, &index);
+			(*str) = ft_strdup(temp);
+			free(temp);
+			temp = NULL;
+		}
+	}
 }
 
 void	search_and_expand(char **str)
@@ -101,20 +120,7 @@ void	search_and_expand(char **str)
 	while ((*str)[i] && (*str)[i + 1])
 	{
 		update_quotes((*str)[i], &single_quotes, &double_quotes);
-		if ((*str)[i] == '$' && !single_quotes)
-		{
-			if ((*str)[i + 1] == '$' /* && (*str)[i + 1] != '\0'*/)
-				i++;
-			else if ((*str)[i + 1] == '\"')
-				(*str) = ft_strdup("");
-			else if ((*str)[i + 1] != ' ' && (*str)[i + 1] != '\"')
-			{
-				temp = ft_expand(str, &i);
-				(*str) = ft_strdup(temp);
-				free(temp);
-				temp = NULL;
-			}
-		}
+		handle_dollar_expansion(str, i, &single_quotes);
 		i++;
 	}
 }
