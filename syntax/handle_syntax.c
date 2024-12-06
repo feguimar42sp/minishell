@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:16:10 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/27 15:18:26 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/12/06 17:19:42 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@ bool	handle_syntax(t_args_lst **arg_lst)
 	args = *arg_lst;
 	if (args == NULL)
 		return (false);
-
 	return (false);
 }

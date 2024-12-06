@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:04:18 by feguimar          #+#    #+#             */
-/*   Updated: 2024/11/27 19:13:51 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/06 17:21:54 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	dump_from_file(int in_file, int out_file)
 {
-    char *buffer;
-    ssize_t bytesRead;
+	char	*buffer;
+	ssize_t	bytes_read;
 
 	buffer = malloc(sizeof(char) * 1024);
-	bytesRead = 1;
-    while (bytesRead > 0)
+	bytes_read = 1;
+	while (bytes_read > 0)
 	{
-		bytesRead = read(in_file, buffer, sizeof(buffer));
-        write(out_file, buffer, bytesRead);
-    }
+		bytes_read = read(in_file, buffer, sizeof(buffer));
+		write(out_file, buffer, bytes_read);
+	}
 }

@@ -6,13 +6,12 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 20:44:21 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/24 01:07:41 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/06 17:22:46 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void    ft_redirect_error(void)
+void	ft_redirect_error(void)
 {
-    
 }

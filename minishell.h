@@ -45,9 +45,7 @@
 # include "run_commands/heredoc/heredoc.h"
 # include "env_vars/env_vars_utils/env_vars_utils.h"
 # include "env_vars/env_vars_utils/lst_env_vars_ordered/lst_env_vars_ordered.h"
-//debug
-void	handle_sigquit_signal(void);
-void	handle_signals(void);
-void 	print_args_lst(t_args_lst	*ptr);
-void 	print_split(char **s);
+
+void	print_args_lst(t_args_lst	*ptr);
+void	print_split(char **s);
 #endif
