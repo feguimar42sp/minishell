@@ -6,15 +6,15 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:02:18 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:40:41 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:03:56 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_envp_lst  **env_vars_list(void)
+t_envp_lst	**env_vars_list(void)
 {
-    static t_envp_lst   *list;
+	static t_envp_lst	*list;
 
-    return (&list);
+	return (&list);
 }

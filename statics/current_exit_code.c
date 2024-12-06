@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:13:34 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/07 15:14:33 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:03:40 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	*current_exit_code(void)
 {
-    static int	exit_code = 0;
+	static int	exit_code = 0;
 
-    return (&exit_code);
+	return (&exit_code);
 }

@@ -6,15 +6,15 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:10:47 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/23 15:42:16 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:04:06 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_args_lst **args_list(void)
+t_args_lst	**args_list(void)
 {
-    static t_args_lst *a;
+	static t_args_lst	*a;
 
-    return (&a);
+	return (&a);
 }
