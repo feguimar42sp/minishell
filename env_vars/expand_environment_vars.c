@@ -127,7 +127,11 @@ void	handle_environment_vars_expansion(t_args_lst **arg_lst)
 	{
 		//printf("args->arg = |%s|\n", args->arg);
 		if (ft_strchr(args->arg, '$'))
+		{
+			if (ft_strncmp(args->arg, "\"$\"", 4) == 0)
+				break ;
 			search_and_expand(&args->arg);
+		}
 		args = args->next;
 	}
 }
