@@ -19,7 +19,7 @@
 	- [X] remove outer quotes
 	- [X] remove quotes within string, without removing quotes that are only chars
 
-[X] Program is able to search and search the right executable based on the PATH variable
+[X] Program is able to search and find the right executable based on the PATH variable
 	- [ ] test.
 	- [ ] return correct signals
 
@@ -38,7 +38,8 @@
 		- [X] test single and double quotes
 		- [ ] test signals
 
-[X] Implement pipes
+[ ] Implement pipes
+	- [ ] the redirection of pipe to another
 
 [X] Handle environment variables
 	- [X] variable expansion
@@ -57,6 +58,12 @@
 	- [X] unset with no options
 	- [ ] env with no options or arguments
 	- [ ] exit with no options
+
+[ ] Exit code
+	- [ ] builtins returns correct exit code
+	- [ ] external commands return values different than 0 and 1
+	- [ ] external commands return error messages along with different values mentioned above
+	- [ ] exit + some digits return correct exit code
 
 
 ----------------------------------------------------------------------------------------
