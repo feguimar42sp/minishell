@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 21:00:40 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/06 15:01:38 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/12/06 15:52:00 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int			find_pos_strchr(char *str, char c);
 // functions to expand environment variables
 void		handle_environment_vars_expansion(t_args_lst **arg_lst);
 char		*parse_var_found(char *str);
+char		*parse_var_found(char *str);
+char		*get_var_value(char *var);
 
 // function that help joining strings
 char		*join_prefix_and_value(char *s1, char *s2);

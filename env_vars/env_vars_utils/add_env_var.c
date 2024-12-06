@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 20:34:55 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/01 23:22:33 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/06 15:57:26 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	add_env_var(char *var)
 		ptr->next->value = ft_strdup(elements[1]);
 		ptr->next->next = NULL;
 	}
-	//else
-	//	printf("Error in adding variable\n");
 	free(elements);
 }
 
