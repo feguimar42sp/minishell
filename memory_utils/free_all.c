@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 19:14:39 by fernando          #+#    #+#             */
-/*   Updated: 2024/08/25 23:17:52 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/06 17:31:49 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,9 @@ void	free_all(void)
 	while (current != NULL)
 	{
 		if (current->ptr == NULL)
-			;//printf("Pointer for '%s' already free.\n", current->name);
+			;
 		else
-		{
-			//printf("Freeing: %s -> %p\n", current->name, current->ptr);
 			free(current->ptr);
-		}
 		free(current->name);
 		to_free = current;
 		current = current->next;

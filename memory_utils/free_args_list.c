@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 12:51:21 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/03 12:51:25 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/12/06 17:32:08 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	free_lst(t_args_lst *node)
 {
 	if (!node)
 		return ;
-	free_lst(node -> next);
+	free_lst(node->next);
 	free(node->arg);
 	free(node);
 	node = NULL;
