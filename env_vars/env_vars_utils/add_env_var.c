@@ -36,8 +36,8 @@ void	add_env_var(char *var)
 		ptr->next->value = ft_strdup(elements[1]);
 		ptr->next->next = NULL;
 	}
-	else
-		printf("Error in adding variable\n");
+	//else
+	//	printf("Error in adding variable\n");
 	free(elements);
 }
 
