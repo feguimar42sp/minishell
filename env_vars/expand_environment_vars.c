@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:00:57 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/23 19:18:55 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/12/06 14:55:49 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ char	*ft_expand(char **str, int *i)
 	ft_memcpy(expanded, *str, *i);
 	ft_memcpy(expanded + *i, value, ft_strlen(value));
 	pos = *i + strlen(var) + 1;
-	strcpy(expanded + *i + strlen(value), *str + pos);
-		// needs to be replaced by ft_strcpy
+	// ************
+	ft_strcpy(expanded + *i + strlen(value), *str + pos);
+	// ************
 	return (expanded);
 }
 
@@ -102,7 +103,7 @@ void	search_and_expand(char **str)
 		update_quotes((*str)[i], &single_quotes, &double_quotes);
 		if ((*str)[i] == '$' && !single_quotes)
 		{
-			if ((*str)[i + 1] == '$'/* && (*str)[i + 1] != '\0'*/)
+			if ((*str)[i + 1] == '$' /* && (*str)[i + 1] != '\0'*/)
 				i++;
 			else if ((*str)[i + 1] == '\"')
 				(*str) = ft_strdup("");
@@ -125,7 +126,6 @@ void	handle_environment_vars_expansion(t_args_lst **arg_lst)
 	args = *arg_lst;
 	while (args)
 	{
-		//printf("args->arg = |%s|\n", args->arg);
 		if (ft_strchr(args->arg, '$'))
 		{
 			if (ft_strncmp(args->arg, "\"$\"", 4) == 0)
