@@ -66,12 +66,10 @@ void	search_and_expand(char **str)
 {
 	bool	single_quotes;
 	bool	double_quotes;
-	char	*temp;
 	int		i;
 
 	single_quotes = false;
 	double_quotes = false;
-	temp = NULL;
 	i = 0;
 	while ((*str)[i] && (*str)[i + 1])
 	{

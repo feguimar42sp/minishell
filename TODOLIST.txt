@@ -10,7 +10,7 @@
 [X] Have a working history
 	- [ ] test.
 
-[ ] Parsing
+[X] Parsing
 	- [X] separate command line by spaces and quotes
 	- [X] tokenize strings by strings, operators.
 	- [X] also tokenize when a string has quotes around it
@@ -54,13 +54,13 @@
 	- [X] echo with option -n
 	- [X] cd with only a relative or absolute path
 	- [X] pwd with no options
-	- [ ] export with no options
+	- [X] export with no options
 	- [X] unset with no options
-	- [ ] env with no options or arguments
-	- [ ] exit with no options
+	- [X] env with no options or arguments
+	- [X] exit with no options
 
 [ ] Exit code
-	- [ ] builtins returns correct exit code
+	- [ ] builtins return correct exit code
 	- [ ] external commands return values different than 0 and 1
 	- [ ] external commands return error messages along with different values mentioned above
 	- [ ] exit + some digits return correct exit code
