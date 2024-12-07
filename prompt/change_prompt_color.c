@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_prompt.c                                       :+:      :+:    :+:   */
+/*   change_prompt_color.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/25 23:43:25 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/06 21:23:01 by sabrifer         ###   ########.fr       */
+/*   Created: 2024/12/06 21:15:55 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/12/06 21:15:58 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*get_prompt(void)
+char	*change_color_prompt(char *prompt)
 {
 	char	*temp;
-	char	*dir;
-	char	*prompt;
-	char	*prompt_with_color;
+	char	*new_prompt;
 
-	temp = get_user_and_hostname();
-	dir = get_dir();
-	prompt = ft_strjoin(temp, dir);
-	prompt_with_color = change_color_prompt(prompt);
+	temp = ft_strjoin(GREEN, prompt);
+	new_prompt = ft_strjoin(temp, COLOR_RESET);
 	free(temp);
-	free(prompt);
-	free(dir);
-	return (prompt_with_color);
+	return (new_prompt);
 }

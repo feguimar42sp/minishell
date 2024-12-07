@@ -41,7 +41,8 @@ ENV_VARS_UTILS_FOLDER := env_vars/env_vars_utils/add_env_var.c env_vars/env_vars
 MEMORY_UTILS_FORDER := memory_utils/add_to_mem_list.c memory_utils/free_all.c memory_utils/ft_free.c \
 	memory_utils/ft_maloc.c memory_utils/print_all_mem.c memory_utils/free_args_list.c memory_utils/ft_free_split.c
 
-PROMPT_FOLDER := prompt/get_prompt.c
+PROMPT_FOLDER := prompt/get_prompt.c prompt/change_prompt_color.c prompt/get_dir.c \
+				 prompt/get_user_and_hostname.c
 
 STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c statics/args_list.c statics/current_exit_code.c
 
