@@ -12,12 +12,27 @@
 
 #include "handle_syntax.h"
 
-bool	handle_syntax(t_args_lst **arg_lst)
+// exit 2 when error
+int	check_sequential_operators(t_args_lst **arg_lst)
 {
 	t_args_lst	*args;
+	char		*operator_found;
 
 	args = *arg_lst;
-	if (args == NULL)
-		return (false);
-	return (false);
+	operator_found = NULL;
+	while (args && args->next)
+	{
+		if (args->type == operators && args->next->type == operators)
+		{
+			*current_exit_code() = 2;
+			return (0);
+		}
+		args = args->next;
+	}
+	return (1);
+}
+
+int	handle_syntax(t_args_lst **arg_lst)
+{
+	if (check_sequential_operators(arg_lst)
 }

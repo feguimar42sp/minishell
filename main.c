@@ -36,6 +36,7 @@ int	main(int ac, char **av, char **envp)
 			*args_list() = ft_lst_split(line);
 			free(line);
 			ft_lexer(args_list());
+			handle_syntax(args_list());
 			handle_environment_vars_expansion(args_list());
 			remove_outer_quotes(args_list());
 			run_commands();
@@ -43,7 +44,7 @@ int	main(int ac, char **av, char **envp)
 		}
 		else
 		{
-			printf("Exit\n");
+			printf("exit\n");
 			break ; // deals with ctrl + d (sigquit)
 		}
 	}

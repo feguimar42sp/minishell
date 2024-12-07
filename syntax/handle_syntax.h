@@ -18,5 +18,6 @@
 char	*remove_quotes(char **str);
 void	check_quotes_and_remove(char **str);
 void	remove_outer_quotes(t_args_lst **args_lst);
+void	handle_syntax(t_args_lst **arg_lst);
 
 #endif
