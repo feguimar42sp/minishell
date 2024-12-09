@@ -30,6 +30,7 @@
 [X] Implement redirections
 	- [X] < - redirect input
 	- [X] > - redirect output
+		- [ ] should return error when there's no file to output. examples: 'cat <Makefile >'
 	- [X] >> - redirect output in append mode.
 	- [X] << - HEREDOC
 		- [X] implement variable expansion
@@ -65,6 +66,11 @@
 	- [ ] external commands return error messages along with different values mentioned above
 	- [ ] exit + some digits return correct exit code
 
+
+----------------------------------------------------------------------------------------
+
+[ ] Create a generic function to count size of different types of linked lists. 
+	[ ] Replace these ones for the new generic function: ft_lstsize / get_lstsize / get_args_size
 
 ----------------------------------------------------------------------------------------
 Notes: Mark tasks with [x].

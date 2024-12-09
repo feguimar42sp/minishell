@@ -36,7 +36,12 @@ int	main(int ac, char **av, char **envp)
 			*args_list() = ft_lst_split(line);
 			free(line);
 			ft_lexer(args_list());
-			handle_syntax(args_list());
+			if (!handle_syntax(args_list()))
+			{
+				printf("syntax error\n");
+				free_args_lst(args_list());
+				continue ;
+			}
 			handle_environment_vars_expansion(args_list());
 			remove_outer_quotes(args_list());
 			run_commands();
