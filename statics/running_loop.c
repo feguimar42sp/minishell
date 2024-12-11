@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit_cmd.c                                      :+:      :+:    :+:   */
+/*   running_loop.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 20:37:10 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/11 16:01:22 by feguimar         ###   ########.fr       */
+/*   Created: 2024/11/07 15:13:34 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/12/11 18:29:01 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-void	ft_exit_cmd(char **argv)
+pid_t	*running_loop(void)
 {
-	static int	i;
+    static int	p;
 
-	i = 2;
-	if (argv == NULL)
-		return ;
-	
-	*current_exit_code() = i;
-	printf("Exit\n");
-	kill(*prog_pid(), SIGTERM);
+    return (&p);
 }

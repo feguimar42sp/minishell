@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:35:44 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/03 10:11:52 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:21:02 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ void	ft_cd(char **argv)
 		free(pwd);
 	}
 	free(old_pwd);
+	*current_exit_code()  = 0;
 }

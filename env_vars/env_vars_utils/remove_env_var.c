@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_env_var.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 16:37:08 by feguimar          #+#    #+#             */
-/*   Updated: 2024/12/02 22:30:19 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:13:56 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ void	remove_env_var(char *name)
 		return ;
 	}
 	if (ft_strncmp((*env_vars_list())->var, name, ft_strlen(name) + 1) == 0)
+	{
 		remove_first_env_var();
+		return ;
+	}
 	else
-	prev_var_on_list = find_previous_var_in_list(name);
+		prev_var_on_list = find_previous_var_in_list(name);
 	prev_var_on_list->next = var_to_remove->next;
 	free(var_to_remove->var);
 	free(var_to_remove->value);
