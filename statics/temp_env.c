@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   statics.h                                          :+:      :+:    :+:   */
+/*   temp_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 11:09:05 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/11 18:59:29 by feguimar         ###   ########.fr       */
+/*   Created: 2024/10/10 16:02:18 by fernando          #+#    #+#             */
+/*   Updated: 2024/12/11 18:59:16 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-#ifndef STATICS_H
-#define STATICS_H
+t_envp_lst  **temp_env(void)
+{
+    static t_envp_lst   *list;
 
-t_args_lst	**args_list(void);
-t_envp_lst 	**env_vars_list(void);
-t_mem_node	**mem_list(void);
-int			*current_exit_code(void);
-pid_t		*prog_pid(void);
-pid_t		*running_loop(void);
-t_envp_lst  **temp_env(void);
-
-#endif
+    return (&list);
+}
