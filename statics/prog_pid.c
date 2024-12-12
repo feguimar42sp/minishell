@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit_cmd.c                                      :+:      :+:    :+:   */
+/*   prog_pid.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 20:37:10 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/11 16:01:22 by feguimar         ###   ########.fr       */
+/*   Created: 2024/11/07 15:13:34 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/12/11 16:28:07 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-void	ft_exit_cmd(char **argv)
+pid_t	*prog_pid(void)
 {
-	static int	i;
+    static pid_t	pid;
 
-	i = 2;
-	if (argv == NULL)
-		return ;
-	
-	*current_exit_code() = i;
-	printf("Exit\n");
-	kill(*prog_pid(), SIGTERM);
+    return (&pid);
 }

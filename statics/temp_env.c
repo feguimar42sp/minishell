@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit_cmd.c                                      :+:      :+:    :+:   */
+/*   temp_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 20:37:10 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/11 16:01:22 by feguimar         ###   ########.fr       */
+/*   Created: 2024/10/10 16:02:18 by fernando          #+#    #+#             */
+/*   Updated: 2024/12/11 18:59:16 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-void	ft_exit_cmd(char **argv)
+t_envp_lst  **temp_env(void)
 {
-	static int	i;
+    static t_envp_lst   *list;
 
-	i = 2;
-	if (argv == NULL)
-		return ;
-	
-	*current_exit_code() = i;
-	printf("Exit\n");
-	kill(*prog_pid(), SIGTERM);
+    return (&list);
 }
