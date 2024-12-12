@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:38:34 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/30 15:36:18 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/11 21:33:46 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ s_built_in	*fill_commands(void)
 		ret = malloc(sizeof(s_built_in) * BUILT_INS );
 		ret[0].name = ft_strdup("cd");
 		ret[1].name = ft_strdup("pwd");
-		ret[2].name = ft_strdup("export");
+		ret[2].name = ft_strdup("");
 		ret[3].name = ft_strdup("exit");
-		ret[4].name = ft_strdup("env");
+		ret[4].name = ft_strdup("");
 		ret[5].name = ft_strdup("echo");
 		ret[6].name = ft_strdup("unset");
 		ret[0].func = ft_cd;

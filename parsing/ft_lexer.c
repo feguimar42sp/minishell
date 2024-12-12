@@ -13,6 +13,10 @@ int	is_operator(char *str)
 		return (1);
 	else if (ft_strcmp(str, ">>") == 0)
 		return (1);
+	else if (ft_strcmp(str, "env") == 0)
+		return (1);
+	else if (ft_strcmp(str, "export") == 0)
+		return (1);
 	return (0);
 }
 

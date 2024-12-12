@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/11 17:41:49 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/11 21:14:47 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int ac, char **av, char **envp)
 			else
 			{
 				printf("\nExit\n");
-				break ; // deals with ctrl + d (sigquit)
+				break ;
 			}
 		}
 		free_env_lst(env_vars_list());
