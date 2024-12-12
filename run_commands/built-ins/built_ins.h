@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/02 14:13:58 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:32:15 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void		ft_unset(char **argv);
 int 		has_equal_sign(char *str);
 char		**split_env(char **argv);
 char    	*split_command(char **argv);
+int			valid_export_call(void);
 
 #endif

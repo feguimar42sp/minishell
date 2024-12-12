@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:35:14 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/03 01:02:07 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:38:29 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_export(char **argv)
 {
 	int	i;
 
+	if (!valid_export_call())
+		return ;
 	i = 0;
 	while (argv[i] != NULL)
 		i++;
@@ -27,4 +29,18 @@ void	ft_export(char **argv)
 	i = 1;
 	while (argv[i] != NULL)
 		add_env_var(argv[i++]);
+}
+
+int	valid_export_call(void)
+{
+	t_args_lst *ptr;
+
+	ptr = *args_list();
+	while (ptr != NULL)
+	{
+		if (ft_strcmp(ptr->arg, "|") == 0)
+			return (0);
+		ptr = ptr->next;
+	}
+	return (1);
 }
