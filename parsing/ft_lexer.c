@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:00:12 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/12 18:25:43 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:26:13 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	is_str_quoted(char *str)
 
 	len = ft_strlen(str) - 1;
 	if (str[0] == '\'' && str[len] == '\'')
-		return (1);
-	else if (str[0] == '\"' && str[len - 1] == '\"')
-		return (1);
-	return (0);
+		return (0);
+	else if (str[0] == '\"' && str[len] == '\"')
+		return (0);
+	return (1);
 }
 
 void	ft_lexer(t_args_lst **split)
@@ -46,6 +46,7 @@ void	ft_lexer(t_args_lst **split)
 	ptr = *split;
 	while (ptr)
 	{
+		printf("%s\n", ptr->arg);
 		if (is_operator(ptr->arg))
 			ptr->type = operators;
 		if (is_str_quoted(ptr->arg) == 1)

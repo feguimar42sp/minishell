@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:30:07 by feguimar          #+#    #+#             */
-/*   Updated: 2024/11/27 20:20:36 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:50:00 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	heredoc(t_pipe *file, t_args_lst **ptr)
 	while (1)
 	{
 		line = readline(">>");
-		if ((line != NULL) && (ft_strcmp((*ptr)->arg, line) != 0))
+		if ((line != NULL) && ((ft_strcmp((*ptr)->arg, line) != 0)))
 		{
 			line_add = malloc(ft_strlen(line) + 1);
 			i = 0;

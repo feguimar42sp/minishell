@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:57:33 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/12 21:47:02 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:41:55 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	run_last_command(int *out_f, t_pipe *in_p, t_args_lst **b)
 		ft_export_run(command_line);
 	if (((*b) != NULL) && (ft_strcmp((*b)->arg, "unset") == 0))
 		ft_unset_run(command_line);
-	pid = fork();
 	*running_loop() = 1;
+	pid = fork();
 	if (pid == 0)
 	{
 		set_last_process_io(out_f, in_p);
@@ -43,7 +43,7 @@ void	run_last_command(int *out_f, t_pipe *in_p, t_args_lst **b)
 	*current_exit_code() = status;
 	close_files(out_f, &in_p);
 	clear_args_list(b);
-	ft_free_split(env_path);
-	ft_free_split(command_line);
+	free_split(&env_path);
+	free_split(&command_line);
 	//exit(*current_exit_code());
 }

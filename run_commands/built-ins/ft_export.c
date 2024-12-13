@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:35:14 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/12 21:41:57 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:10:03 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_export_run(char **argv)
 	}
 	if (i == 1)
 	{
-		list_env_vars_ordered();
 		return ;
 	}
 	i = 1;
@@ -51,5 +50,17 @@ int	valid_export_call(void)
 
 void	ft_export(char **argv)
 {
+	int	i;
+
+	i = 0;
+	while (argv[i] != NULL)
+	{
+		i++;
+	}
+	if (i == 1)
+	{
+		list_env_vars_ordered();
+		return ;
+	}
 	(void)argv;
 }

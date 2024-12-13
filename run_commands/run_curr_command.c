@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/11 18:31:48 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:41:43 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	run_curr_command(int *out_f, t_pipe *in_p, t_args_lst **b)
 	env_path = ft_split(ft_getenv("PATH"), ':');
 	command_line = make_array(*b);
 	close((*in_p)[1]);
-	pid = fork();
 	*running_loop() = 1;
+	pid = fork();
 	if (pid == 0)
 	{
 		set_process_io(out_f, in_p, &out_p);
@@ -43,6 +43,6 @@ void	run_curr_command(int *out_f, t_pipe *in_p, t_args_lst **b)
 	*current_exit_code() = status;
 	dump_from_file(out_p[0], (*in_p)[1]);
 	clear_args_list(b);
-	ft_free_split(env_path);
-	ft_free_split(command_line);
+	free_split(&env_path);
+	free_split(&command_line);
 }

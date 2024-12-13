@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 16:10:28 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/12 23:08:53 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:41:22 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**envp_lst_to_array(t_envp_lst **envp_lst)
 	lst = *envp_lst;
 	i = 0;
 	lst_size = get_lstsize(*envp_lst);
-	array = (char **)malloc(sizeof(char *) * lst_size + 1);
+	array = (char **)malloc(sizeof(char *) * lst_size + 20);
 	if (!array)
 	{
 		printf("malloc array null\n");
