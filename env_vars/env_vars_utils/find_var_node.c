@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_var_node.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 20:34:55 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/01 23:09:20 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/12 20:38:24 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ t_envp_lst	*find_var_node(char *name)
 	while (ptr != NULL)
 	{
 		if (ft_strncmp(name, ptr->var, ft_strlen(name) + 1) == 0)
+		{
 			return (ptr);
+		}
 		ptr = ptr->next;
 	}
 	return (NULL);

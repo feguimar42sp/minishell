@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_env_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 20:34:55 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/06 15:57:26 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/12/12 21:34:28 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ void	add_env_var(char *var)
 		if (ptr != NULL)
 		{
 			free(ptr->value);
-			ptr->value = ft_strdup(elements[1]);
-			free(elements);
+			if (elements[1] != NULL)
+				ptr->value = ft_strdup(elements[1]);
+			else
+				ptr->value = NULL;
+			free_split(&elements);
 			return ;
 		}
 		ptr = *env_vars_list();
@@ -33,10 +36,15 @@ void	add_env_var(char *var)
 			ptr = ptr->next;
 		ptr->next = malloc(sizeof(t_envp_lst));
 		ptr->next->var = ft_strdup(elements[0]);
-		ptr->next->value = ft_strdup(elements[1]);
+		if (elements[1] != NULL)
+			ptr->next->value = ft_strdup(elements[1]);
+		else
+			ptr->next->value = NULL;
 		ptr->next->next = NULL;
 	}
-	free(elements);
+	else
+		printf("invalid var descriptor %s\n", elements[0]);
+	free_split(&elements);
 }
 
 int	is_valid_var(char **elements)
@@ -48,7 +56,7 @@ int	is_valid_var(char **elements)
 	i = 0;
 	while (elements[i] != NULL)
 		i++;
-	if (i != 2)
+	if (i > 2)
 		return (0);
 	if (!((elements[0][0] == '_') || ft_isalpha(elements[0][0])))
 		return (0);

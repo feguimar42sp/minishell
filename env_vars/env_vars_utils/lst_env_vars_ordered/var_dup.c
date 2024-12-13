@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var_dup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:42:45 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/04 16:25:44 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/12 21:29:30 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ t_envp_lst	*var_dup(t_envp_lst *env_var)
 
 	new = malloc(sizeof(t_envp_lst));
 	new->var = ft_strdup(env_var->var);
-	new->value = ft_strdup(env_var->value);
+	if (env_var->value != NULL)
+		new->value = ft_strdup(env_var->value);
+	else
+		new->value = NULL;
 	new->next = NULL;
 	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/12 18:32:15 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/12 21:48:01 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ int 		has_equal_sign(char *str);
 char		**split_env(char **argv);
 char    	*split_command(char **argv);
 int			valid_export_call(void);
+void		ft_export_run(char **argv);
+void		ft_unset_run(char **argv);
 
 #endif

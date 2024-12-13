@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:57:33 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/11 18:31:40 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/12 21:47:02 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void	run_last_command(int *out_f, t_pipe *in_p, t_args_lst **b)
 	env_path = ft_split(ft_getenv("PATH"), ':');
 	command_line = make_array(*b);
 	close((*in_p)[1]);
+	if (((*b) != NULL) && (ft_strcmp((*b)->arg, "export") == 0))
+		ft_export_run(command_line);
+	if (((*b) != NULL) && (ft_strcmp((*b)->arg, "unset") == 0))
+		ft_unset_run(command_line);
 	pid = fork();
 	*running_loop() = 1;
 	if (pid == 0)

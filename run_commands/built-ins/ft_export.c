@@ -6,13 +6,13 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:35:14 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/12 18:38:29 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/12 21:41:57 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ft_export(char **argv)
+void	ft_export_run(char **argv)
 {
 	int	i;
 
@@ -20,7 +20,9 @@ void	ft_export(char **argv)
 		return ;
 	i = 0;
 	while (argv[i] != NULL)
+	{
 		i++;
+	}
 	if (i == 1)
 	{
 		list_env_vars_ordered();
@@ -28,7 +30,9 @@ void	ft_export(char **argv)
 	}
 	i = 1;
 	while (argv[i] != NULL)
+	{
 		add_env_var(argv[i++]);
+	}
 }
 
 int	valid_export_call(void)
@@ -43,4 +47,9 @@ int	valid_export_call(void)
 		ptr = ptr->next;
 	}
 	return (1);
+}
+
+void	ft_export(char **argv)
+{
+	(void)argv;
 }

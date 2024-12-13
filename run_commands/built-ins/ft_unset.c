@@ -3,20 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:31:27 by feguimar          #+#    #+#             */
-/*   Updated: 2024/12/01 23:24:05 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/12 21:47:46 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ft_unset(char **argv)
+void	ft_unset_run(char **argv)
 {
 	int	i;
 
 	i = 1;
 	while (argv[i] != NULL)
 		remove_env_var(argv[i++]);
+}
+
+void	ft_unset(char **argv)
+{
+	(void)argv;
 }
