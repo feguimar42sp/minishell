@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:01:47 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/06 17:23:52 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/12/15 19:47:18 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void	ft_quote_error(void);
 void	ft_redirect_error(void);
 void	dump_from_file(int in_file, int out_file);
 int		compare_str(char *str1, char *str2);
+void	wipe_pipe(t_pipe *in_file);
 
 #endif

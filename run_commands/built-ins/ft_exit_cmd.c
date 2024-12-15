@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:10 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/13 16:59:37 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/15 19:46:34 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_exit_cmd(char **argv)
 		return ;
 	
 	*current_exit_code() = i;
-	// printf("Exit\n");
-	// kill(*prog_pid(), SIGTERM);
+	printf("Exit\n");
 	exit(2);
 }

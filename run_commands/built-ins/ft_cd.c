@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:35:44 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/03 10:11:52 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/15 19:44:08 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ft_cd(char **argv)
+void	ft_cd_run(char **argv)
 {
 	char	*old_pwd;
 	char	*temp;
@@ -31,4 +31,9 @@ void	ft_cd(char **argv)
 		free(pwd);
 	}
 	free(old_pwd);
+}
+
+void	ft_cd(char **argv)
+{
+	(void)argv;
 }

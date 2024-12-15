@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:56:29 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/13 19:47:42 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/15 19:24:04 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,18 @@ void	handle_sigint_signal(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1); // write a new line
-	if (*running_loop() == 0)
-	{
-		rl_on_new_line(); // start a new line, kind of starts new and
-					// ignores what was written before ctrl + c was pressed
-		rl_replace_line("", 0); // because line was stored in the buffer
-							// this one replaces what was stored with the text passed as argument
-		rl_redisplay(); // display prompt again
-		*current_exit_code() = 130;
-	}
-	*running_loop() = 1;
-	
+	rl_on_new_line(); // start a new line, kind of starts new and
+				// ignores what was written before ctrl + c was pressed
+	rl_replace_line("", 0); // because line was stored in the buffer
+						// this one replaces what was stored with the text passed as argument
+	rl_redisplay(); // display prompt again
+	*current_exit_code() = 130;
+}
+
+void	handle_sigint_exec(int sig)
+{
+	(void)sig;
+	write(1, "\n", 1); // write a new line
 }
 
 void	handle_signals(void)
@@ -41,6 +42,19 @@ void	handle_signals(void)
 	handle_sigquit_signal();
 	
 	action.sa_handler = handle_sigint_signal;
+	sigemptyset(&action.sa_mask);
+	action.sa_flags = SA_SIGINFO;
+	sigaction(SIGINT, &action, NULL);
+
+}
+
+void	handle_signals_exec(void)
+{
+	struct sigaction	action;
+	// handles ctrl + \ by ignoring it
+	handle_sigquit_signal();
+	
+	action.sa_handler = handle_sigint_exec;
 	sigemptyset(&action.sa_mask);
 	action.sa_flags = SA_SIGINFO;
 	sigaction(SIGINT, &action, NULL);

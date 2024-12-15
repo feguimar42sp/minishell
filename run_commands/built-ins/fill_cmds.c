@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:38:34 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/12 18:28:55 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:16:17 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ s_built_in	*fill_commands(void)
 		ret[0].name = ft_strdup("cd");
 		ret[1].name = ft_strdup("pwd");
 		ret[2].name = ft_strdup("export");
-		ret[3].name = ft_strdup("exit");
+		ret[3].name = ft_strdup("");
 		ret[4].name = ft_strdup("env");
 		ret[5].name = ft_strdup("echo");
 		ret[6].name = ft_strdup("unset");
