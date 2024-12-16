@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   search_in_path.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 22:32:47 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/12 23:09:25 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:44:32 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ void	search_in_path(char *pathname, char **argv, char **envp, char **real_envp_a
 		exit(126);
 	}
 	execve(path, argv, real_envp_arr);
+	exit(127);
 }

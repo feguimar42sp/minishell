@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:12:46 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/15 20:08:03 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/15 21:02:16 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	run_commands(void)
 			add_word(&block, ptr);
 		if (ptr)
 			ptr = ptr->next;
-	}	
+	}
+	if (*running_loop() == 1)
+		return ;
 	run_last_command(&out_file, &pipeline, &block);
 }

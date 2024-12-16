@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:39 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/15 19:26:43 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:53:35 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@ void	handle_signals(void);
 void	handle_sigint_signal(int sig);
 void	handle_sigint_exec(int sig);
 void	handle_signals_exec(void);
+void	handle_sigint_heredoc(int sig);
+void	handle_signals_heredoc(void);
 
 #endif

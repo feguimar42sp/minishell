@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_from_root.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 21:29:44 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/12 23:09:18 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:44:19 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ void	run_from_root(char *pathname, char **argv, char** env_path, char **real_env
 		exit(126);
 	}
 	execve(pathname, argv, real_envp_arr);
+	exit(127);
 }

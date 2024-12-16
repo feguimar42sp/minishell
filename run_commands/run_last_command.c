@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:57:33 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/15 19:44:35 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:58:23 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	run_last_command(int *out_f, t_pipe *in_p, t_args_lst **b)
 	char	**env_path;
 	int		status;
 
+	if (*b == NULL)
+		return ;
 	status = 0;
 	env_path = ft_split(ft_getenv("PATH"), ':');
 	command_line = make_array(*b);
@@ -41,6 +43,7 @@ void	run_last_command(int *out_f, t_pipe *in_p, t_args_lst **b)
 		exit(*current_exit_code());
 	}
 	waitpid(pid, &status, WUNTRACED);
+	kill(pid, SIGKILL);
 	handle_signals();
 	if (WIFEXITED(status)) // catch status
 		status = WEXITSTATUS(status);

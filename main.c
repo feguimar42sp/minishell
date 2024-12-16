@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/13 17:37:15 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/15 21:02:28 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main(int ac, char **av, char **envp)
 			remove_outer_quotes(args_list());
 			run_commands();
 			free_args_lst(args_list());
+			*running_loop() = 0;
 		}
 		else
 		{

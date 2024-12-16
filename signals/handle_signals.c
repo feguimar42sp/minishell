@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:56:29 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/15 19:24:04 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/15 21:21:42 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@ void	handle_sigint_signal(int sig)
 	*current_exit_code() = 130;
 }
 
-void	handle_sigint_exec(int sig)
-{
-	(void)sig;
-	write(1, "\n", 1); // write a new line
-}
-
 void	handle_signals(void)
 {
 	struct sigaction	action;
@@ -48,6 +42,12 @@ void	handle_signals(void)
 
 }
 
+void	handle_sigint_exec(int sig)
+{
+	(void)sig;
+	write(1, "\n", 1); // write a new line
+}
+
 void	handle_signals_exec(void)
 {
 	struct sigaction	action;
@@ -55,6 +55,28 @@ void	handle_signals_exec(void)
 	handle_sigquit_signal();
 	
 	action.sa_handler = handle_sigint_exec;
+	sigemptyset(&action.sa_mask);
+	action.sa_flags = SA_SIGINFO;
+	sigaction(SIGINT, &action, NULL);
+
+}
+
+void	handle_sigint_heredoc(int sig)
+{
+	(void)sig;
+
+	write(1, "\n", 1); // write a new line
+	*running_loop() = 1;
+	exit(127);
+}
+
+void	handle_signals_heredoc(void)
+{
+	struct sigaction	action;
+	// handles ctrl + \ by ignoring it
+	handle_sigquit_signal();
+	
+	action.sa_handler = handle_sigint_heredoc;
 	sigemptyset(&action.sa_mask);
 	action.sa_flags = SA_SIGINFO;
 	sigaction(SIGINT, &action, NULL);

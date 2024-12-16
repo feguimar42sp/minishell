@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:25:10 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/01 22:24:48 by fernando         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:23:59 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	redirect_input(t_pipe *file, t_args_lst **ptr)
 {
 	int	in_f;
-    //char *buffer;
 
 	if ((*ptr)->next == NULL)
 	{
@@ -34,6 +33,5 @@ void	redirect_input(t_pipe *file, t_args_lst **ptr)
         printf("Failed to open file\n");
         return;
     }
-	//buffer = malloc(sizeof(char) * 1024);
 	dump_from_file(in_f, (*file)[1]);
 }

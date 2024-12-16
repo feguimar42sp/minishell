@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/15 19:44:24 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:46:44 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	run_curr_command(int *out_f, t_pipe *in_p, t_args_lst **b)
 		exit(*current_exit_code());
 	}
 	waitpid(pid, &status, 0);
+	kill(pid, SIGKILL);
 	handle_signals();
 	pipe((*in_p));
 	close(out_p[1]);

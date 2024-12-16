@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:28:20 by feguimar          #+#    #+#             */
-/*   Updated: 2024/12/15 20:05:44 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:47:12 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void	wipe_pipe(t_pipe *in_file)
 	else
 	{
 		waitpid(pid, NULL, 0);
+		kill(pid, SIGKILL);
 	}
 }
