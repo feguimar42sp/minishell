@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_commands.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:12:46 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/15 21:02:16 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:40:41 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	run_commands(void)
 	block = NULL;
 	ptr = *args_list();
 	pipe(pipeline);
+	*running_loop() = 0;
 	while (ptr)
 	{
 		if (ptr->type == operators)
@@ -34,10 +35,14 @@ void	run_commands(void)
 		}
 		else if (ptr->type == string)
 			add_word(&block, ptr);
+		if (*running_loop() == 1)
+		{
+			free_args_lst(&block);
+			*running_loop() = 0;
+			return ;
+		}
 		if (ptr)
 			ptr = ptr->next;
 	}
-	if (*running_loop() == 1)
-		return ;
 	run_last_command(&out_file, &pipeline, &block);
 }

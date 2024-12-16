@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/12 18:29:08 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/16 13:09:57 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define BUILT_INS 7
 
 # include <fcntl.h>
+# include <termios.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include "./libft/libft.h"

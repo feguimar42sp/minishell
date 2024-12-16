@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_signals.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:56:29 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/15 21:21:42 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:39:10 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	handle_sigint_exec(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1); // write a new line
+	*running_loop() = 1;
 }
 
 void	handle_signals_exec(void)
@@ -64,10 +65,7 @@ void	handle_signals_exec(void)
 void	handle_sigint_heredoc(int sig)
 {
 	(void)sig;
-
-	write(1, "\n", 1); // write a new line
-	*running_loop() = 1;
-	exit(127);
+	exit(130);
 }
 
 void	handle_signals_heredoc(void)

@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   reset_tty.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 11:01:47 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/16 13:12:05 by fernando         ###   ########.fr       */
+/*   Created: 2024/12/16 13:10:23 by fernando          #+#    #+#             */
+/*   Updated: 2024/12/16 13:13:49 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "../minishell.h"
 
-# include "../minishell.h"
+void reset_terminal_settings(void) 
+{
+    struct termios term;
 
-void	clear_args_list(t_args_lst **l);
-void	free_split(char ***spl);
-void	ft_error(void);
-void	ft_quote_error(void);
-void	ft_redirect_error(void);
-void	dump_from_file(int in_file, int out_file);
-int		compare_str(char *str1, char *str2);
-void	wipe_pipe(t_pipe *in_file);
-void	wipe_file(int fd);
-void    reset_terminal_settings(void);
-
-#endif
+    if (isatty(STDIN_FILENO)) 
+    {
+        tcgetattr(STDIN_FILENO, &term);
+        term.c_lflag |= (ECHO | ICANON);
+        tcsetattr(STDIN_FILENO, TCSANOW, &term);
+    }
+}

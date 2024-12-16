@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/15 21:02:28 by feguimar         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:44:40 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int ac, char **av, char **envp)
 	char		*prompt;
 	t_envp_lst	*env_vars;
 
-	handle_signals();
 	(void)ac;
 	(void)av;
 	line = NULL;
@@ -26,6 +25,9 @@ int	main(int ac, char **av, char **envp)
 	*env_vars_list() = env_vars;
 	while (1)
 	{
+		handle_signals();
+		reset_terminal_settings();
+		*running_loop() = 0;
 		prompt = get_prompt();
 		line = readline(prompt);
 		free(prompt);
@@ -40,7 +42,7 @@ int	main(int ac, char **av, char **envp)
 			remove_outer_quotes(args_list());
 			run_commands();
 			free_args_lst(args_list());
-			*running_loop() = 0;
+			
 		}
 		else
 		{
