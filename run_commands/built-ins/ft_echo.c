@@ -15,16 +15,18 @@
 void	ft_echo(char **argv)
 {
 	int		i;
-	int		end_line;
+	bool	new_line_flag;
 
 	i = 1;
-	end_line = 1;
-	if (argv[1] != NULL)
-		if (ft_strncmp( argv[1], "-n", 3) == 0)
+	new_line_flag = 1;
+	if (argv[i] != NULL)
+	{
+		if (ft_strncmp(argv[i], "-n", 3) == 0)
 		{
-			i = 2;
-			end_line = 0;
+			i++;
+			new_line_flag = 0;
 		}
+	}
 	while(argv[i] != NULL)
 	{
 		write(1, argv[i], ft_strlen(argv[i]));
@@ -32,6 +34,7 @@ void	ft_echo(char **argv)
 			write(1, " ", 1);
 		i++;
 	}
-	if (end_line)
+	if (new_line_flag)
 		printf("\n");
+	*current_exit_code() = 0;
 }

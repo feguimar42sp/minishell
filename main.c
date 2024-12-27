@@ -46,7 +46,7 @@ int	main(int ac, char **av, char **envp)
 		}
 		else
 		{
-			printf("\nExit\n");
+			//printf("\nExit\n");
 			break ;
 		}
 	}

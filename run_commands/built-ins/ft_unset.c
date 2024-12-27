@@ -25,5 +25,4 @@ void	ft_unset_run(char **argv)
 void	ft_unset(char **argv)
 {
 	(void)argv;
-	*current_exit_code() = 1;
 }

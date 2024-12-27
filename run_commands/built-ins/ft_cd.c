@@ -18,6 +18,12 @@ void	ft_cd_run(char **argv)
 	char	*temp;
 	char	*pwd;
 
+	if (argv[2] != NULL)
+	{
+		//printf("cd: too many arguments\n");
+		*current_exit_code() = 1;
+		return ;
+	}
 	temp = getcwd(NULL, 0);
 	old_pwd = ft_strjoin("OLDPWD=", temp);
 	free(temp);
@@ -29,6 +35,12 @@ void	ft_cd_run(char **argv)
 		add_env_var(pwd);
 		free(temp);
 		free(pwd);
+		*current_exit_code() = 0;
+	}
+	else
+	{
+		//printf("cd error in change dir\n");
+		*current_exit_code() = 1;
 	}
 	free(old_pwd);
 }

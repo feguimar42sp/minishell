@@ -19,7 +19,7 @@ void	add_env_var(char *var)
 
 	if (!var || *var == '=')
 	{
-		printf("invalid var, or nothing before and after the equal sign\n");
+		//printf("invalid var, or nothing before and after the equal sign\n");
 		*current_exit_code() = 1;
 		return;
 	}
@@ -50,7 +50,7 @@ void	add_env_var(char *var)
 	}
 	else
 	{
-		printf("invalid var descriptor %s\n", elements[0]);
+		//printf("invalid var descriptor %s\n", elements[0]);
 		*current_exit_code() = 1;
 	}
 	free_split(&elements);

@@ -14,9 +14,18 @@
 
 void	ft_env(char **argv)
 {
-	if (argv[1] == NULL)
+	int	i;
+
+	i = 0;
+	while (argv[i] != NULL)
 	{
-		print_env_vars_list(*env_vars_list(), "");
-		return ;
+		if (ft_strcmp(argv[i], "env") != 0)
+		{
+			*current_exit_code() = 127;
+			return ;
+		}
+		i++;
 	}
+	print_env_vars_list(*env_vars_list(), "");
+	*current_exit_code() = 0;
 }
