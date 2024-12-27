@@ -19,9 +19,11 @@ void	ft_unset_run(char **argv)
 	i = 1;
 	while (argv[i] != NULL)
 		remove_env_var(argv[i++]);
+	*current_exit_code() = 0;
 }
 
 void	ft_unset(char **argv)
 {
 	(void)argv;
+	*current_exit_code() = 1;
 }

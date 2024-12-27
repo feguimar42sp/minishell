@@ -23,9 +23,11 @@ void	remove_env_var(char *name)
 	var_to_remove = find_var_node(name);
 	if (var_to_remove == NULL)
 	{
-		printf("No such variable found\n");
+		*current_exit_code() = 1;
 		return ;
 	}
+	else
+		*current_exit_code() = 0;
 	prev_var_on_list = find_previous_var_in_list(name);
 	prev_var_on_list->next = var_to_remove->next;
 	free(var_to_remove->var);

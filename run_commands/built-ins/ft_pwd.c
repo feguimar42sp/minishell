@@ -22,4 +22,5 @@ void	ft_pwd(char **argv)
 	pwd = getcwd(NULL, 0);
 	printf("%s\n", pwd);
 	free(pwd);
+	*current_exit_code() = 0;
 }

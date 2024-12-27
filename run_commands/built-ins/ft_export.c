@@ -32,6 +32,8 @@ void	ft_export_run(char **argv)
 	{
 		add_env_var(argv[i++]);
 	}
+	if ((*current_exit_code()) != 1)
+		*current_exit_code() = 0;
 }
 
 int	valid_export_call(void)

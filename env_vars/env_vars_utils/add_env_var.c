@@ -17,6 +17,12 @@ void	add_env_var(char *var)
 	char		**elements;
 	t_envp_lst	*ptr;
 
+	if (!var || *var == '=')
+	{
+		printf("invalid var, or nothing before and after the equal sign\n");
+		*current_exit_code() = 1;
+		return;
+	}
 	elements = ft_split(var, '=');
 	if (is_valid_var(elements))
 	{
@@ -43,7 +49,10 @@ void	add_env_var(char *var)
 		ptr->next->next = NULL;
 	}
 	else
+	{
 		printf("invalid var descriptor %s\n", elements[0]);
+		*current_exit_code() = 1;
+	}
 	free_split(&elements);
 }
 
