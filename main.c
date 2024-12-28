@@ -12,43 +12,57 @@
 
 #include "minishell.h"
 
+void	init_envinroment_vars(char **envp)
+{
+	t_envp_lst	*env_vars;
+
+	env_vars = store_envp(envp);
+	*env_vars_list() = env_vars;
+}
+
+char	*init_program(void)
+{
+	char	*line;
+	char	*prompt;
+
+	handle_signals();
+	reset_terminal_settings();
+	*running_loop() = 0;
+	prompt = get_prompt();
+	line = readline(prompt);
+	free(prompt);
+	return (line);
+}
+
+void	parse_line_and_create_struct(char *line)
+{
+	clear_args_list(args_list());
+	// check later args list being cleaned twice,
+	// one time here and another at the end of while loop
+	*args_list() = ft_lst_split(line);
+	free(line);
+	ft_lexer(args_list());
+	handle_environment_vars_expansion(args_list());
+	remove_outer_quotes(args_list());
+}
+
 int	main(int ac, char **av, char **envp)
 {
 	char		*line;
-	char		*prompt;
-	t_envp_lst	*env_vars;
 
 	(void)ac;
 	(void)av;
 	line = NULL;
-	env_vars = store_envp(envp);
-	*env_vars_list() = env_vars;
+	init_envinroment_vars(envp);
 	while (1)
 	{
-		handle_signals();
-		reset_terminal_settings();
-		*running_loop() = 0;
-		prompt = get_prompt();
-		line = readline(prompt);
-		free(prompt);
-		if (line)
-		{
-			add_history(line);
-			clear_args_list(args_list());
-			*args_list() = ft_lst_split(line);
-			free(line);
-			ft_lexer(args_list());
-			handle_environment_vars_expansion(args_list());
-			remove_outer_quotes(args_list());
-			run_commands();
-			free_args_lst(args_list());
-			
-		}
-		else
-		{
-			//printf("\nExit\n");
+		line = init_program();
+		if (!line)
 			break ;
-		}
+		add_history(line);
+		parse_line_and_create_struct(line);
+		run_commands();
+		free_args_lst(args_list());
 	}
 	free_env_lst(env_vars_list());
 	rl_clear_history();
