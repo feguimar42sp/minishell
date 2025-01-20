@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/16 17:44:40 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/19 21:19:52 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*init_program(void)
 	reset_terminal_settings();
 	*running_loop() = 0;
 	prompt = get_prompt();
-	line = readline(prompt);
+	line = stdin_gnl(prompt);
 	free(prompt);
 	return (line);
 }
@@ -50,8 +50,8 @@ int	main(int ac, char **av, char **envp)
 {
 	char		*line;
 
-	(void)ac;
-	(void)av;
+	if (ac > 1)
+		script_files(av);
 	line = NULL;
 	init_envinroment_vars(envp);
 	while (1)

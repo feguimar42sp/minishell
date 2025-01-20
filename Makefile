@@ -6,7 +6,7 @@
 #    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2024/12/16 13:10:55 by fernando         ###   ########.fr        #
+#    Updated: 2025/01/19 21:26:47 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,12 +83,17 @@ HEREDOC_FOLDER := run_commands/heredoc/expand_env_vars_heredoc.c run_commands/he
 LST_ENV_VARS_ORDERED_FOLDER := env_vars/env_vars_utils/lst_env_vars_ordered/add_in_place.c \
 	env_vars/env_vars_utils/lst_env_vars_ordered/lst_env_vars_ordered.c env_vars/env_vars_utils/lst_env_vars_ordered/var_dup.c \
 	env_vars/env_vars_utils/lst_env_vars_ordered/print_env_vars_list.c env_vars/env_vars_utils/lst_env_vars_ordered/clear_env_vars_lst.c
+	
+STDIN_FUNC_FOLDER := stdin_func/script_files.c stdin_func/stdin_gnl.c stdin_func/not_tty_gnl.c
+
+GNL_FOLDER := gnl/get_next_line_bonus.c gnl/get_next_line_utils_bonus.c
 
 # Source files
 SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) \
 	$(UTILS_FOLDER) $(PARSING_FOLDER) $(RUN_COMMANDS_FOLDER) $(BUILT_INS_FOLDER) \
 	$(EXECUTE_COMMAND_FOLDER) $(SET_IO_FOLDER) $(SIGNALS_FOLDER) $(SYNTAX_FOLDER) \
-	$(HEREDOC_FOLDER) $(ENV_VARS_UTILS_FOLDER) $(LST_ENV_VARS_ORDERED_FOLDER)
+	$(HEREDOC_FOLDER) $(ENV_VARS_UTILS_FOLDER) $(LST_ENV_VARS_ORDERED_FOLDER) \
+	$(GNL_FOLDER) $(STDIN_FUNC_FOLDER)
 
 BONUS_SRCS := 
 
