@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   search_in_path.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 22:32:47 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/15 20:44:32 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/19 21:54:51 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,23 @@ void	search_in_path(char *pathname, char **argv, char **envp, char **real_envp_a
 	path = find_path(pathname, envp);
 	if (path == NULL)
 	{
-		printf("if (path == NULL)\n");
+		write_stderr("if (path == NULL)", 1);
 		exit(127);
 	}
 	if (access(path, F_OK) != 0)
 	{
-		printf("if (access(temp, F_OK) != 0)\n");
+		write_stderr("if (access(temp, F_OK) != 0)", 1);
 		exit(127);
 	}
 	stat(path, &path_data);
 	if (S_ISDIR(path_data.st_mode) != 0)
 	{
-		printf("if (S_ISDIR(path_data.st_mode) != 0)\n");
+		write_stderr("if (S_ISDIR(path_data.st_mode) != 0)", 1);
 		exit(126);
 	}
 	if (access(path, X_OK) != 0)
 	{
-		printf("if (access(temp, X_OK) != 0)\n");
+		write_stderr("if (access(temp, X_OK) != 0)", 1);
 		exit(126);
 	}
 	execve(path, argv, real_envp_arr);

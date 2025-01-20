@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_quote_error.c                                   :+:      :+:    :+:   */
+/*   write_stderr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 17:50:35 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/19 21:55:26 by fernando         ###   ########.fr       */
+/*   Created: 2025/01/19 21:38:06 by fernando          #+#    #+#             */
+/*   Updated: 2025/01/19 21:41:06 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+# include "../minishell.h"
 
-void	ft_quote_error(void)
+void    write_stderr(char *str, int eol)
 {
-	write_stderr("quote_error", 1);
+    write(STDERR_FILENO, str, ft_strlen(str));
+    if (eol)
+        write(STDERR_FILENO, "\n", 1);
 }

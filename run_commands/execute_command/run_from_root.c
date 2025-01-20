@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_from_root.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 21:29:44 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/15 20:44:19 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/19 21:53:22 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,25 @@ void	run_from_root(char *pathname, char **argv, char** env_path, char **real_env
 	struct stat	path_data;
 	
 	(void)env_path;
-	printf("run from root\n");
 	if (pathname == NULL)
 	{
-		printf("if (path == NULL)\n");
+		write_stderr("if (path == NULL)", 1);
 		exit(127);
 	}
 	if (access(pathname, F_OK) != 0)
 	{
-		printf("if (access(temp, F_OK) != 0)\n");
+		write_stderr("if (access(temp, F_OK) != 0)", 1);
 		exit(127);
 	}
 	stat(pathname, &path_data);
 	if (S_ISDIR(path_data.st_mode) != 0)
 	{
-		printf("if (S_ISDIR(path_data.st_mode) != 0)\n");
+		write_stderr("if (S_ISDIR(path_data.st_mode) != 0)", 1);
 		exit(126);
 	}
 	if (access(pathname, X_OK) != 0)
 	{
-		printf("if (access(temp, X_OK) != 0)\n");
+		write_stderr("if (access(temp, X_OK) != 0)", 1);
 		exit(126);
 	}
 	execve(pathname, argv, real_envp_arr);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:10 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/15 19:46:34 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/19 21:58:03 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	ft_exit_cmd(char **argv)
 		*current_exit_code() = convert_exit_value(argv[1]);
 	else
 		*current_exit_code() = 1;
-	//printf("Exit\n");
+	write_human_stdout("exit", 1);
 	exit(*current_exit_code());
 }

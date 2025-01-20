@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/19 21:32:07 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/19 21:42:38 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ void	script_files(char **av)
 	}
 	else
 	{
-		write(STDERR_FILENO, "Error opening file: ", 20);
-		write(STDERR_FILENO, av[1], ft_strlen(av[1]));
-		write(STDERR_FILENO, "\n", 1);
+		write_stderr("Error opening file: ", 0);
+		write_stderr(av[1], 1);
 		exit(*current_exit_code());
 	}
 }

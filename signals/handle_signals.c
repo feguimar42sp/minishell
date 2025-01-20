@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:56:29 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/16 17:39:10 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/19 22:01:53 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	handle_sigquit_signal(void)
 void	handle_sigint_signal(int sig)
 {
 	(void)sig;
+	if (!isatty(STDIN_FILENO))
+		return ;
 	write(1, "\n", 1); // write a new line
 	rl_on_new_line(); // start a new line, kind of starts new and
 				// ignores what was written before ctrl + c was pressed

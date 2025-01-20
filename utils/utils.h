@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:01:47 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/16 13:12:05 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/19 21:44:51 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ int		compare_str(char *str1, char *str2);
 void	wipe_pipe(t_pipe *in_file);
 void	wipe_file(int fd);
 void    reset_terminal_settings(void);
+void    write_stderr(char *str, int eol);
+void    write_human_stdout(char *str, int eol);
 
 #endif

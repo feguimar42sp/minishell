@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:31:02 by feguimar          #+#    #+#             */
-/*   Updated: 2024/11/30 15:53:38 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/19 21:49:55 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	ft_echo(char **argv)
 		i++;
 	}
 	if (new_line_flag)
-		printf("\n");
+		write(1, "\n", 1);;
 	*current_exit_code() = 0;
 }
