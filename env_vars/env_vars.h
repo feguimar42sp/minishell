@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 21:00:40 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/06 15:52:00 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:50:39 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char		*get_prefix(char *str);
 char		*get_final_joined_str(char *str, char *prefix, char *prefix_value,
 				int var_size);
 
+// function to get environment variables
 char		*ft_getenv(char *variable);
 
 // function to free env var list

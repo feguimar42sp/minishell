@@ -12,47 +12,47 @@
 
 #include "../../minishell.h"
 
+void	add_variable(char **elements)
+{
+	t_envp_lst	*ptr;
+
+	ptr = find_var_node(elements[0]);
+	if (ptr != NULL)
+	{
+		free(ptr->value);
+		if (elements[1] != NULL)
+			ptr->value = ft_strdup(elements[1]);
+		else
+			ptr->value = NULL;
+		free_split(&elements);
+		return ;
+	}
+	ptr = *env_vars_list();
+	while (ptr->next != NULL)
+		ptr = ptr->next;
+	ptr->next = malloc(sizeof(t_envp_lst));
+	ptr->next->var = ft_strdup(elements[0]);
+	if (elements[1] != NULL)
+		ptr->next->value = ft_strdup(elements[1]);
+	else
+		ptr->next->value = NULL;
+	ptr->next->next = NULL;
+}
+
 void	add_env_var(char *var)
 {
 	char		**elements;
-	t_envp_lst	*ptr;
 
 	if (!var || *var == '=')
 	{
-		//printf("invalid var, or nothing before and after the equal sign\n");
 		*current_exit_code() = 1;
-		return;
+		return ;
 	}
 	elements = ft_split(var, '=');
 	if (is_valid_var(elements))
-	{
-		ptr = find_var_node(elements[0]);
-		if (ptr != NULL)
-		{
-			free(ptr->value);
-			if (elements[1] != NULL)
-				ptr->value = ft_strdup(elements[1]);
-			else
-				ptr->value = NULL;
-			free_split(&elements);
-			return ;
-		}
-		ptr = *env_vars_list();
-		while (ptr->next != NULL)
-			ptr = ptr->next;
-		ptr->next = malloc(sizeof(t_envp_lst));
-		ptr->next->var = ft_strdup(elements[0]);
-		if (elements[1] != NULL)
-			ptr->next->value = ft_strdup(elements[1]);
-		else
-			ptr->next->value = NULL;
-		ptr->next->next = NULL;
-	}
+		add_variable(elements);
 	else
-	{
-		//printf("invalid var descriptor %s\n", elements[0]);
 		*current_exit_code() = 1;
-	}
 	free_split(&elements);
 }
 
