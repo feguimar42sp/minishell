@@ -33,7 +33,6 @@ char		*get_final_joined_str(char *str, char *prefix, char *prefix_value,
 				int var_size);
 
 char		*ft_getenv(char *variable);
-char		*ft_strcpy(char *dest, char *src);
 
 // function to free env var list
 void		env_free_lst(t_envp_lst *node);

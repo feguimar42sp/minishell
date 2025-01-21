@@ -66,5 +66,6 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*ft_strtrim(char const *s1, char const *set);
 size_t		ft_strcspn(const char *s, const char *reject);
+char	*ft_strcpy(char *dest, char *src);
 
 #endif
