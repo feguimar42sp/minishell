@@ -31,8 +31,8 @@ CFLAGS := -g -Wall -Wextra -Werror
 LINKER_FLAGS := -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft -lreadline
 
 ENV_VARS_FOLDER := env_vars/expand_environment_vars.c  env_vars/ft_getenv.c \
-				   env_vars/ft_strcspn.c env_vars/store_environment_vars.c \
-				   env_vars/free_env_list.c env_vars/ft_strcpy.c env_vars/get_variable_and_value.c 
+				env_vars/store_environment_vars.c \
+				env_vars/free_env_list.c env_vars/ft_strcpy.c env_vars/get_variable_and_value.c 
 
 ENV_VARS_UTILS_FOLDER := env_vars/env_vars_utils/add_env_var.c env_vars/env_vars_utils/find_previous_var_in_list.c \
 	env_vars/env_vars_utils/find_var_node.c env_vars/env_vars_utils/remove_env_var.c \
