@@ -14,4 +14,5 @@
 
 void	ft_redirect_error(void)
 {
+    printf("function redirect error not doing anything\n");
 }

@@ -18,6 +18,7 @@ void	redirect_input(t_pipe *file, t_args_lst **ptr)
 
 	if ((*ptr)->next == NULL)
 	{
+
 		ft_redirect_error();
 		return ;
 	}
@@ -31,7 +32,7 @@ void	redirect_input(t_pipe *file, t_args_lst **ptr)
 	if (in_f == -1)
 	{
         write_stderr("Failed to open file", 1);
-        return;
+        //return;
     }
 	dump_from_file(in_f, (*file)[1]);
 }
