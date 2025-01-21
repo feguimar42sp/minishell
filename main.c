@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/19 21:19:52 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/21 09:14:19 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	*init_program(void)
 	char	*prompt;
 
 	handle_signals();
-	reset_terminal_settings();
+	if (isatty(STDERR_FILENO))
+		reset_terminal_settings();
 	*running_loop() = 0;
 	prompt = get_prompt();
 	line = stdin_gnl(prompt);
