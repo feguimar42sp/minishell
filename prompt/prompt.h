@@ -14,8 +14,8 @@
 # define PROMPT_H
 
 # include "../minishell.h"
-# define GREEN "\x1b[32m"
-# define COLOR_RESET "\x1b[0m"
+# define GREEN "\001\x1b[32m\002"
+# define COLOR_RESET "\001\x1b[0m\002"
 
 char	*get_user_prompt(void);
 char	*get_hostname_prompt(void);
