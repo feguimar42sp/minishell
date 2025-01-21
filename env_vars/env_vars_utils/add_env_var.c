@@ -12,6 +12,18 @@
 
 #include "../../minishell.h"
 
+/*
+	LEAK FOUND WITH FREE_SPLIT() IN THIS FILE 
+	leak found when commenting of the free_split() calls.
+
+	to see leak: export HELLO=123
+
+
+	DOUBLE FREE WITH FREE_SPLIT() IN THIS FILE
+	to see double free: export HELLO=123
+						export HELLO=456 (overwrite the 123)
+*/
+
 void	add_variable(char **elements)
 {
 	t_envp_lst	*ptr;
