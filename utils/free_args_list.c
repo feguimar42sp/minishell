@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_maloc.c                                         :+:      :+:    :+:   */
+/*   free_args_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/06 10:39:16 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/06 17:32:34 by sabrifer         ###   ########.fr       */
+/*   Created: 2024/11/03 12:51:21 by sabrifer          #+#    #+#             */
+/*   Updated: 2024/12/06 17:32:08 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	*ft_maloc(size_t size, const char *name)
+void	free_lst(t_args_lst *node)
 {
-	void	*ptr;
+	if (!node)
+		return ;
+	free_lst(node->next);
+	free(node->arg);
+	free(node);
+	node = NULL;
+}
 
-	ptr = malloc(size);
-	if (!ptr)
-		ft_error();
-	add_to_mem_list(name, ptr);
-	return (ptr);
+void	free_args_list(t_args_lst **args_lst)
+{
+	if (!args_lst || !*args_lst)
+		return ;
+	free_lst(*args_lst);
+	*args_lst = NULL;
 }

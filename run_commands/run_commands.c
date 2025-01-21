@@ -37,7 +37,7 @@ void	run_commands(void)
 			add_word(&block, ptr);
 		if (*running_loop() == 1)
 		{
-			free_args_lst(&block);
+			free_args_list(&block);
 			*running_loop() = 0;
 			return ;
 		}

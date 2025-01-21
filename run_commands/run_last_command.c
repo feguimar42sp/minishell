@@ -49,7 +49,7 @@ void	run_last_command(int *out_f, t_pipe *in_p, t_args_lst **b)
 		status = WEXITSTATUS(status);
 	*current_exit_code() = status;
 	close_files(out_f, &in_p);
-	clear_args_list(b);
+	free_args_list(b);
 	free_split(&env_path);
 	free_split(&command_line);
 	//exit(*current_exit_code());

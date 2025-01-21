@@ -37,7 +37,7 @@ char	*init_program(void)
 
 void	parse_line_and_create_struct(char *line)
 {
-	clear_args_list(args_list());
+	free_args_list(args_list());
 	// check later args list being cleaned twice,
 	// one time here and another at the end of while loop
 	*args_list() = ft_lst_split(line);
@@ -63,7 +63,7 @@ int	main(int ac, char **av, char **envp)
 		add_history(line);
 		parse_line_and_create_struct(line);
 		run_commands();
-		free_args_lst(args_list());
+		free_args_list(args_list());
 	}
 	free_env_lst(env_vars_list());
 	rl_clear_history();

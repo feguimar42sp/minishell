@@ -15,9 +15,7 @@
 
 # include "../minishell.h"
 
-void	clear_args_list(t_args_lst **l);
 void	free_split(char ***spl);
-void	ft_error(void);
 void	ft_quote_error(void);
 void	ft_redirect_error(void);
 void	dump_from_file(int in_file, int out_file);
@@ -27,5 +25,13 @@ void	wipe_file(int fd);
 void    reset_terminal_settings(void);
 void    write_stderr(char *str, int eol);
 void    write_human_stdout(char *str, int eol);
+void	print_args_lst(t_args_lst *ptr);
+
+// functions to free args list
+void	free_lst(t_args_lst *node);
+void	free_args_list(t_args_lst **args_lst);
+
+// function to free split
+void	ft_free_split(char **arr);
 
 #endif

@@ -31,7 +31,6 @@
 # include <errno.h>
 # include "minishell_typedefs.h"
 # include "signals/handle_signals.h"
-# include "memory_utils/mem_utils.h"
 # include "utils/utils.h"
 # include "statics/statics.h"
 # include "run_commands/run_commands.h"
@@ -40,7 +39,6 @@
 # include "run_commands/set_io/set_io.h"
 # include "prompt/prompt.h"
 # include "parsing/parsing.h"
-# include "memory_utils/mem_utils.h"
 # include "env_vars/env_vars.h"
 # include "syntax/handle_syntax.h"
 # include "run_commands/heredoc/heredoc.h"

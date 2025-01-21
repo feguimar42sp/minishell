@@ -51,7 +51,7 @@ void	run_curr_command(int *out_f, t_pipe *in_p, t_args_lst **b)
 		status = WEXITSTATUS(status);
 	*current_exit_code() = status;
 	dump_from_file(out_p[0], (*in_p)[1]);
-	clear_args_list(b);
+	free_args_list(b);
 	free_split(&env_path);
 	free_split(&command_line);
 }

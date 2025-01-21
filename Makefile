@@ -38,18 +38,16 @@ ENV_VARS_UTILS_FOLDER := env_vars/env_vars_utils/add_env_var.c env_vars/env_vars
 	env_vars/env_vars_utils/find_var_node.c env_vars/env_vars_utils/remove_env_var.c \
 	env_vars/env_vars_utils/remove_first_env_var.c
 
-MEMORY_UTILS_FORDER := memory_utils/add_to_mem_list.c memory_utils/free_all.c memory_utils/ft_free.c \
-	memory_utils/ft_maloc.c memory_utils/print_all_mem.c memory_utils/free_args_list.c memory_utils/ft_free_split.c
-
 PROMPT_FOLDER := prompt/get_prompt.c
 
 STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c statics/args_list.c statics/current_exit_code.c \
 	statics/prog_pid.c statics/running_loop.c
 
-UTILS_FOLDER := utils/free_split.c utils/ft_error.c utils/ft_quote_error.c utils/clear_args_list.c \
+UTILS_FOLDER := utils/free_split.c utils/ft_quote_error.c \
 				utils/ft_redirect_error.c utils/dump_from_file.c utils/compare_str.c \
 				utils/wipe_pipe.c utils/wipe_file.c utils/reset_tty.c \
-				utils/write_stderr.c utils/write_human_stdout.c utils/print_args_lst.c
+				utils/write_stderr.c utils/write_human_stdout.c utils/print_args_lst.c \
+				utils/free_args_list.c utils/ft_free_split.c
 
 PARSING_FOLDER := parsing/create_node.c parsing/split_by_quotes.c parsing/split_by_redirects.c \
 	parsing/split_by_spaces.c parsing/unclosed_quotes.c parsing/ft_lexer.c \
