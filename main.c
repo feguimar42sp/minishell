@@ -62,6 +62,8 @@ int	main(int ac, char **av, char **envp)
 			break ;
 		add_history(line);
 		parse_line_and_create_struct(line);
+		if (!handle_syntax(args_list()))
+			continue ;
 		run_commands();
 		free_args_list(args_list());
 	}
