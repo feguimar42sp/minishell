@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:14:21 by feguimar          #+#    #+#             */
-/*   Updated: 2024/11/29 18:04:42 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:54:04 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int		ft_envlen(char *line, int i);
 void	expand_vars_to_string(char *dst, char *src);
 char	*get_var_value_heredoc(char *line, int i);
 int		not_end_env_var(char c);
+char	*heredoc_gnl(int fd);
 
 #endif

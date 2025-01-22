@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   not_tty_gnl.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 21:21:48 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/20 11:50:28 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:50:51 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,14 @@ char	*to_single_line(char *str)
 	if (str[ft_strlen(str) - 1] == '\n')
 		str[ft_strlen(str) - 1] = '\0';
 	return (str);
+}
+
+char	*heredoc_gnl(int fd)
+{
+	char	*ret;
+
+	ret = get_next_line(fd);
+	if (ret == NULL)
+		return (NULL);
+	return (to_single_line(ret));
 }
