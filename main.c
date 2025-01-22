@@ -63,7 +63,10 @@ int	main(int ac, char **av, char **envp)
 		add_history(line);
 		parse_line_and_create_struct(line);
 		if (!handle_syntax(args_list()))
+		{
+			write_stderr("syntax error", 1);
 			continue ;
+		}
 		run_commands();
 		free_args_list(args_list());
 	}
