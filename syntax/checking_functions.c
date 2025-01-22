@@ -93,13 +93,3 @@ int	check_multiple_operators_in_node(t_args_lst **arg_lst)
 	}
 	return (1);
 }
-
-int	single_pipe_at_beginning(t_args_lst **args_lst)
-{
-	t_args_lst	*args;
-
-	args = *args_lst;
-	if (args->type == operators && args->arg[0] == '|')
-		return (0);
-	return (1);
-}

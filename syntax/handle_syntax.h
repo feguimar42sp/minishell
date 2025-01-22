@@ -25,5 +25,6 @@ int		check_unique_operator(t_args_lst **arg_lst);
 int		check_multiples(char *str);
 int		check_multiple_operators_in_node(t_args_lst **arg_lst);
 int		single_pipe_at_beginning(t_args_lst **args_lst);
+int		check_input_redirect(t_args_lst **arg_lst);
 
 #endif

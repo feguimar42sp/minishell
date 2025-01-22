@@ -72,7 +72,8 @@ SET_IO_FOLDER := run_commands/set_io/input_from_file.c run_commands/set_io/input
 
 SIGNALS_FOLDER := signals/handle_signals.c
 
-SYNTAX_FOLDER := syntax/handle_syntax.c syntax/checking_functions.c syntax/remove_outer_quotes.c
+SYNTAX_FOLDER := syntax/handle_syntax.c syntax/checking_functions.c syntax/remove_outer_quotes.c \
+				 syntax/checking_functions2.c
 
 HEREDOC_FOLDER := run_commands/heredoc/expand_env_vars_heredoc.c run_commands/heredoc/expand_vars_to_string.c \
 	run_commands/heredoc/ft_envlen.c run_commands/heredoc/get_var_value_heredoc.c run_commands/heredoc/heredoc_expand.c \
