@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_commands.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:12:46 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/16 17:40:41 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:42:22 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	run_commands(void)
 {
 	t_args_lst		*ptr;
 	t_args_lst		*block;
-	t_pipe			pipeline;
-	int				out_file;
+	t_pipe			*pipeline;
+	int				run;
 
-	out_file = -1;
 	block = NULL;
+	run = 0;
 	ptr = *args_list();
-	pipe(pipeline);
+	make_pipes(&pipeline);
 	*running_loop() = 0;
 	while (ptr)
 	{
@@ -45,4 +45,35 @@ void	run_commands(void)
 			ptr = ptr->next;
 	}
 	run_last_command(&out_file, &pipeline, &block);
+	free(pipeline);
+}
+
+int	count_blocks(t_args_lst		*ptr)
+{
+	int	ret;
+
+	ret = 1;
+	while(ptr)
+	{
+		if (ptr->type == operators)
+			if (ft_strcmp(ptr->arg, "|") == 0)
+				ret++;
+		ptr = ptr->next;
+	}
+	return (ret);
+}
+
+void	make_pipes(t_pipe **pipeline)
+{
+	int	total_blocks;
+	int	i;
+
+	total_blocks = count_blocks(*args_list());
+	*pipeline = malloc(sizeof(t_pipe*) * (total_blocks - 1));
+	i = 0;
+	while(i < (total_blocks - 1))
+	{
+		pipe((*pipeline)[i]);
+		i++;
+	}
 }

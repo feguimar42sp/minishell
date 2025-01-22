@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/27 19:34:22 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:35:21 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ void	run_last_command(int *out_f, t_pipe *in_p, t_args_lst **b);
 void	parse_redirect(t_pipe *in_file, int *out_file, t_args_lst **ptr);
 void	redirect_input(t_pipe *file, t_args_lst **ptr);
 void	redirect_output(int *out_file, t_args_lst **ptr);
+int		count_blocks(t_args_lst		*ptr);
+void	make_pipes(t_pipe **pipeline);
 
 #endif
