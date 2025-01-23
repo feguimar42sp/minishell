@@ -27,7 +27,10 @@ char	*find_path(char *pathname, char **envp)
 	{
 		temp = ft_strjoin(envp[i], pathname);
 		if (access(temp, F_OK | X_OK) == 0)
+		{
+			printf("if (access(temp, F_OK | X_OK) == 0)\n");
 			break ;
+		}
 		free(temp);
 		temp = NULL;
 		i++;
@@ -43,23 +46,23 @@ void	search_in_path(char *pathname, char **argv, char **envp, char **real_envp_a
 	path = find_path(pathname, envp);
 	if (path == NULL)
 	{
-		write_stderr("if (path == NULL)", 1);
+		write_stderr("Command not found", 1);
 		exit(127);
 	}
 	if (access(path, F_OK) != 0)
 	{
-		write_stderr("if (access(temp, F_OK) != 0)", 1);
+		write_stderr("No such file or directory", 1);
 		exit(127);
 	}
 	stat(path, &path_data);
 	if (S_ISDIR(path_data.st_mode) != 0)
 	{
-		write_stderr("if (S_ISDIR(path_data.st_mode) != 0)", 1);
+		write_stderr("Is a directory", 1);
 		exit(126);
 	}
 	if (access(path, X_OK) != 0)
 	{
-		write_stderr("if (access(temp, X_OK) != 0)", 1);
+		write_stderr("Permission denied", 1);
 		exit(126);
 	}
 	execve(path, argv, real_envp_arr);

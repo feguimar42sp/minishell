@@ -44,14 +44,6 @@ void	parse_line_and_create_struct(char *line)
 	free(line);
 	ft_lexer(args_list());
 	handle_environment_vars_expansion(args_list());
-	t_args_lst *lst = *args_list();
-	int i = 0;
-	while (lst != NULL)
-	{
-		printf("[%d] = [%s]\n", i, lst->arg);
-		lst = lst->next;
-		i++;
-	}
 	remove_outer_quotes(args_list());
 }
 
@@ -74,14 +66,6 @@ int	main(int ac, char **av, char **envp)
 		{
 			write_stderr("syntax error", 1);
 			continue ;
-		}
-		t_args_lst *lst = *args_list();
-		int i = 0;
-		while (lst != NULL)
-		{
-			printf("[%d] = [%s]\n", i, lst->arg);
-			lst = lst->next;
-			i++;
 		}
 		run_commands();
 		free_args_list(args_list());

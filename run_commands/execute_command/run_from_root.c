@@ -19,23 +19,23 @@ void	run_from_root(char *pathname, char **argv, char** env_path, char **real_env
 	(void)env_path;
 	if (pathname == NULL)
 	{
-		write_stderr("if (path == NULL)", 1);
+		write_stderr("Command not found", 1);
 		exit(127);
 	}
 	if (access(pathname, F_OK) != 0)
 	{
-		write_stderr("if (access(temp, F_OK) != 0)", 1);
+		write_stderr("No such file or directory", 1);
 		exit(127);
 	}
 	stat(pathname, &path_data);
 	if (S_ISDIR(path_data.st_mode) != 0)
 	{
-		write_stderr("if (S_ISDIR(path_data.st_mode) != 0)", 1);
+		write_stderr("Is a directory", 1);
 		exit(126);
 	}
 	if (access(pathname, X_OK) != 0)
 	{
-		write_stderr("if (access(temp, X_OK) != 0)", 1);
+		write_stderr("Permission denied", 1);
 		exit(126);
 	}
 	execve(pathname, argv, real_envp_arr);

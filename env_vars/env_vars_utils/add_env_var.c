@@ -55,7 +55,6 @@ void	add_env_var(char *var)
 {
 	char		**elements;
 
-	printf("var received in add_env_var = %s\n", var);
 	if (!var || *var == '=')
 	{
 		*current_exit_code() = 1;
