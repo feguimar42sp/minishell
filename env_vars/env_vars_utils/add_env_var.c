@@ -55,12 +55,16 @@ void	add_env_var(char *var)
 {
 	char		**elements;
 
+	printf("var received in add_env_var = %s\n", var);
 	if (!var || *var == '=')
 	{
 		*current_exit_code() = 1;
 		return ;
 	}
 	elements = ft_split(var, '=');
+	int i = 0;
+	while (elements[i] != NULL)
+		i++;
 	if (is_valid_var(elements))
 		add_variable(elements);
 	else
