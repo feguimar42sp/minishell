@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
+#    By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2025/01/20 12:46:33 by fernando         ###   ########.fr        #
+#    Updated: 2025/01/22 22:11:45 by feguimar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,8 +67,7 @@ BUILT_INS_FOLDER := run_commands/built-ins/fill_cmds.c run_commands/built-ins/ft
 	run_commands/built-ins/split_command.c
 	
 SET_IO_FOLDER := run_commands/set_io/input_from_file.c run_commands/set_io/input_from_pipe.c \
-	run_commands/set_io/io_redirects.c run_commands/set_io/output_to_file.c run_commands/set_io/output_to_pipe.c \
-	run_commands/set_io/set_last_process_io.c run_commands/set_io/set_process_io.c
+	run_commands/set_io/io_redirects.c run_commands/set_io/output_to_file.c run_commands/set_io/output_to_pipe.c run_commands/set_io/set_process_io.c
 
 SIGNALS_FOLDER := signals/handle_signals.c
 

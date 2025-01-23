@@ -6,17 +6,25 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:56:36 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/27 19:00:16 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/22 23:48:10 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	set_process_io(int *output_file, t_pipe *incomming_pipe, t_pipe *outgoing_pipe)
+void	set_process_io(int run, t_pipe **pipeline, int t)
 {
-	input_from_pipe(incomming_pipe);
-	if (*output_file != -1)
-		output_to_file(output_file);
-	else if (outgoing_pipe)
-		output_to_pipe(outgoing_pipe);
+	if (run != (t - 1))
+	{
+		dup2((*pipeline)[run][1], STDOUT_FILENO);
+		close((*pipeline)[run][1]);
+		close((*pipeline)[run][0]);
+		// write(STDOUT_FILENO, "teste!!!", 8);
+	}
+	if (run != 0)
+	{
+		dup2((*pipeline)[run - 1][0], STDIN_FILENO);
+		close((*pipeline)[run - 1][0]);
+		// close((*pipeline)[run - 1][1]);
+	}
 }

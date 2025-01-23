@@ -3,28 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_output.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 20:33:46 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/30 19:23:28 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/22 18:29:13 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	redirect_output(int *out_file, t_args_lst **ptr)
+void redirect_output(int run, t_args_lst **ptr, t_pipe *pipeline, int t)
 {
-	if ((*ptr)->next == NULL)
+    int fd;
+
+    fd = open_file(ptr);
+	if (run == (t - 1))
 	{
-		ft_redirect_error();
+		dup2(fd, STDOUT_FILENO);
+		close(fd);
 		return ;
 	}
-	if ((*ptr)->next->type != string)
-	{
-		ft_redirect_error();
-		return ;
-	}
-	if (*out_file != -1)
-		close(*out_file);
-	*out_file = open_file(ptr);
+    dup2(fd, pipeline[run][1]);
+    close(fd);
 }
