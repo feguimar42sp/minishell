@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_last_command.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:57:33 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/22 23:51:31 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:49:24 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	run_last_command(int *run, t_pipe **pipeline, t_args_lst **b, int t)
 	if (pid == 0)
 	{
 		set_process_io(*run, pipeline, t);
+		pause();
 		if (!is_built_in(command_line[0], command_line))
 			execute_command(command_line, env_path);
 		exit(*current_exit_code());
@@ -44,7 +45,7 @@ void	run_last_command(int *run, t_pipe **pipeline, t_args_lst **b, int t)
 	if (*pipeline != NULL)
 		close((*pipeline)[*run][1]);
 	// printf("ante do waitpid last run %i\n", *run);
-	waitpid(pid, &status, WNOHANG);
+	//waitpid(pid, &status, WNOHANG);
 	// printf("depois do waitpid last run %i\n", *run);
 	// kill(pid, SIGKILL);
 	handle_signals();

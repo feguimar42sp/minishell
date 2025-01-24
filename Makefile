@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+         #
+#    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2025/01/22 22:11:45 by feguimar         ###   ########.fr        #
+#    Updated: 2025/01/23 17:39:20 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ ENV_VARS_UTILS_FOLDER := env_vars/env_vars_utils/add_env_var.c env_vars/env_vars
 PROMPT_FOLDER := prompt/get_prompt.c
 
 STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c statics/args_list.c statics/current_exit_code.c \
-	statics/prog_pid.c statics/running_loop.c
+	statics/prog_pid.c statics/running_loop.c statics/command_lst.c
 
 UTILS_FOLDER := utils/free_split.c utils/ft_quote_error.c \
 				utils/ft_redirect_error.c utils/dump_from_file.c utils/compare_str.c \

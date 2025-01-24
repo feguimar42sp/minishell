@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   statics.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:09:05 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/12 15:57:58 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:29:34 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,10 @@ pid_t		*prog_pid(void);
 pid_t		*running_loop(void);
 t_envp_lst  **temp_env(void);
 pid_t		*running_loop(void);
+t_command	**command_lst(void);
+void        push_command(t_command *new_command);
+t_command   *pop_command(void);
+t_command   *new_command(int run);
+void        free_t_command(t_command *cmd);
 
 #endif

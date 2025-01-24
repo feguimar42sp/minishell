@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   run_curr_command.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/22 23:51:38 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/23 23:01:52 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	run_curr_command(int *run, t_pipe **pipeline, t_args_lst **b, int t)
+void	run_curr_command(t_command *c, t_pipe **pipeline, int not_last)
 {
 	char	**command_line;
 	pid_t	pid;
@@ -21,36 +21,33 @@ void	run_curr_command(int *run, t_pipe **pipeline, t_args_lst **b, int t)
 
 	status = 0;
 	env_path = ft_split(ft_getenv("PATH"), ':');
-	command_line = make_array(*b);
-	if (((*b) != NULL) && (ft_strcmp((*b)->arg, "export") == 0))
+	command_line = make_array(c->comm);
+	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "export") == 0))
 		ft_export_run(command_line);
-	if (((*b) != NULL) && (ft_strcmp((*b)->arg, "unset") == 0))
+	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "unset") == 0))
 		ft_unset_run(command_line);
-	if (((*b) != NULL) && (ft_strcmp((*b)->arg, "cd") == 0))
+	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "cd") == 0))
 		ft_cd_run(command_line);
-	if (((*b) != NULL) && (ft_strcmp((*b)->arg, "exit") == 0))
+	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "exit") == 0))
 		ft_exit_cmd(command_line);
 	handle_signals_exec();
 	pid = fork();
 	if (pid == 0)
 	{
-		set_process_io(*run, pipeline, t);
+		set_process_io(c, pipeline, not_last);
 		if (!is_built_in(command_line[0], command_line))
 			execute_command(command_line, env_path);
 		exit(*current_exit_code());
 	}
-	if (*pipeline != NULL)
-		close((*pipeline)[*run][1]);
 	// printf("ante do waitpid run %i\n", *run);
-	 waitpid(pid, &status, WNOHANG);
+	waitpid(pid, &status, WNOHANG);
 	// printf("depois do waitpid run %i\n", *run);
-	// kill(pid, SIGKILL);
+	kill(pid, SIGKILL);
 	handle_signals();
 	if (WIFEXITED(status))
 		status = WEXITSTATUS(status);
 	*current_exit_code() = status;
-	free_args_list(b);
+	free_t_command(c);
 	free_split(&env_path);
 	free_split(&command_line);
-	(*run)++;
 }

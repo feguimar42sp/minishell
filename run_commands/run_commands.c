@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_commands.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:12:46 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/22 23:42:25 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:56:18 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,53 +15,33 @@
 void	run_commands(void)
 {
 	t_args_lst		*ptr;
-	t_args_lst		*block;
-	t_pipe			*pipeline;
+	t_command		*command;
 	int				run;
-	int				total_blocks;
 
 	ptr = *args_list();
-	total_blocks = count_blocks(*args_list());
-	make_pipes(&pipeline);
-	char *tt;
-	tt = malloc(10);
 	run = 0;
-	*running_loop() = 0;
-	run = 0;
+	command = new_command(run);
 	while (ptr)
 	{
 		if (ptr->type == operators)
 		{
 			if (ft_strcmp(ptr->arg, "|") == 0)
+			{
+				push_command(command);
 				run++;
+				command = new_command(run);
+			}
 			else
-				parse_redirect(run, pipeline, &ptr, total_blocks);
+				parse_redirect(command, &ptr);
 		}
+		else 
+			if (ptr->type == string)
+				add_word(&(command->comm), ptr);
 		if (ptr)
 			ptr = ptr->next;
 	}
-	ptr = *args_list();
-	block = NULL;
-	run = 0;
-	while(ptr)
-	{
-		if (ptr->type == operators)
-			{
-				if (ft_strcmp(ptr->arg, "|") == 0)
-				{
-					run_curr_command(&run, &pipeline, &(block), total_blocks);
-					block = NULL;
-				}
-			}
-			else if (ptr->type == string)
-			{
-				add_word(&(block), ptr);
-			}
-			if (ptr)
-				ptr = ptr->next;
-	}
-	run_last_command(&run, &pipeline, &(block), total_blocks);
-	free(pipeline);
+	push_command(command);
+	call_list_commands();
 }
 
 int	count_blocks(t_args_lst		*ptr)
@@ -90,11 +70,26 @@ void	make_pipes(t_pipe **pipeline)
 		*pipeline = NULL;
 		return ;
 	}
-	*pipeline = malloc(sizeof(t_pipe) * (total_blocks - 1));
+	*pipeline = malloc(sizeof(t_pipe) * (total_blocks));
 	i = 0;
 	while(i < (total_blocks - 1))
 	{
 		pipe((*pipeline)[i]);
 		i++;
+	}
+}
+
+void call_list_commands(void)
+{
+	t_pipe		*pipeline;
+	t_command	*command;
+
+	make_pipes(&pipeline);
+	command = pop_command();
+	run_curr_command(command, &pipeline, 0);
+	while(*command_lst() != NULL)
+	{
+		command = pop_command();
+		run_curr_command(command, &pipeline, 1);
 	}
 }

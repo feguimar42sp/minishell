@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:30:50 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/30 15:53:20 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:27:24 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ typedef struct s_args_lst
 	bool				is_quoted;
 	struct s_args_lst	*next;
 }						t_args_lst;
+
+typedef struct s_command
+{
+	t_args_lst			*comm;
+	int					input;
+	int					output;
+	int					run;
+	struct s_command	*next;
+}						t_command;
 
 typedef struct s_envp_lst
 {
