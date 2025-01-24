@@ -35,16 +35,24 @@ char	*init_program(void)
 	return (line);
 }
 
-void	parse_line_and_create_struct(char *line)
+int	parse_line_and_create_struct(char *line)
 {
 	free_args_list(args_list());
 	// check later args list being cleaned twice,
 	// one time here and another at the end of while loop
 	*args_list() = ft_lst_split(line);
+	if (*args_list() == NULL)
+		return (0);
 	free(line);
 	ft_lexer(args_list());
 	handle_environment_vars_expansion(args_list());
 	remove_outer_quotes(args_list());
+	if (!handle_syntax(args_list()))
+	{
+		write_stderr("syntax error", 1);
+		return (0);
+	}
+	return (1);
 }
 
 int	main(int ac, char **av, char **envp)
@@ -61,12 +69,8 @@ int	main(int ac, char **av, char **envp)
 		if (!line)
 			break ;
 		add_history(line);
-		parse_line_and_create_struct(line);
-		if (!handle_syntax(args_list()))
-		{
-			write_stderr("syntax error", 1);
+		if (!parse_line_and_create_struct(line))
 			continue ;
-		}
 		run_commands();
 		free_args_list(args_list());
 	}
