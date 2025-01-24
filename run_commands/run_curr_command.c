@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/23 23:01:52 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/23 23:47:24 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int not_last)
 	char	**command_line;
 	pid_t	pid;
 	char	**env_path;
-	int		status;
 
-	status = 0;
 	env_path = ft_split(ft_getenv("PATH"), ':');
 	command_line = make_array(c->comm);
 	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "export") == 0))
@@ -40,13 +38,10 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int not_last)
 		exit(*current_exit_code());
 	}
 	// printf("ante do waitpid run %i\n", *run);
-	waitpid(pid, &status, WNOHANG);
+	// wait(&status);
 	// printf("depois do waitpid run %i\n", *run);
-	kill(pid, SIGKILL);
+	// kill(pid, SIGKILL);
 	handle_signals();
-	if (WIFEXITED(status))
-		status = WEXITSTATUS(status);
-	*current_exit_code() = status;
 	free_t_command(c);
 	free_split(&env_path);
 	free_split(&command_line);

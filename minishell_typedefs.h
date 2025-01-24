@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:30:50 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/23 19:27:24 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/23 23:19:38 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_command
 	int					input;
 	int					output;
 	int					run;
+	int					not_last;
 	struct s_command	*next;
 }						t_command;
 

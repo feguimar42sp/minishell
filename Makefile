@@ -6,7 +6,7 @@
 #    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2025/01/23 17:39:20 by fernando         ###   ########.fr        #
+#    Updated: 2025/01/23 23:23:30 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ PARSING_FOLDER := parsing/create_node.c parsing/split_by_quotes.c parsing/split_
 
 RUN_COMMANDS_FOLDER := run_commands/run_commands.c run_commands/parse_redirect.c \
 	run_commands/redirect_output.c run_commands/make_array.c run_commands/open_file.c run_commands/add_word.c \
-	run_commands/run_curr_command.c run_commands/run_last_command.c
+	run_commands/run_curr_command.c
 
 EXECUTE_COMMAND_FOLDER := run_commands/execute_command/execute_command.c run_commands/execute_command/search_in_path.c \
 	run_commands/execute_command/run_from_root.c run_commands/redirect_input.c run_commands/close_files.c

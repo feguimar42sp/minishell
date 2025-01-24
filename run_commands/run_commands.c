@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:12:46 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/23 22:56:18 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/23 23:52:45 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	run_commands(void)
 		if (ptr)
 			ptr = ptr->next;
 	}
+	command->not_last = 0;
 	push_command(command);
 	call_list_commands();
 }
@@ -83,13 +84,23 @@ void call_list_commands(void)
 {
 	t_pipe		*pipeline;
 	t_command	*command;
+	int			total_blocks;
+	int			i;
 
 	make_pipes(&pipeline);
-	command = pop_command();
-	run_curr_command(command, &pipeline, 0);
 	while(*command_lst() != NULL)
 	{
 		command = pop_command();
-		run_curr_command(command, &pipeline, 1);
+		run_curr_command(command, &pipeline, command->not_last);
 	}
+	total_blocks = count_blocks(*args_list());
+	i = 0;
+	while((i < total_blocks) && (total_blocks > 1))
+	{
+		close(pipeline[i][0]);
+		close(pipeline[i][1]);
+		i++;
+	}
+	while (wait(&i) > 0);
+	*current_exit_code() = i;
 }
