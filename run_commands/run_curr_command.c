@@ -6,13 +6,13 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/23 23:47:24 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/24 02:21:51 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	run_curr_command(t_command *c, t_pipe **pipeline, int not_last)
+void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
 {
 	char	**command_line;
 	pid_t	pid;
@@ -32,7 +32,7 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int not_last)
 	pid = fork();
 	if (pid == 0)
 	{
-		set_process_io(c, pipeline, not_last);
+		set_process_io(c, pipeline, total_blocks);
 		if (!is_built_in(command_line[0], command_line))
 			execute_command(command_line, env_path);
 		exit(*current_exit_code());
