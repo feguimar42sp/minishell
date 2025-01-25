@@ -6,25 +6,17 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 20:33:46 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/30 19:23:28 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:28:17 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	redirect_output(int *out_file, t_args_lst **ptr)
+void redirect_output(t_command *command, t_args_lst **ptr)
 {
-	if ((*ptr)->next == NULL)
-	{
-		ft_redirect_error();
-		return ;
-	}
-	if ((*ptr)->next->type != string)
-	{
-		ft_redirect_error();
-		return ;
-	}
-	if (*out_file != -1)
-		close(*out_file);
-	*out_file = open_file(ptr);
+    int fd;
+
+    fd = open_file(ptr);
+	command->output = fd;
+	
 }
