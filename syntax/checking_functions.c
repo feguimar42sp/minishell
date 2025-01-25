@@ -87,6 +87,8 @@ int	check_multiple_operators_in_node(t_args_lst **arg_lst)
 	args = *arg_lst;
 	while (args)
 	{
+		if (quotes_are_balanced(args->arg))
+				return (1);
 		if (!check_multiples(args->arg))
 			return (0);
 		args = args->next;

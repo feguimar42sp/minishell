@@ -48,12 +48,12 @@ int	parse_line_and_create_struct(char *line)
 	free(line);
 	ft_lexer(args_list());
 	handle_environment_vars_expansion(args_list());
-	remove_outer_quotes(args_list());
 	if (!handle_syntax(args_list()))
 	{
 		write_stderr("syntax error", 1);
 		return (0);
 	}
+	remove_outer_quotes(args_list());
 	return (1);
 }
 
