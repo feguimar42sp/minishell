@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/24 02:21:51 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/25 21:42:14 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
 		set_process_io(c, pipeline, total_blocks);
 		if (!is_built_in(command_line[0], command_line))
 			execute_command(command_line, env_path);
+		printf("após execve\n");
 		exit(*current_exit_code());
 	}
 	// printf("ante do waitpid run %i\n", *run);
@@ -45,4 +46,21 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
 	free_t_command(c);
 	free_split(&env_path);
 	free_split(&command_line);
+}
+
+void print_split(char **tokens)
+{
+	int	i;
+	
+    if (tokens == NULL)
+		return ;
+	i = 0;
+    while (tokens[i] != NULL)
+	{
+        printf("%s", tokens[i]);
+        if (tokens[i + 1] != NULL)
+            printf(" ");
+		i++;
+    }
+    printf("\n");
 }

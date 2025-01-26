@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:29:11 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/23 23:20:11 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/25 21:44:47 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,7 @@ void free_t_command(t_command *cmd)
     if (!cmd)
         return;
     free_args_list(&(cmd->comm));
+    close(cmd->here[0]);
+    close(cmd->here[1]);
     free(cmd);
 }
