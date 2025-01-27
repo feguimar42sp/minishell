@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 22:32:47 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/19 21:54:51 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:20:23 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ char	*find_path(char *pathname, char **envp)
 		temp = ft_strjoin(envp[i], pathname);
 		if (access(temp, F_OK | X_OK) == 0)
 		{
-			printf("if (access(temp, F_OK | X_OK) == 0)\n");
 			break ;
 		}
 		free(temp);
