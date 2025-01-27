@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:12:46 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/25 19:19:36 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/26 19:59:43 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,6 @@ void call_list_commands(void)
 		close(pipeline[i][1]);
 		i++;
 	}
-	while (wait(&i) > 0);
-	*current_exit_code() = i;
+	while (wait(&i) > 0)
+		*current_exit_code() = i;
 }

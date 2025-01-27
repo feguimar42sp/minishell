@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checking_functions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:32:58 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/09 14:33:00 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/26 22:50:53 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	check_multiple_operators_in_node(t_args_lst **arg_lst)
 	args = *arg_lst;
 	while (args)
 	{
-		if (!check_multiples(args->arg))
+		if ((args->type == operators) && (!check_multiples(args->arg)))
 			return (0);
 		args = args->next;
 	}
