@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/25 21:42:14 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:07:42 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
 		set_process_io(c, pipeline, total_blocks);
 		if (!is_built_in(command_line[0], command_line))
 			execute_command(command_line, env_path);
-		printf("após execve\n");
 		exit(*current_exit_code());
 	}
 	// printf("ante do waitpid run %i\n", *run);

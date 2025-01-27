@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:29:11 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/25 21:44:47 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:08:59 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ t_command *new_command(int run)
     cmd->input = STDIN_FILENO;
     cmd->output = STDOUT_FILENO;
     cmd->not_last = 1;
+    cmd->here[0] = -1;
+    cmd->here[1] = -1;
     return (cmd);
 }
 
