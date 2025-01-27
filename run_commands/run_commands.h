@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/24 01:54:20 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/25 19:29:40 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void 	redirect_output(t_command *command, t_args_lst **ptr);
 int		count_blocks(t_args_lst		*ptr);
 void	make_pipes(t_pipe **pipeline);
 void    call_list_commands(void);
+void    print_split(char **tokens);
 
 #endif
