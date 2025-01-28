@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:35:44 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/15 19:44:08 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/28 01:40:23 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_cd_run(char **argv)
 
 	if (argv[2] != NULL)
 	{
-		//printf("cd: too many arguments\n");
+		write_stderr(" too many arguments",1);
 		*current_exit_code() = 1;
 		return ;
 	}
@@ -39,7 +39,7 @@ void	ft_cd_run(char **argv)
 	}
 	else
 	{
-		//printf("cd error in change dir\n");
+		write_stderr(" No such file or directory", 1);
 		*current_exit_code() = 1;
 	}
 	free(old_pwd);
