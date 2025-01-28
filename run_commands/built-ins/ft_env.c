@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:31:14 by feguimar          #+#    #+#             */
-/*   Updated: 2025/01/20 10:12:48 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 01:59:20 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	ft_env(char **argv)
 		}
 		i++;
 	}
-	print_env_vars_list(*env_vars_list(), NULL);
+	print_env_vars_list(*env_vars_list(), NULL, "");
 	*current_exit_code() = 0;
 }
