@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 22:32:47 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/28 10:29:25 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:10:41 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ char	*find_path(char *pathname, char **envp)
 	{
 		temp = ft_strjoin(envp[i], pathname);
 		if (access(temp, F_OK | X_OK) == 0)
-		{
 			break ;
-		}
 		free(temp);
 		temp = NULL;
 		i++;
@@ -37,33 +35,28 @@ char	*find_path(char *pathname, char **envp)
 	return (temp);
 }
 
-void	search_in_path(char *pathname, char **argv, char **envp, char **real_envp_arr)
+void	write_stderr_and_exit(char *str, int err_value)
+{
+	write_stderr(str, 1);
+	exit(err_value);
+}
+
+void	search_in_path(char *pathname, char **argv, char **envp,
+		char **real_envp_arr)
 {
 	struct stat	path_data;
 	char		*path;
 
 	path = find_path(pathname, envp);
 	if (path == NULL)
-	{
-		write_stderr(" command not found", 1);
-		exit(127);
-	}
+		write_stderr_and_exit(" command not found", 127);
 	if (access(path, F_OK) != 0)
-	{
-		write_stderr(" No such file or directory", 1);
-		exit(127);
-	}
+		write_stderr_and_exit(" No such file or directory", 127);
 	stat(path, &path_data);
 	if (S_ISDIR(path_data.st_mode) != 0)
-	{
-		write_stderr(" Is a directory", 1);
-		exit(126);
-	}
+		write_stderr_and_exit(" Is a directory", 126);
 	if (access(path, X_OK) != 0)
-	{
-		write_stderr(" Permission denied", 1);
-		exit(126);
-	}
+		write_stderr_and_exit(" Permission denied", 126);
 	execve(path, argv, real_envp_arr);
 	exit(127);
 }

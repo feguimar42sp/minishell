@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/28 10:54:49 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:59:38 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ char	*init_program(void)
 
 	handle_signals();
 	if (isatty(STDIN_FILENO))
-	{
 		reset_terminal_settings();
-	}
 	*running_loop() = 0;
 	prompt = get_prompt();
 	line = stdin_gnl(prompt);
@@ -37,19 +35,10 @@ char	*init_program(void)
 	return (line);
 }
 
-int	parse_line_and_create_struct(char *line)
+int	validate_args_list(void)
 {
 	t_args_lst	*temp;
 
-	free_args_list(args_list());
-	// check later args list being cleaned twice,
-	// one time here and another at the end of while loop
-	*args_list() = ft_lst_split(line);
-	if (*args_list() == NULL)
-		return (0);
-	free(line);
-	ft_lexer(args_list());
-	handle_environment_vars_expansion(args_list());
 	while ((*args_list()) && (ft_strcmp((*args_list())->arg, "") == 0))
 	{
 		temp = (*args_list());
@@ -63,13 +52,29 @@ int	parse_line_and_create_struct(char *line)
 		write_stderr("syntax error", 1);
 		return (0);
 	}
+	return (1);
+}
+
+int	parse_line_and_create_struct(char *line)
+{
+	free_args_list(args_list());
+	// check later: args list being cleaned twice,
+	// one time here and another at the end of while loop
+	*args_list() = ft_lst_split(line);
+	if (*args_list() == NULL)
+		return (0);
+	free(line);
+	ft_lexer(args_list());
+	handle_environment_vars_expansion(args_list());
+	if (!validate_args_list())
+		return (0);
 	remove_outer_quotes(args_list());
 	return (1);
 }
 
 int	main(int ac, char **av, char **envp)
 {
-	char		*line;
+	char	*line;
 
 	if (ac > 1)
 		script_files(av);

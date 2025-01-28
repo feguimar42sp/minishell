@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:13:34 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/13 18:08:42 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:13:48 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 pid_t	*running_loop(void)
 {
-    static int	p;
+	static int	p;
 
-    return (&p);
+	return (&p);
 }
-

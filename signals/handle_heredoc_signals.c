@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checking_functions2.c                              :+:      :+:    :+:   */
+/*   handle_heredoc_signals.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 16:12:53 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/28 14:15:43 by sabrifer         ###   ########.fr       */
+/*   Created: 2025/01/28 14:29:23 by sabrifer          #+#    #+#             */
+/*   Updated: 2025/01/28 14:29:31 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "handle_syntax.h"
+#include "../minishell.h"
 
-int	check_input_redirect(t_args_lst **arg_lst)
+void	handle_sigint_heredoc(int sig)
 {
-	t_args_lst	*args;
-
-	args = *arg_lst;
-	while (args->next)
-		args = args->next;
-	if (args->type == operators)
-		return (0);
-	return (1);
+	(void)sig;
+	exit(130);
 }
 
-int	single_pipe_at_beginning(t_args_lst **args_lst)
+void	handle_signals_heredoc(void)
 {
-	t_args_lst	*args;
+	struct sigaction	action;
 
-	args = *args_lst;
-	if (args->type == operators && args->arg[0] == '|')
-		return (0);
-	return (1);
+	handle_sigquit_signal();
+	action.sa_handler = handle_sigint_heredoc;
+	sigemptyset(&action.sa_mask);
+	action.sa_flags = SA_SIGINFO;
+	sigaction(SIGINT, &action, NULL);
 }

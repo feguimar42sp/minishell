@@ -6,16 +6,28 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:56:36 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 10:05:04 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:41:39 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+void	close_pipes(t_command *command, t_pipe **pipeline, int t)
+{
+	int	i;
+
+	i = 0;
+	close(command->here[1]);
+	while ((i < (t - 1)))
+	{
+		close((*pipeline)[i][0]);
+		close((*pipeline)[i][1]);
+		i++;
+	}
+}
+
 void	set_process_io(t_command *command, t_pipe **pipeline, int t)
 {
-	int i;
-
 	if ((command->input == -1) || (command->output == -1))
 		exit(1);
 	if (command->output != STDOUT_FILENO)
@@ -32,25 +44,5 @@ void	set_process_io(t_command *command, t_pipe **pipeline, int t)
 	}
 	else if (command->run != 0)
 		dup2((*pipeline)[command->run - 1][0], STDIN_FILENO);
-	i = 0;
-	close(command->here[1]);
-	while((i < (t - 1)))
-	{
-		close((*pipeline)[i][0]);
-		close((*pipeline)[i][1]);
-		i++;
-	}
-}
-
-void	close_pipes( t_pipe **pipeline, int t)
-{
-	int	i;
-
-	i = 0;
-	while((i < (t - 1)))
-	{
-		close((*pipeline)[i][0]);
-		close((*pipeline)[i][1]);
-		i++;
-	}
+	close_pipes(command, pipeline, t);
 }

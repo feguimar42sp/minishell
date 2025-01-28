@@ -6,11 +6,11 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 21:21:48 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/22 13:50:51 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:18:13 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../minishell.h"
+#include "../minishell.h"
 
 char	*not_tty_gnl(int fd)
 {
@@ -19,7 +19,7 @@ char	*not_tty_gnl(int fd)
 	ret = get_next_line(fd);
 	if (ret == NULL)
 		return (NULL);
-	while((ft_strcmp(ret, "\n") == 0) || is_comment(ret))
+	while ((ft_strcmp(ret, "\n") == 0) || is_comment(ret))
 	{
 		free(ret);
 		ret = get_next_line(fd);
@@ -31,7 +31,7 @@ char	*not_tty_gnl(int fd)
 
 int	is_comment(char *str)
 {
-	while(str[0] == ' ')
+	while (str[0] == ' ')
 		str++;
 	return (str[0] == '#');
 }

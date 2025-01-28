@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:13:34 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/11 16:28:07 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:13:37 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 pid_t	*prog_pid(void)
 {
-    static pid_t	pid;
+	static pid_t	pid;
 
-    return (&pid);
+	return (&pid);
 }

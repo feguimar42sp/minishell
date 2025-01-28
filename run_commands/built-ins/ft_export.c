@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:35:14 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 00:41:07 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:06:28 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,13 @@ void	ft_export_run(char **argv)
 {
 	int	i;
 
+	i = 0;
 	if (!valid_export_call())
 		return ;
-	i = 0;
 	while (argv[i] != NULL)
-	{
 		i++;
-	}
 	if (i == 1)
-	{
 		return ;
-	}
 	i = 1;
 	while (argv[i] != NULL)
 	{
@@ -44,7 +40,7 @@ void	ft_export_run(char **argv)
 
 int	valid_export_call(void)
 {
-	t_args_lst *ptr;
+	t_args_lst	*ptr;
 
 	ptr = *args_list();
 	while (ptr != NULL)

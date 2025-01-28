@@ -6,15 +6,15 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:02:18 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/11 18:59:16 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:14:13 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_envp_lst  **temp_env(void)
+t_envp_lst	**temp_env(void)
 {
-    static t_envp_lst   *list;
+	static t_envp_lst	*list;
 
-    return (&list);
+	return (&list);
 }

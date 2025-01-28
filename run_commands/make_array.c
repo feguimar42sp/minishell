@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 10:23:01 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/22 21:19:21 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:10:13 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	**make_array(t_args_lst *lst)
 {
 	int			i;
 	t_args_lst	*ptr;
-	char	**ret;
+	char		**ret;
 
 	i = 0;
 	ptr = lst;

@@ -6,19 +6,19 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:38:34 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/15 20:16:17 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:21:37 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-s_built_in	*fill_commands(void)
+t_built_in	*fill_commands(void)
 {
-	static s_built_in	*ret;
+	static t_built_in	*ret;
 
 	if (ret == NULL)
 	{
-		ret = malloc(sizeof(s_built_in) * BUILT_INS );
+		ret = malloc(sizeof(t_built_in) * BUILT_INS);
 		ret[0].name = ft_strdup("cd");
 		ret[1].name = ft_strdup("pwd");
 		ret[2].name = ft_strdup("export");

@@ -6,14 +6,14 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:14:21 by feguimar          #+#    #+#             */
-/*   Updated: 2025/01/25 21:16:01 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:18:48 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
-
 #ifndef HEREDOC_H
-#define HEREDOC_H
+# define HEREDOC_H
+
+# include "../../minishell.h"
 
 void	heredoc(t_command *command, t_args_lst **ptr);
 void	heredoc_expand(t_command *command, t_args_lst **ptr);

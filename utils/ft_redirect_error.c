@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 20:44:21 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/06 17:22:46 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:24:43 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_redirect_error(void)
 {
-    printf("function redirect error not doing anything\n");
+	write_stderr("this function ft_redirect_error is not doing anything\n", 1);
 }

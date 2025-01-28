@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:31:02 by feguimar          #+#    #+#             */
-/*   Updated: 2025/01/28 02:46:52 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:52:52 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_echo(char **argv)
 			new_line_flag = 0;
 		}
 	}
-	while(argv[i] != NULL)
+	while (argv[i] != NULL)
 	{
 		write(STDOUT_FILENO, argv[i], ft_strlen(argv[i]));
 		if (argv[i + 1])
@@ -37,5 +37,4 @@ void	ft_echo(char **argv)
 	if (new_line_flag)
 		write(STDOUT_FILENO, "\n", 1);
 	exit(0);
-	//*current_exit_code() = 0;
 }

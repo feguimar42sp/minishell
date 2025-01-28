@@ -69,7 +69,7 @@ BUILT_INS_FOLDER := run_commands/built-ins/fill_cmds.c run_commands/built-ins/ft
 SET_IO_FOLDER := run_commands/set_io/input_from_file.c run_commands/set_io/input_from_pipe.c \
 	run_commands/set_io/io_redirects.c run_commands/set_io/output_to_file.c run_commands/set_io/output_to_pipe.c run_commands/set_io/set_process_io.c
 
-SIGNALS_FOLDER := signals/handle_signals.c
+SIGNALS_FOLDER := signals/handle_signals.c signals/handle_heredoc_signals.c
 
 SYNTAX_FOLDER := syntax/handle_syntax.c syntax/checking_functions.c syntax/remove_outer_quotes.c \
 				 syntax/checking_functions2.c

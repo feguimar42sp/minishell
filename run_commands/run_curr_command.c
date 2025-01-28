@@ -6,23 +6,14 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 01:15:34 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:27:17 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
+void	execute_built_ins(t_command *c, char **command_line)
 {
-	char	**command_line;
-	pid_t	pid;
-	char	**env_path;
-
-	if (ft_getenv("PATH") == NULL)
-		env_path = ft_split("", ':');
-	else
-		env_path = ft_split(ft_getenv("PATH"), ':');
-	command_line = make_array(c->comm);
 	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "export") == 0))
 		ft_export_run(command_line);
 	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "unset") == 0))
@@ -31,6 +22,20 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
 		ft_cd_run(command_line);
 	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "exit") == 0))
 		ft_exit_cmd(command_line);
+}
+
+void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
+{
+	char	**command_line;
+	char	**env_path;
+	pid_t	pid;
+
+	if (ft_getenv("PATH") == NULL)
+		env_path = ft_split("", ':');
+	else
+		env_path = ft_split(ft_getenv("PATH"), ':');
+	command_line = make_array(c->comm);
+	execute_built_ins(c, command_line);
 	handle_signals_exec();
 	pid = fork();
 	if (pid == 0)
@@ -40,29 +45,25 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
 			execute_command(command_line, env_path);
 		exit(*current_exit_code());
 	}
-	// printf("ante do waitpid run %i\n", *run);
-	// wait(&status);
-	// printf("depois do waitpid run %i\n", *run);
-	// kill(pid, SIGKILL);
 	handle_signals();
 	free_t_command(c);
 	free_split(&env_path);
 	free_split(&command_line);
 }
 
-void print_split(char **tokens)
+void	print_split(char **tokens)
 {
 	int	i;
-	
-    if (tokens == NULL)
+
+	if (tokens == NULL)
 		return ;
 	i = 0;
-    while (tokens[i] != NULL)
+	while (tokens[i] != NULL)
 	{
-        printf("%s", tokens[i]);
-        if (tokens[i + 1] != NULL)
-            printf(" ");
+		printf("%s", tokens[i]);
+		if (tokens[i + 1] != NULL)
+			printf(" ");
 		i++;
-    }
-    printf("\n");
+	}
+	printf("\n");
 }

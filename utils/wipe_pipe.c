@@ -6,11 +6,11 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:28:20 by feguimar          #+#    #+#             */
-/*   Updated: 2024/12/15 20:47:12 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:23:06 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../minishell.h"
+#include "../minishell.h"
 
 void	wipe_pipe(t_pipe *in_file)
 {
@@ -20,11 +20,11 @@ void	wipe_pipe(t_pipe *in_file)
 
 	pid = fork();
 	if (pid == 0)
-	{	
+	{
 		buf = malloc(100);
 		close((*in_file)[1]);
 		i = read(((*in_file)[0]), buf, 100);
-		while(i > 0)
+		while (i > 0)
 		{
 			i = read((*in_file)[0], buf, 100);
 		}

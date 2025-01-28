@@ -6,14 +6,14 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 20:34:55 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 01:02:25 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:16:01 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
 /*
-	LEAK FOUND WITH FREE_SPLIT() IN THIS FILE 
+	LEAK FOUND WITH FREE_SPLIT() IN THIS FILE
 	leak found when commenting of the free_split() calls.
 
 	to see leak: export HELLO=123
@@ -52,10 +52,11 @@ void	add_variable(char **elements, char *var)
 
 void	add_env_var(char *var)
 {
-	char		**elements;
+	char	**elements;
+	int		i;
 
 	elements = ft_split(var, '=');
-	int i = 0;
+	i = 0;
 	while (elements[i] != NULL)
 		i++;
 	if (is_valid_var(elements))

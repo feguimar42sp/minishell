@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:33:14 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/03 00:52:42 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:12:21 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_built_in(char *pathname, char **argv)
 {
-	s_built_in	*cmds;
+	t_built_in	*cmds;
 	int			i;
 
 	cmds = fill_commands();

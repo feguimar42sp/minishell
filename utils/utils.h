@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:01:47 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/19 21:44:51 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:21:03 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	dump_from_file(int in_file, int out_file);
 int		compare_str(char *str1, char *str2);
 void	wipe_pipe(t_pipe *in_file);
 void	wipe_file(int fd);
-void    reset_terminal_settings(void);
-void    write_stderr(char *str, int eol);
-void    write_human_stdout(char *str, int eol);
+void	reset_terminal_settings(void);
+void	write_stderr(char *str, int eol);
+void	write_human_stdout(char *str, int eol);
 void	print_args_lst(t_args_lst *ptr);
 
 // functions to free args list

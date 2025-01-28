@@ -6,27 +6,28 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:30:50 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/25 21:09:25 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:57:59 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_TYPEDEFS_H
 # define MINISHELL_TYPEDEFS_H
 
+// que tipo de typedef é esse?
 typedef void			(*f_built_in)(char **);
 
 typedef int				t_pipe[2];
 
-typedef enum
+typedef enum e_args
 {
 	string,
 	operators,
-}						e_args;
+}						t_args;
 
 typedef struct s_args_lst
 {
 	char				*arg;
-	e_args				type;
+	enum e_args			type;
 	bool				is_quoted;
 	struct s_args_lst	*next;
 }						t_args_lst;
@@ -49,11 +50,11 @@ typedef struct s_envp_lst
 	struct s_envp_lst	*next;
 }						t_envp_lst;
 
-typedef struct
+typedef struct s_built_in
 {
 	char				*name;
 	f_built_in			func;
-}						s_built_in;
+}						t_built_in;
 
 typedef struct s_mem_node
 {
