@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/25 19:23:43 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:54:49 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ char	*init_program(void)
 
 int	parse_line_and_create_struct(char *line)
 {
+	t_args_lst	*temp;
+
 	free_args_list(args_list());
 	// check later args list being cleaned twice,
 	// one time here and another at the end of while loop
@@ -48,6 +50,14 @@ int	parse_line_and_create_struct(char *line)
 	free(line);
 	ft_lexer(args_list());
 	handle_environment_vars_expansion(args_list());
+	while ((*args_list()) && (ft_strcmp((*args_list())->arg, "") == 0))
+	{
+		temp = (*args_list());
+		*args_list() = (*args_list())->next;
+		free(temp);
+	}
+	if (*args_list() == NULL)
+		return (0);
 	if (!handle_syntax(args_list()))
 	{
 		write_stderr("syntax error", 1);

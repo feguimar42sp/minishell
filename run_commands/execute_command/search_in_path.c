@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 22:32:47 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/27 15:20:23 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:29:25 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,23 @@ void	search_in_path(char *pathname, char **argv, char **envp, char **real_envp_a
 	path = find_path(pathname, envp);
 	if (path == NULL)
 	{
-		write_stderr("Command not found", 1);
+		write_stderr(" command not found", 1);
 		exit(127);
 	}
 	if (access(path, F_OK) != 0)
 	{
-		write_stderr("No such file or directory", 1);
+		write_stderr(" No such file or directory", 1);
 		exit(127);
 	}
 	stat(path, &path_data);
 	if (S_ISDIR(path_data.st_mode) != 0)
 	{
-		write_stderr("Is a directory", 1);
+		write_stderr(" Is a directory", 1);
 		exit(126);
 	}
 	if (access(path, X_OK) != 0)
 	{
-		write_stderr("Permission denied", 1);
+		write_stderr(" Permission denied", 1);
 		exit(126);
 	}
 	execve(path, argv, real_envp_arr);
