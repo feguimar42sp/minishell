@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 20:14:22 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/25 21:37:56 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:04:33 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	parse_redirect(t_command *command, t_args_lst **ptr)
 {
+	if ((command->input == -1) || (command->output == -1))
+		return ;
 	if (is_output_to_file((*ptr)->arg))
 		redirect_output(command, ptr);
 	if (is_input_from_file((*ptr)->arg))
