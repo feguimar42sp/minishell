@@ -49,6 +49,7 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
 	free_t_command(c);
 	free_split(&env_path);
 	free_split(&command_line);
+	
 }
 
 void	print_split(char **tokens)

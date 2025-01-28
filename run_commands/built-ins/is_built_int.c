@@ -28,5 +28,8 @@ int	is_built_in(char *pathname, char **argv)
 		}
 		i++;
 	}
+	//criar funçao para dar free na variavel cmds/t_biult+in
+	// 
+	//
 	return (0);
 }

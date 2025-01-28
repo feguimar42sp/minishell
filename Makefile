@@ -6,7 +6,7 @@
 #    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2025/01/23 23:23:30 by fernando         ###   ########.fr        #
+#    Updated: 2025/01/28 20:08:13 by sabrifer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -134,7 +134,9 @@ fclean:
 # 	make -C $(BONUS_DIR) fclean
 	@rm -f $(NAME)
 	
-
+v: all
+	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --trace-children-skip='*/bin/*,*/sbin/*' --keep-debuginfo=yes \
+	--track-fds=yes ./$(NAME)
 # Rebuild
 re: fclean all
 
