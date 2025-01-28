@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_env_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 20:34:55 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/12 21:34:28 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/28 01:02:25 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@
 						export HELLO=456 (overwrite the 123)
 */
 
-void	add_variable(char **elements)
+void	add_variable(char **elements, char *var)
 {
 	t_envp_lst	*ptr;
 
 	ptr = find_var_node(elements[0]);
+	if (var[ft_strlen(var) - 1] == '=')
+		elements[1] = ft_strdup("");
 	if (ptr != NULL)
 	{
 		free(ptr->value);
-		if (elements[1] != NULL)
-			ptr->value = ft_strdup(elements[1]);
-		else
-			ptr->value = NULL;
-		free_split(&elements);
+		ptr->value = ft_strdup(elements[1]);
+		free(elements[1]);
+		elements[1] = NULL;
 		return ;
 	}
 	ptr = *env_vars_list();
@@ -44,30 +44,27 @@ void	add_variable(char **elements)
 		ptr = ptr->next;
 	ptr->next = malloc(sizeof(t_envp_lst));
 	ptr->next->var = ft_strdup(elements[0]);
-	if (elements[1] != NULL)
-		ptr->next->value = ft_strdup(elements[1]);
-	else
-		ptr->next->value = NULL;
+	ptr->next->value = ft_strdup(elements[1]);
 	ptr->next->next = NULL;
+	free(elements[1]);
+	elements[1] = NULL;
 }
 
 void	add_env_var(char *var)
 {
 	char		**elements;
 
-	if (!var || *var == '=')
-	{
-		*current_exit_code() = 1;
-		return ;
-	}
 	elements = ft_split(var, '=');
 	int i = 0;
 	while (elements[i] != NULL)
 		i++;
 	if (is_valid_var(elements))
-		add_variable(elements);
+		add_variable(elements, var);
 	else
+	{
 		*current_exit_code() = 1;
+		write_stderr(" not a valid identifier", 1);
+	}
 	free_split(&elements);
 }
 

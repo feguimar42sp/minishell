@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:35:14 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/13 17:10:03 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/28 00:41:07 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ void	ft_export_run(char **argv)
 	i = 1;
 	while (argv[i] != NULL)
 	{
+		if (ft_strcmp(argv[i], "=") == 0)
+		{
+			*current_exit_code() = 1;
+			write_stderr(" not a valid identifier", 1);
+			return ;
+		}
 		add_env_var(argv[i++]);
 	}
 	if ((*current_exit_code()) != 1)

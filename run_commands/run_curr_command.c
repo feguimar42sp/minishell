@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/27 13:48:01 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 01:15:34 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
 	pid_t	pid;
 	char	**env_path;
 
-	env_path = ft_split(ft_getenv("PATH"), ':');
+	if (ft_getenv("PATH") == NULL)
+		env_path = ft_split("", ':');
+	else
+		env_path = ft_split(ft_getenv("PATH"), ':');
 	command_line = make_array(c->comm);
 	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "export") == 0))
 		ft_export_run(command_line);
