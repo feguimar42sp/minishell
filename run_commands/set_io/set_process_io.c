@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:56:36 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/25 21:49:01 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 02:30:32 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	set_process_io(t_command *command, t_pipe **pipeline, int t)
 {
 	int i;
 
+	if (command->input == -1)
+		exit(1);
 	if (command->output != STDOUT_FILENO)
 	{
 		dup2(command->output, STDOUT_FILENO);
