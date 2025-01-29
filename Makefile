@@ -15,13 +15,9 @@ NAME := minishell
 LIBFT_DIR := ./libft
 LIBFT := libft/libft.a
 
-# Compiler
 CC := cc
-
-# Compiler flags
 CFLAGS := -g -Wall -Wextra -Werror
 
-# Linker flags
 LINKER_FLAGS := -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft -lreadline
 
 ENV_VARS_FOLDER := env_vars/expand_environment_vars.c  env_vars/ft_getenv.c \
@@ -80,19 +76,16 @@ STDIN_FUNC_FOLDER := stdin_func/script_files.c stdin_func/stdin_gnl.c stdin_func
 
 GNL_FOLDER := gnl/get_next_line_bonus.c gnl/get_next_line_utils_bonus.c
 
-# Source files
-SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) \
+SRCS := main.c $(ENV_VARS_FOLDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) \
 	$(UTILS_FOLDER) $(PARSING_FOLDER) $(RUN_COMMANDS_FOLDER) $(BUILT_INS_FOLDER) \
 	$(EXECUTE_COMMAND_FOLDER) $(SET_IO_FOLDER) $(SIGNALS_FOLDER) $(SYNTAX_FOLDER) \
 	$(HEREDOC_FOLDER) $(ENV_VARS_UTILS_FOLDER) $(LST_ENV_VARS_ORDERED_FOLDER) \
 	$(GNL_FOLDER) $(STDIN_FUNC_FOLDER)
 
-# Objects
 OBJECTS := $(SRCS:.c=.o)
 
 HEADERS := minishell.h
 
-# Build target
 all: $(LIBFT) $(NAME)
 
 $(LIBFT):
@@ -101,21 +94,19 @@ $(LIBFT):
 $(NAME): $(LIBFT) $(OBJECTS)
 	@$(CC) $(CFLAGS) $(OBJECTS) $(LINKER_FLAGS) -o $(NAME)
 
-# Clean
 clean:
 	@rm -f $(OBJECTS)
 	@make -C $(LIBFT_DIR) clean
 
-# Full clean
 fclean:
 	@make clean
 	@make -C $(LIBFT_DIR) fclean
 	@rm -f $(NAME)
-	
+
+re: fclean all
+
 v: all
 	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --trace-children-skip='*/bin/*,*/sbin/*' --keep-debuginfo=yes \
 	--suppressions=leak_readline --track-fds=yes ./$(NAME)
-# Rebuild
-re: fclean all
 
 .PHONY: all clean fclean re v
