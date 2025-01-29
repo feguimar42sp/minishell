@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/28 19:59:38 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/29 03:20:14 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	parse_line_and_create_struct(char *line)
 	*args_list() = ft_lst_split(line);
 	if (*args_list() == NULL)
 		return (0);
-	free(line);
+	 free(line);
 	ft_lexer(args_list());
 	handle_environment_vars_expansion(args_list());
 	if (!validate_args_list())

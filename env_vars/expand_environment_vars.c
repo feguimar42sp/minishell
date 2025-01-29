@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_environment_vars.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:00:57 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/06 15:24:41 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/29 03:23:40 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,14 @@ void	handle_dollar_expansion(char **str, int index, bool *single_quotes)
 		if ((*str)[index + 1] == '$')
 			index++;
 		else if ((*str)[index + 1] == '\"')
+		{
+			free(*str);
 			(*str) = ft_strdup("");
+		}
 		else if ((*str)[index + 1] != ' ' && (*str)[index + 1] != '\"')
 		{
 			temp = ft_expand(str, &index);
+			free(*str);
 			(*str) = ft_strdup(temp);
 			free(temp);
 			temp = NULL;
