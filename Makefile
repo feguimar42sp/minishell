@@ -136,7 +136,7 @@ fclean:
 	
 v: all
 	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --trace-children-skip='*/bin/*,*/sbin/*' --keep-debuginfo=yes \
-	--track-fds=yes ./$(NAME)
+	--suppressions=leak_readline --track-fds=yes ./$(NAME)
 # Rebuild
 re: fclean all
 
