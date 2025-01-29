@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_args_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 12:51:21 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/06 17:32:08 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/29 00:15:26 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ void	free_args_list(t_args_lst **args_lst)
 {
 	if (!args_lst || !*args_lst)
 		return ;
+	if (!*args_lst)
+	{
+		free(args_lst);
+		return ;
+	}
 	free_lst(*args_lst);
 	*args_lst = NULL;
 }

@@ -3,38 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_split.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:06:18 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/23 17:40:47 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/29 00:21:36 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	add_space_with_export(char **str)
-{
-	char	*old_str;
-	char	*new_str;
-	int		i;
-
-	old_str = *str;
-	if (ft_strnstr(old_str, "export", 6) == NULL)
-		return ;
-	new_str = (char *)malloc(sizeof(char) * ft_strlen(old_str) + 2);
-	if (!new_str)
-		return ;
-	i = 0;
-	while (old_str[i] != '=' && old_str[i] != '\0')
-		i++;
-	if (old_str[i] == '=')
-		i++;
-	ft_memcpy(new_str, old_str, i);
-	ft_memcpy(new_str + i, " ", 1);
-	ft_memcpy(new_str + i + 1, old_str + i, ft_strlen(old_str) - i);
-	new_str[ft_strlen(old_str) + 1] = '\0';
-	*str = new_str;
-}
 
 void	join_nodes(t_args_lst **split, int node)
 {
@@ -92,7 +68,6 @@ t_args_lst	*ft_lst_split(char *str)
 	i = 0;
 	if (!quotes_are_balanced(str))
 		return (NULL);
-	add_space_with_export(&str);
 	while (i < ft_strlen(str))
 	{
 		if (str[i] == ' ' || str[i] == '\t')
