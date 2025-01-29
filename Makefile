@@ -93,13 +93,13 @@ OBJECTS := $(SRCS:.c=.o)
 HEADERS := minishell.h
 
 # Build target
-all: lib $(NAME)
+all: $(LIBFT) $(NAME)
 
-lib:
+$(LIBFT):
 	make -C $(LIBFT_DIR) all bonus
 
 $(NAME): $(LIBFT) $(OBJECTS)
-	@make -C $(LIBFT_DIR)
+#	@make -C $(LIBFT_DIR)
 	@$(CC) $(CFLAGS) $(OBJECTS) $(LINKER_FLAGS) -o $(NAME)
 
 # Clean
@@ -119,4 +119,4 @@ v: all
 # Rebuild
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re v
