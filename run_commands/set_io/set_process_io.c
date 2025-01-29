@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:56:36 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 16:41:39 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/29 02:10:39 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	close_pipes(t_command *command, t_pipe **pipeline, int t)
 	close(command->here[1]);
 	while ((i < (t - 1)))
 	{
-		close((*pipeline)[i][0]);
-		close((*pipeline)[i][1]);
+		close_t_pipe((*pipeline)[i]);
 		i++;
 	}
 }
@@ -45,4 +44,12 @@ void	set_process_io(t_command *command, t_pipe **pipeline, int t)
 	else if (command->run != 0)
 		dup2((*pipeline)[command->run - 1][0], STDIN_FILENO);
 	close_pipes(command, pipeline, t);
+}
+
+void close_t_pipe(t_pipe pipe)
+{
+	if (pipe[1] != -1)
+		close(pipe[1]);
+	if (pipe[0] != -1)
+		close(pipe[0]);
 }

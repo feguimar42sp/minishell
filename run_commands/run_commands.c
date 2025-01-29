@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:12:46 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/29 01:52:40 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/29 02:16:22 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,7 @@ void	call_list_commands(void)
 	i = 0;
 	while ((i < (total_blocks - 1)))
 	{
-		close(pipeline[i][0]);
-		close(pipeline[i][1]);
+		close_t_pipe(pipeline[i]);
 		i++;
 	}
 	waitpid(*last_pid(), &i, 0);

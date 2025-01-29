@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:01:47 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/29 01:34:11 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/29 02:30:19 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	ft_quote_error(void);
 void	ft_redirect_error(void);
 void	dump_from_file(int in_file, int out_file);
 int		compare_str(char *str1, char *str2);
-void	wipe_pipe(t_pipe *in_file);
 void	wipe_file(int fd);
 void	reset_terminal_settings(void);
 void	write_stderr(char *str, int eol);

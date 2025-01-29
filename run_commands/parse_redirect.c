@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 20:14:22 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 15:09:27 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/29 02:06:49 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ void	call_heredoc(t_command *command, t_args_lst **ptr)
 {
 	pid_t	pid;
 
-	close(command->here[0]);
-	close(command->here[1]);
+	close_t_pipe(command->here);
 	pipe(command->here);
 	command->input = command->here[0];
 	pid = fork();

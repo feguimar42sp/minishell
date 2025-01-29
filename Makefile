@@ -6,7 +6,7 @@
 #    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2025/01/29 01:34:59 by fernando         ###   ########.fr        #
+#    Updated: 2025/01/29 02:30:43 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ STATICS_FOLDER := statics/env_vars_list.c statics/mem_list.c statics/args_list.c
 
 UTILS_FOLDER := utils/free_split.c utils/ft_quote_error.c \
 				utils/ft_redirect_error.c utils/dump_from_file.c utils/compare_str.c \
-				utils/wipe_pipe.c utils/wipe_file.c utils/reset_tty.c \
+				utils/wipe_file.c utils/reset_tty.c \
 				utils/write_stderr.c utils/write_human_stdout.c utils/print_args_lst.c \
 				utils/free_args_list.c utils/ft_free_split.c utils/command_lst_utils.c
 
@@ -58,7 +58,7 @@ RUN_COMMANDS_FOLDER := run_commands/run_commands.c run_commands/parse_redirect.c
 	run_commands/run_curr_command.c
 
 EXECUTE_COMMAND_FOLDER := run_commands/execute_command/execute_command.c run_commands/execute_command/search_in_path.c \
-	run_commands/execute_command/run_from_root.c run_commands/redirect_input.c run_commands/close_files.c
+	run_commands/execute_command/run_from_root.c run_commands/redirect_input.c
 
 BUILT_INS_FOLDER := run_commands/built-ins/fill_cmds.c run_commands/built-ins/ft_cd.c \
 	run_commands/built-ins/ft_echo.c run_commands/built-ins/ft_env.c run_commands/built-ins/ft_exit_cmd.c \
