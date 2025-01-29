@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 19:27:17 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/29 01:51:10 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
 		exit(*current_exit_code());
 	}
 	handle_signals();
+	if (c->not_last == 0)
+		*last_pid() = pid;
 	free_t_command(c);
 	free_split(&env_path);
 	free_split(&command_line);

@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:09:05 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 16:14:59 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/29 01:49:39 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ pid_t		*running_loop(void);
 t_envp_lst	**temp_env(void);
 pid_t		*running_loop(void);
 t_command	**command_lst(void);
-void		push_command(t_command *new_command);
-t_command	*pop_command(void);
-t_command	*new_command(int run);
-void		free_t_command(t_command *cmd);
+pid_t       *last_pid(void);
 
 #endif

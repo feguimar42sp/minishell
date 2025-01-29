@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:12:46 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 19:53:19 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/29 01:52:40 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	make_pipes(t_pipe **pipeline)
 	int	total_blocks;
 	int	i;
 
+	if (*pipeline != NULL)
+		free(*pipeline);
 	total_blocks = count_blocks(*args_list());
 	if (total_blocks == 1)
 	{
@@ -81,10 +83,10 @@ void	make_pipes(t_pipe **pipeline)
 
 void	call_list_commands(void)
 {
-	t_pipe		*pipeline;
-	t_command	*command;
-	int			total_blocks;
-	int			i;
+	static t_pipe		*pipeline;
+	t_command			*command;
+	int					total_blocks;
+	int					i;
 
 	make_pipes(&pipeline);
 	total_blocks = count_blocks(*args_list());
@@ -100,9 +102,8 @@ void	call_list_commands(void)
 		close(pipeline[i][1]);
 		i++;
 	}
-	while (wait(&i) > 0)
-	{
-		if (WIFEXITED(i))
-			*current_exit_code() = WEXITSTATUS(i);
-	}
+	waitpid(*last_pid(), &i, 0);
+	if (WIFEXITED(i))
+		*current_exit_code() = WEXITSTATUS(i);
+	while (wait(&i) > 0);
 }

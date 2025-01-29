@@ -6,7 +6,7 @@
 #    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2025/01/28 20:08:13 by sabrifer         ###   ########.fr        #
+#    Updated: 2025/01/29 01:34:59 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ UTILS_FOLDER := utils/free_split.c utils/ft_quote_error.c \
 				utils/ft_redirect_error.c utils/dump_from_file.c utils/compare_str.c \
 				utils/wipe_pipe.c utils/wipe_file.c utils/reset_tty.c \
 				utils/write_stderr.c utils/write_human_stdout.c utils/print_args_lst.c \
-				utils/free_args_list.c utils/ft_free_split.c
+				utils/free_args_list.c utils/ft_free_split.c utils/command_lst_utils.c
 
 PARSING_FOLDER := parsing/create_node.c parsing/split_by_quotes.c parsing/split_by_redirects.c \
 	parsing/split_by_spaces.c parsing/unclosed_quotes.c parsing/ft_lexer.c \

@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:01:47 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 14:21:03 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/29 01:34:11 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,10 @@ void	free_args_list(t_args_lst **args_lst);
 
 // function to free split
 void	ft_free_split(char **arr);
+
+void		push_command(t_command *new_command);
+t_command	*pop_command(void);
+t_command	*new_command(int run);
+void		free_t_command(t_command *cmd);
 
 #endif
