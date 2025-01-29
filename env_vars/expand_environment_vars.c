@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:00:57 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/29 03:23:40 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/29 03:35:24 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ char	*ft_expand(char **str, int *i)
 		return (NULL);
 	ft_memcpy(expanded, *str, *i);
 	ft_memcpy(expanded + *i, value, ft_strlen(value));
-	pos = *i + strlen(var) + 1;
-	ft_strcpy(expanded + *i + strlen(value), *str + pos);
+	pos = *i + ft_strlen(var) + 1;
+	ft_strcpy(expanded + *i + ft_strlen(value), *str + pos);
+	free(var);
+	free(value);
 	return (expanded);
 }
 
