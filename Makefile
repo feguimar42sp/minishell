@@ -12,15 +12,9 @@
 
 NAME := minishell
 
-BONUS :=
-
 LIBFT_DIR := ./libft
 LIBFT := libft/libft.a
-BONUS_DIR := ./bonus
 
-# Directories
-VPATH := .
-	
 # Compiler
 CC := cc
 
@@ -93,12 +87,8 @@ SRCS := main.c $(ENV_VARS_FOLDER) $(MEMORY_UTILS_FORDER) $(PROMPT_FOLDER) $(STAT
 	$(HEREDOC_FOLDER) $(ENV_VARS_UTILS_FOLDER) $(LST_ENV_VARS_ORDERED_FOLDER) \
 	$(GNL_FOLDER) $(STDIN_FUNC_FOLDER)
 
-BONUS_SRCS := 
-
 # Objects
 OBJECTS := $(SRCS:.c=.o)
-
-BONUS_OBJS := $(BONUS_SRCS:.c=.o)
 
 HEADERS := minishell.h
 
@@ -112,26 +102,15 @@ $(NAME): $(LIBFT) $(OBJECTS)
 	@make -C $(LIBFT_DIR)
 	@$(CC) $(CFLAGS) $(OBJECTS) $(LINKER_FLAGS) -o $(NAME)
 
-bonus: $(BONUS_OBJS)
-
-	make -C $(BONUS_DIR)
-
-# Run Norminette on all .c files from this project, sparing dependencies
-norminette:
-	@norminette $(SRCS)
-	@norminette $(HEADERS)
-
 # Clean
 clean:
 	@rm -f $(OBJECTS)
-# 	make -C $(BONUS_DIR) clean
 	@make -C $(LIBFT_DIR) clean
 
 # Full clean
 fclean:
 	@make clean
 	@make -C $(LIBFT_DIR) fclean
-# 	make -C $(BONUS_DIR) fclean
 	@rm -f $(NAME)
 	
 v: all
