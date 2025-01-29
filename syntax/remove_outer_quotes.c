@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:45:22 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/06 17:20:39 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/29 04:02:59 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	remove_one_quote(char **str, int i)
 		return ;
 	ft_memcpy(temp, (*str), i);
 	ft_strcpy(temp + i, (*str) + i + 1);
+	free(*str);
 	(*str) = ft_strdup(temp);
 	free(temp);
 	temp = NULL;
