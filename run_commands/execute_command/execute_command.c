@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 16:10:28 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/27 15:21:02 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/29 04:48:15 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	**envp_lst_to_array(t_envp_lst **envp_lst)
 {
 	t_envp_lst	*lst;
 	char		**array;
+	char		*temp;
 	int			lst_size;
 	int			i;
 
@@ -43,7 +44,9 @@ char	**envp_lst_to_array(t_envp_lst **envp_lst)
 	}
 	while (lst)
 	{
-		array[i] = ft_strjoin(ft_strjoin(lst->var, "="), lst->value);
+		temp = ft_strjoin(lst->var, "=");
+		array[i] = ft_strjoin(temp, lst->value);
+		free(temp);
 		lst = lst->next;
 		i++;
 	}
@@ -61,12 +64,15 @@ void	execute_command(char **command_line, char **env_path)
 	{
 		temp = ft_strdup(command_line[0]);
 		run_from_root(temp, command_line, env_path, envp_array);
+		free(temp);
+		temp = NULL;
 	}
 	else
 	{
 		temp = ft_strjoin("/", command_line[0]);
 		search_in_path(temp, command_line, env_path, envp_array);
+		free(temp);
+		temp = NULL;
 	}
-	free(temp);
 	return ;
 }
