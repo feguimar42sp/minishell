@@ -99,7 +99,6 @@ $(LIBFT):
 	make -C $(LIBFT_DIR) all bonus
 
 $(NAME): $(LIBFT) $(OBJECTS)
-#	@make -C $(LIBFT_DIR)
 	@$(CC) $(CFLAGS) $(OBJECTS) $(LINKER_FLAGS) -o $(NAME)
 
 # Clean
