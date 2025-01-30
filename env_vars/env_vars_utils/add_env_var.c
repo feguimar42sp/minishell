@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_env_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 20:34:55 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 16:16:01 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:44:08 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	add_variable(char **elements, char *var)
 		elements[1] = NULL;
 		return ;
 	}
-	ptr = *env_vars_list();
+	ptr = *env_vars_list(0);
 	while (ptr->next != NULL)
 		ptr = ptr->next;
 	ptr->next = malloc(sizeof(t_envp_lst));

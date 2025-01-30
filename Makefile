@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fernando <fernando@student.42.fr>          +#+  +:+       +#+         #
+#    By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2025/01/30 10:57:31 by fernando         ###   ########.fr        #
+#    Updated: 2025/01/30 14:53:31 by feguimar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,6 +108,6 @@ re: fclean all
 
 v: all
 	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --trace-children-skip='*/bin/*,*/sbin/*' --keep-debuginfo=yes \
-	--suppressions=leak_readline --track-fds=yes ./$(NAME)
+	--suppressions=readline.supp --track-fds=yes ./$(NAME)
 
 .PHONY: all clean fclean re v

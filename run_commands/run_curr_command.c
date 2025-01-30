@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   run_curr_command.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/29 01:51:10 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:39:08 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	execute_built_ins(t_command *c, char **command_line)
+void	execute_built_ins(t_command *c, char **command_line, char ***e)
 {
 	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "export") == 0))
 		ft_export_run(command_line);
@@ -21,7 +21,11 @@ void	execute_built_ins(t_command *c, char **command_line)
 	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "cd") == 0))
 		ft_cd_run(command_line);
 	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "exit") == 0))
+	{
+		free_split(e);
+		free_t_command(c);
 		ft_exit_cmd(command_line);
+	}
 }
 
 void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
@@ -35,7 +39,7 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
 	else
 		env_path = ft_split(ft_getenv("PATH"), ':');
 	command_line = make_array(c->comm);
-	execute_built_ins(c, command_line);
+	execute_built_ins(c, command_line, &env_path);
 	handle_signals_exec();
 	pid = fork();
 	if (pid == 0)

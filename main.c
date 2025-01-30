@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/30 11:07:41 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:13:32 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_envinroment_vars(char **envp)
 	t_envp_lst	*env_vars;
 
 	env_vars = store_envp(envp);
-	*env_vars_list() = env_vars;
+	*env_vars_list(0) = env_vars;
 }
 
 char	*init_program(void)
@@ -91,6 +91,6 @@ int	main(int ac, char **av, char **envp)
 		run_commands();
 		free_args_list(args_list());
 	}
-	free_statics();
+	free_env_lst(env_vars_list(0));
 	rl_clear_history();
 }

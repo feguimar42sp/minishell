@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   statics.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:09:05 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/30 11:04:40 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:46:20 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../minishell.h"
 
 t_args_lst	**args_list(void);
-t_envp_lst	**env_vars_list(void);
+t_envp_lst	**env_vars_list(int clear);
 int			*current_exit_code(void);
 pid_t		*prog_pid(void);
 pid_t		*running_loop(void);

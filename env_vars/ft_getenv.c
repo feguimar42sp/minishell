@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:00:57 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/02 20:08:12 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:44:04 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_getenv(char *variable)
 	t_envp_lst	**lst;
 	t_envp_lst	*current;
 
-	lst = env_vars_list();
+	lst = env_vars_list(0);
 	current = *lst;
 	while (current)
 	{

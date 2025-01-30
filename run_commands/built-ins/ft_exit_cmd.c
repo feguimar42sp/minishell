@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/30 11:32:30 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:32:08 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,24 @@ int	convert_exit_value(char *c_value)
 
 void	ft_exit_cmd(char **argv)
 {
+	write_human_stdout("exit", 1);
+	free_env_lst(env_vars_list(0));
+	free_args_list(args_list());
+	free_t_command(*command_lst());
+	rl_clear_history();
 	if ((argv == NULL) || (argv[1] == NULL))
+	{
+		free_split(&argv);
 		exit(*current_exit_code());
+	}
 	if (argv[0] && argv[1] && argv[2] == NULL)
 		*current_exit_code() = convert_exit_value(argv[1]);
 	else
 	{
 		write_stderr(" too many arguments", 1);
+		free_split(&argv);
 		exit(1);
 	}
-	write_human_stdout("exit", 1);
-	free_statics();
+	free_split(&argv);
 	exit(*current_exit_code());
 }

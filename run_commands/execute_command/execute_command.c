@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 16:10:28 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/29 04:48:15 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:45:14 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	execute_command(char **command_line, char **env_path)
 	char	**envp_array;
 	char	*temp;
 
-	envp_array = envp_lst_to_array(env_vars_list());
+	envp_array = envp_lst_to_array(env_vars_list(0));
 	if (command_line[0][0] == '/')
 	{
 		temp = ft_strdup(command_line[0]);
