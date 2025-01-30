@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/30 15:46:07 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:06:06 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	execute_built_ins(t_command *c, char **command_line, char ***e)
 		ft_cd_run(command_line);
 	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "exit") == 0))
 	{
+		close_all();
 		free_split(e);
 		free_t_command(c);
 		ft_exit_cmd(command_line);
@@ -73,4 +74,16 @@ void	print_split(char **tokens)
 		i++;
 	}
 	printf("\n");
+}
+
+void	close_all(void)
+{
+	int		i;
+
+	i = 0;
+	while(i < 10000)
+	{
+		close(i);
+		i++;
+	}
 }

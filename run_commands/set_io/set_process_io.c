@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_process_io.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:56:36 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/29 02:10:39 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:08:36 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	close_pipes(t_command *command, t_pipe **pipeline, int t)
 	int	i;
 
 	i = 0;
-	close(command->here[1]);
+	if (command->here[1] != -1)
+		close(command->here[1]);
 	while ((i < (t - 1)))
 	{
 		close_t_pipe((*pipeline)[i]);

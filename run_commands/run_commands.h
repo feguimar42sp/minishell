@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_commands.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/29 02:05:21 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:01:53 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../minishell.h"
 
+void	close_all(void);
 void	add_word(t_args_lst **block, t_args_lst *ptr);
 char	**make_array(t_args_lst *lst);
 int		open_file(t_args_lst **ptr);
