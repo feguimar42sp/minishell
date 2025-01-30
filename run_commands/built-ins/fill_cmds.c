@@ -6,13 +6,13 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:38:34 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/29 02:54:27 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:14:15 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-t_built_in	*fill_commands(void)
+t_built_in	**fill_commands(void)
 {
 	static t_built_in	*ret;
 
@@ -34,5 +34,5 @@ t_built_in	*fill_commands(void)
 		ret[5].func = ft_echo;
 		ret[6].func = ft_unset;
 	}
-	return (ret);
+	return (&ret);
 }

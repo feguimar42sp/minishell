@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 19:05:00 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:32:30 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void	ft_exit_cmd(char **argv)
 		exit(1);
 	}
 	write_human_stdout("exit", 1);
+	free_statics();
 	exit(*current_exit_code());
 }

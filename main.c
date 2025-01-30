@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/29 04:18:45 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:07:41 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ int	main(int ac, char **av, char **envp)
 		run_commands();
 		free_args_list(args_list());
 	}
-	free_env_lst(env_vars_list());
+	free_statics();
 	rl_clear_history();
 }

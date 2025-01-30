@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   current_exit_code.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:13:34 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/06 16:03:40 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:49:33 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	*current_exit_code(void)
 {
-	static int	exit_code = 0;
+	static int	exit_code;
 
 	return (&exit_code);
 }

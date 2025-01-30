@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_list.c                                         :+:      :+:    :+:   */
+/*   free_statics.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 18:47:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/10 16:57:53 by fernando         ###   ########.fr       */
+/*   Created: 2025/01/30 10:47:06 by fernando          #+#    #+#             */
+/*   Updated: 2025/01/30 11:17:18 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+# include "../minishell.h"
 
-t_mem_node	**mem_list(void)
+void free_statics(void)
 {
-	static t_mem_node	*list;
+    int         i;
+    t_built_in  *temp;
 
-	return (&list);
+    free_args_list(args_list());
+    free_t_command(*command_lst());
+    *command_lst() = NULL;
+    free_env_lst(env_vars_list());
+    i = 0;
+    temp = *fill_commands();
+    while (i < 7)
+    {
+        free(temp[i].name);
+    }
+    free(*fill_commands());
 }

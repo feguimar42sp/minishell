@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 14:08:33 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:14:26 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../../minishell.h"
 
-t_built_in	*fill_commands(void);
+t_built_in	**fill_commands(void);
 void		ft_cd(char **argv);
 void		ft_exit_cmd(char **argv);
 void		ft_export(char **argv);
