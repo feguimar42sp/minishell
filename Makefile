@@ -32,7 +32,7 @@ PROMPT_FOLDER := prompt/get_prompt.c
 
 STATICS_FOLDER := statics/env_vars_list.c statics/args_list.c statics/current_exit_code.c \
 	statics/prog_pid.c statics/running_loop.c statics/command_lst.c \
-	statics/free_statics.c
+	statics/free_statics.c statics/child_process.c
 
 UTILS_FOLDER := utils/free_split.c utils/ft_quote_error.c \
 				utils/ft_redirect_error.c utils/dump_from_file.c utils/compare_str.c \

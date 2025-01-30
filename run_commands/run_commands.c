@@ -37,6 +37,7 @@ void	run_commands(t_args_lst	*ptr, t_command	*command)
 	command->not_last = 0;
 	push_command(command);
 	call_list_commands();
+	printf("run_commands.c\n");
 }
 
 int	count_blocks(t_args_lst *ptr)
@@ -96,7 +97,9 @@ void	call_list_commands(void)
 		close_t_pipe(pipeline[i]);
 		i++;
 	}
+	*child_process() = 1;
 	waitpid(*last_pid(), &i, 0);
+	*child_process() = 0;
 	if (WIFEXITED(i))
 		*current_exit_code() = WEXITSTATUS(i);
 	while (wait(&i) > 0);

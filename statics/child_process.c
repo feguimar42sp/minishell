@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   statics.h                                          :+:      :+:    :+:   */
+/*   running_loop.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 11:09:05 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/30 14:46:20 by feguimar         ###   ########.fr       */
+/*   Created: 2024/11/07 15:13:34 by sabrifer          #+#    #+#             */
+/*   Updated: 2025/01/28 16:13:48 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STATICS_H
-# define STATICS_H
+#include "../minishell.h"
 
-# include "../minishell.h"
+int	*child_process(void)
+{
+	static int	child;
 
-t_args_lst	**args_list(void);
-t_envp_lst	**env_vars_list(int clear);
-int			*current_exit_code(void);
-pid_t		*prog_pid(void);
-pid_t		*running_loop(void);
-t_command	**command_lst(void);
-pid_t       *last_pid(void);
-void        free_statics(void);
-int         *child_process(void);
-
-#endif
+	return (&child);
+}

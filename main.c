@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/30 16:23:18 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/30 19:55:56 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*init_program(void)
 	if (isatty(STDIN_FILENO))
 		reset_terminal_settings();
 	*running_loop() = 0;
+	*child_process() = 0;
 	prompt = get_prompt();
 	line = stdin_gnl(prompt);
 	free(prompt);
@@ -58,12 +59,10 @@ int	validate_args_list(void)
 int	parse_line_and_create_struct(char *line)
 {
 	free_args_list(args_list());
-	// check later: args list being cleaned twice,
-	// one time here and another at the end of while loop
 	*args_list() = ft_lst_split(line);
 	if (*args_list() == NULL)
 		return (0);
-	 free(line);
+	free(line);
 	ft_lexer(args_list());
 	handle_environment_vars_expansion(args_list());
 	if (!validate_args_list())
@@ -96,6 +95,4 @@ int	main(int ac, char **av, char **envp)
 	rl_clear_history();
 }
 
-//ls -R /
-
-
+// ls -R /

@@ -22,11 +22,14 @@ void	handle_sigint_signal(int sig)
 	(void)sig;
 	if (!isatty(STDIN_FILENO))
 		return ;
-	write(1, "\n", 1);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-	*current_exit_code() = 130;
+	if (*child_process() == 0)
+	{
+		write(1, "\n", 1);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+		*current_exit_code() = 130;
+	}
 }
 
 void	handle_signals(void)
