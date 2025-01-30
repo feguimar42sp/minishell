@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/30 16:02:18 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:23:18 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,14 @@ int	main(int ac, char **av, char **envp)
 		add_history(line);
 		if (!parse_line_and_create_struct(line))
 			continue ;
-		run_commands();
+		run_commands(*args_list(), NULL);
 		free_args_list(args_list());
 	}
 	close_all();
 	free_env_lst(env_vars_list(0));
 	rl_clear_history();
 }
+
+//ls -R /
+
+

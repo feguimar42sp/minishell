@@ -3,22 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   run_commands.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:12:46 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/29 02:16:22 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:22:29 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	run_commands(void)
+void	run_commands(t_args_lst	*ptr, t_command	*command)
 {
-	t_args_lst	*ptr;
-	t_command	*command;
 	int			run;
 
-	ptr = *args_list();
 	run = 0;
 	command = new_command(run);
 	while (ptr)
@@ -35,9 +32,7 @@ void	run_commands(void)
 				parse_redirect(command, &ptr);
 		}
 		else if (ptr->type == string)
-			add_word(&(command->comm), ptr);
-		if (ptr)
-			ptr = ptr->next;
+			add_word(&(command->comm), &ptr);
 	}
 	command->not_last = 0;
 	push_command(command);
