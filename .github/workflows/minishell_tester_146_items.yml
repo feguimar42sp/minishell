@@ -42,7 +42,9 @@ jobs:
         uses: actions/checkout@v4.1.4
 
       - name: find history
-        run: find /usr/include -name "history.h"
+        run: | 
+          find /usr/include -name "history.h"
+          echo "here"
 
       - name: Building Program with MiniShell Makefile
         run: make
