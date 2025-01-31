@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:30:50 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 19:57:59 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:12:27 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINISHELL_TYPEDEFS_H
 
 // que tipo de typedef é esse?
-typedef void			(*f_built_in)(char **);
+typedef void			(*t_function_built_in)(char **);
 
 typedef int				t_pipe[2];
 
@@ -53,7 +53,7 @@ typedef struct s_envp_lst
 typedef struct s_built_in
 {
 	char				*name;
-	f_built_in			func;
+	t_function_built_in	func;
 }						t_built_in;
 
 typedef struct s_mem_node

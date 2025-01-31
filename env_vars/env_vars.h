@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 21:00:40 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/30 15:10:32 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:27:46 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,28 @@
 # define ENV_VARS_H
 
 # include "../minishell.h"
-// functions to store environment variables in a linked list
-t_envp_lst	*store_envp(char **envp);
-void		add_to_lst(t_envp_lst **env_var, char *env);
-int			find_pos_strchr(char *str, char c);
 
-// functions to expand environment variables
+// expand_environment_vars.c
 void		handle_environment_vars_expansion(t_args_lst **arg_lst);
-char		*parse_var_found(char *str);
+void		search_and_expand(char **str);
+void		handle_dollar_expansion(char **str, int index, bool *single_quotes);
+void		update_quotes(char c, bool *single_quotes, bool *double_quotes);
+char		*ft_expand(char **str, int *i);
+
+// free_env_list.c
+void		env_free_lst(t_envp_lst **node);
+void		free_env_lst(t_envp_lst **env_lst);
+
+// ft_getenv.c
+char		*ft_getenv(char *variable);
+
+// get_variable_and_value.c
 char		*parse_var_found(char *str);
 char		*get_var_value(char *var);
 
-// function that help joining strings
-char		*join_prefix_and_value(char *s1, char *s2);
-char		*join_suffix(char *s1, char *s2);
-char		*get_prefix(char *str);
-char		*get_final_joined_str(char *str, char *prefix, char *prefix_value,
-				int var_size);
-
-// function to get environment variables
-char		*ft_getenv(char *variable);
-
-// function to free env var list
-void		env_free_lst(t_envp_lst **node);
-void		free_env_lst(t_envp_lst **env_lst);
+// store_environment_vars.c
+t_envp_lst	*store_envp(char **envp);
+void		add_to_lst(t_envp_lst **env_var, char *env);
+int			find_pos_strchr(char *str, char c);
 
 #endif

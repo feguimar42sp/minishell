@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_vars.c                                         :+:      :+:    :+:   */
+/*   store_environment_vars.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 14:16:40 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/02 18:24:53 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:27:01 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ int	find_pos_strchr(char *str, char c)
 
 	strchr_return = ft_strchr(str, c);
 	if (strchr_return != NULL)
-	{
 		return (strchr_return - str);
-	}
 	return (-1);
 }
 

@@ -6,7 +6,7 @@
 #    By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2025/01/30 14:53:31 by feguimar         ###   ########.fr        #
+#    Updated: 2025/01/31 15:01:38 by sabrifer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME := minishell
 LIBFT_DIR := ./libft
 LIBFT := libft/libft.a
 
-CC := cc
+CC := cc 
 CFLAGS := -g -Wall -Wextra -Werror
 
 LINKER_FLAGS := -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft -lreadline

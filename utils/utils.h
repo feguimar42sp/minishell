@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:01:47 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/31 13:58:41 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:29:14 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void		push_command(t_command *new_command);
 t_command	*pop_command(void);
 t_command	*new_command(int run);
 void		free_t_command(t_command *cmd);
+void		free_cmd_lst(t_command *head);
 
 #endif

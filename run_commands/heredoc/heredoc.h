@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:14:21 by feguimar          #+#    #+#             */
-/*   Updated: 2025/01/28 16:18:48 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/31 15:00:30 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ char	*get_var_value_heredoc(char *line, int i);
 int		not_end_env_var(char c);
 char	*heredoc_gnl(int fd);
 void	call_heredoc(t_command *command, t_args_lst **ptr);
+int		expand_var_value(char *dst, int i, char *src, int *j);
 
 #endif

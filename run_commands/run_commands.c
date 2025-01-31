@@ -37,7 +37,6 @@ void	run_commands(t_args_lst *ptr, t_command *command)
 	command->not_last = 0;
 	push_command(command);
 	call_list_commands();
-	printf("run_commands.c\n");
 }
 
 int	count_blocks(t_args_lst *ptr)

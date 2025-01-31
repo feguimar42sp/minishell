@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:00:42 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/06 16:01:08 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:30:57 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,9 @@ void		split_by_redirects(t_args_lst **split, char *str, int *i);
 int			ends_space_block(char c);
 void		split_by_spaces(t_args_lst **split, char *str, int i);
 bool		quotes_are_balanced(char *str);
+int			is_operator(char *str);
+int			is_str_quoted(char *str);
+void		join_nodes(t_args_lst **split, int node);
+void		concat_if_export(t_args_lst **split);
 
 #endif

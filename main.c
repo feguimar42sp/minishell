@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void	init_envinroment_vars(char **envp)
+static void	init_envinroment_vars(char **envp)
 {
 	t_envp_lst	*env_vars;
 
@@ -20,7 +20,7 @@ void	init_envinroment_vars(char **envp)
 	*env_vars_list(0) = env_vars;
 }
 
-char	*init_program(void)
+static char	*init_program(void)
 {
 	char	*line;
 	char	*prompt;
@@ -36,7 +36,7 @@ char	*init_program(void)
 	return (line);
 }
 
-int	validate_args_list(void)
+static int	validate_args_list(void)
 {
 	t_args_lst	*temp;
 
@@ -56,7 +56,7 @@ int	validate_args_list(void)
 	return (1);
 }
 
-int	parse_line_and_create_struct(char *line)
+static int	parse_line_and_create_struct(char *line)
 {
 	free_args_list(args_list());
 	*args_list() = ft_lst_split(line);
@@ -94,5 +94,3 @@ int	main(int ac, char **av, char **envp)
 	free_env_lst(env_vars_list(0));
 	rl_clear_history();
 }
-
-// ls -R /

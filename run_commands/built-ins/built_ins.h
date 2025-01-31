@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/30 11:14:26 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:32:03 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int			valid_export_call(void);
 void		ft_export_run(char **argv);
 void		ft_unset_run(char **argv);
 void		ft_cd_run(char **argv);
+void		update_env_vars(void);
+int			convert_exit_value(char *c_value);
 
 #endif
