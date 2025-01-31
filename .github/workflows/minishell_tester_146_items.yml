@@ -41,6 +41,9 @@ jobs:
       - name: Starting Github Actions
         uses: actions/checkout@v4.1.4
 
+      - name: find history
+        run: find /usr/include -name "history.h"
+
       - name: Building Program with MiniShell Makefile
         run: make
 
