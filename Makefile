@@ -18,7 +18,7 @@ LIBFT := libft/libft.a
 CC := cc 
 CFLAGS := -g -Wall -Wextra -Werror
 
-LINKER_FLAGS := -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft -ldl -lreadline
+LINKER_FLAGS := -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft -lreadline
 
 ENV_VARS_FOLDER := env_vars/expand_environment_vars.c  env_vars/ft_getenv.c \
 				env_vars/store_environment_vars.c \

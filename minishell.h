@@ -19,8 +19,8 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include "./libft/libft.h"
-//# include <readline/history.h>
-//# include <readline/readline.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 # include <stdlib.h>
 # include <sys/stat.h>
 # include <sys/types.h>
