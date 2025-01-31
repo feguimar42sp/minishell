@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/30 16:06:06 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:01:15 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
 	free_t_command(c);
 	free_split(&env_path);
 	free_split(&command_line);
-	
 }
 
 void	print_split(char **tokens)
@@ -78,10 +77,10 @@ void	print_split(char **tokens)
 
 void	close_all(void)
 {
-	int		i;
+	int	i;
 
 	i = 0;
-	while(i < 10000)
+	while (i < 10000)
 	{
 		close(i);
 		i++;

@@ -6,15 +6,15 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:12:46 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/30 16:22:29 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:01:33 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	run_commands(t_args_lst	*ptr, t_command	*command)
+void	run_commands(t_args_lst *ptr, t_command *command)
 {
-	int			run;
+	int	run;
 
 	run = 0;
 	command = new_command(run);
@@ -79,10 +79,10 @@ void	make_pipes(t_pipe **pipeline)
 
 void	call_list_commands(void)
 {
-	static t_pipe		*pipeline;
-	t_command			*command;
-	int					total_blocks;
-	int					i;
+	static t_pipe	*pipeline;
+	t_command		*command;
+	int				total_blocks;
+	int				i;
 
 	make_pipes(&pipeline);
 	total_blocks = count_blocks(*args_list());
@@ -102,5 +102,6 @@ void	call_list_commands(void)
 	*child_process() = 0;
 	if (WIFEXITED(i))
 		*current_exit_code() = WEXITSTATUS(i);
-	while (wait(&i) > 0);
+	while (wait(&i) > 0)
+		;
 }

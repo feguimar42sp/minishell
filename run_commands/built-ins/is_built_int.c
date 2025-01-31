@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:33:14 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/30 11:14:49 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:01:01 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,5 @@ int	is_built_in(char *pathname, char **argv)
 		}
 		i++;
 	}
-	//criar funçao para dar free na variavel cmds/t_biult+in
-	// 
-	//
 	return (0);
 }

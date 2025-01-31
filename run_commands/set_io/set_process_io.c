@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:56:36 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/30 16:08:36 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:00:35 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	set_process_io(t_command *command, t_pipe **pipeline, int t)
 	close_pipes(command, pipeline, t);
 }
 
-void close_t_pipe(t_pipe pipe)
+void	close_t_pipe(t_pipe pipe)
 {
 	if (pipe[1] != -1)
 		close(pipe[1]);

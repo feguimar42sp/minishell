@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:09:05 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/30 14:46:20 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/31 13:59:59 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int			*current_exit_code(void);
 pid_t		*prog_pid(void);
 pid_t		*running_loop(void);
 t_command	**command_lst(void);
-pid_t       *last_pid(void);
-void        free_statics(void);
-int         *child_process(void);
+pid_t		*last_pid(void);
+void		free_statics(void);
+int			*child_process(void);
 
 #endif
