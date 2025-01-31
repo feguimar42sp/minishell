@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   add_word.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:44:17 by fernando          #+#    #+#             */
-/*   Updated: 2024/10/30 17:17:42 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:18:15 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	add_word(t_args_lst **block, t_args_lst *ptr)
+void	add_word(t_args_lst **block, t_args_lst **ptr)
 {
 	t_args_lst	*new;
 	t_args_lst	*temp;
 
 	new = (t_args_lst *)malloc(sizeof(t_args_lst));
 	temp = *block;
-	new->arg = ft_strdup(ptr->arg);
+	new->arg = ft_strdup((*ptr)->arg);
 	new->type = string;
 	new->next = NULL;
 	if (temp == NULL)
@@ -30,4 +30,6 @@ void	add_word(t_args_lst **block, t_args_lst *ptr)
 			temp = temp->next;
 		temp->next = new;
 	}
+	if (*ptr)
+		(*ptr) = (*ptr)->next;
 }

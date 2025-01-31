@@ -6,42 +6,83 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/27 20:04:46 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:01:15 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	run_curr_command(int *out_f, t_pipe *in_p, t_args_lst **b)
+void	execute_built_ins(t_command *c, char **command_line, char ***e)
+{
+	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "export") == 0))
+		ft_export_run(command_line);
+	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "unset") == 0))
+		ft_unset_run(command_line);
+	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "cd") == 0))
+		ft_cd_run(command_line);
+	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "exit") == 0))
+	{
+		close_all();
+		free_split(e);
+		free_t_command(c);
+		ft_exit_cmd(command_line);
+	}
+}
+
+void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
 {
 	char	**command_line;
-	t_pipe	out_p;
-	pid_t	pid;
 	char	**env_path;
-	int		status;
+	pid_t	pid;
 
-	status = 0;
-	pipe(out_p);
-	env_path = ft_split(ft_getenv("PATH"), ':');
-	command_line = make_array(*b);
-	close((*in_p)[1]);
-	if (!is_built_in(command_line[0], command_line))
+	if (ft_getenv("PATH") == NULL)
+		env_path = ft_split("", ':');
+	else
+		env_path = ft_split(ft_getenv("PATH"), ':');
+	command_line = make_array(c->comm);
+	execute_built_ins(c, command_line, &env_path);
+	handle_signals_exec();
+	pid = fork();
+	if (pid == 0)
 	{
-		pid = fork();
-		if (pid == 0)
-		{
-			set_process_io(out_f, in_p, &out_p);
+		set_process_io(c, pipeline, total_blocks);
+		if (!is_built_in(command_line[0], command_line))
 			execute_command(command_line, env_path);
-		}
-		waitpid(pid, &status, 0);
-		pipe((*in_p));
-		close(out_p[1]);
-		if (WIFEXITED(status))
-			status = WEXITSTATUS(status);
+		exit(*current_exit_code());
 	}
-	*current_exit_code() = status;
-	dump_from_file(out_p[0], (*in_p)[1]);
-	clear_args_list(b);
-	ft_free_split(env_path);
-	ft_free_split(command_line);
+	handle_signals();
+	if (c->not_last == 0)
+		*last_pid() = pid;
+	free_t_command(c);
+	free_split(&env_path);
+	free_split(&command_line);
+}
+
+void	print_split(char **tokens)
+{
+	int	i;
+
+	if (tokens == NULL)
+		return ;
+	i = 0;
+	while (tokens[i] != NULL)
+	{
+		printf("%s", tokens[i]);
+		if (tokens[i + 1] != NULL)
+			printf(" ");
+		i++;
+	}
+	printf("\n");
+}
+
+void	close_all(void)
+{
+	int	i;
+
+	i = 0;
+	while (i < 10000)
+	{
+		close(i);
+		i++;
+	}
 }

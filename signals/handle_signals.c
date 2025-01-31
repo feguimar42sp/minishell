@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_signals.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:56:29 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/06 16:07:04 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:28:53 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,16 @@ void	handle_sigquit_signal(void)
 void	handle_sigint_signal(int sig)
 {
 	(void)sig;
-	write(1, "\n", 1);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-	*current_exit_code() = 130;
+	if (!isatty(STDIN_FILENO))
+		return ;
+	if (*child_process() == 0)
+	{
+		write(1, "\n", 1);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+		*current_exit_code() = 130;
+	}
 }
 
 void	handle_signals(void)
@@ -33,6 +38,24 @@ void	handle_signals(void)
 
 	handle_sigquit_signal();
 	action.sa_handler = handle_sigint_signal;
+	sigemptyset(&action.sa_mask);
+	action.sa_flags = SA_SIGINFO;
+	sigaction(SIGINT, &action, NULL);
+}
+
+void	handle_sigint_exec(int sig)
+{
+	(void)sig;
+	write(1, "\n", 1);
+	*running_loop() = 1;
+}
+
+void	handle_signals_exec(void)
+{
+	struct sigaction	action;
+
+	handle_sigquit_signal();
+	action.sa_handler = handle_sigint_exec;
 	sigemptyset(&action.sa_mask);
 	action.sa_flags = SA_SIGINFO;
 	sigaction(SIGINT, &action, NULL);

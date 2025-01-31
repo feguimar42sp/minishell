@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 16:21:32 by feguimar          #+#    #+#             */
-/*   Updated: 2024/11/30 14:58:04 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:19:01 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 int	ft_envlen(char *line, int i)
 {
-	char 	*env_var;
+	char	*env_var;
 	int		var_size;
 	char	*var_name;
 	int		j;
 
 	var_size = 1;
-	while(not_end_env_var(line[i + var_size]))
+	while (not_end_env_var(line[i + var_size]))
 		var_size++;
 	var_name = malloc(sizeof(char) * (var_size));
 	i++;
 	j = 0;
-	while(not_end_env_var(line[i]))
+	while (not_end_env_var(line[i]))
 		var_name[j++] = line[i++];
 	var_name[j] = '\0';
 	env_var = ft_getenv(var_name);

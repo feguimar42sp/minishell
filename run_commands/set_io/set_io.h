@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   set_io.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:09:05 by fernando          #+#    #+#             */
-/*   Updated: 2024/11/29 15:15:00 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:00:42 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
-
 #ifndef SET_IO_H
-#define SET_IO_H
+# define SET_IO_H
+
+# include "../../minishell.h"
 
 void	input_from_file(int *file);
 void	input_from_pipe(t_pipe *pipe);
@@ -22,7 +22,8 @@ int		is_input_from_file(char *s);
 int		is_input_from_heredoc(char *s);
 void	output_to_file(int *file);
 void	output_to_pipe(t_pipe *pipe);
-void	set_last_process_io(int *out_f, t_pipe *in_p);
-void	set_process_io(int *output_file, t_pipe *incomming_pipe, t_pipe *outgoing_pipe);
+void	set_process_io(t_command *command, t_pipe **pipeline, int t);
+void	close_pipes(t_command *command, t_pipe **pipeline, int t);
+void	close_t_pipe(t_pipe pipe);
 
 #endif

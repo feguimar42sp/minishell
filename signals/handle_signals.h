@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_signals.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:39 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/06 16:07:25 by sabrifer         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:53:35 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,9 @@
 void	handle_sigquit_signal(void);
 void	handle_signals(void);
 void	handle_sigint_signal(int sig);
+void	handle_sigint_exec(int sig);
+void	handle_signals_exec(void);
+void	handle_sigint_heredoc(int sig);
+void	handle_signals_heredoc(void);
 
 #endif

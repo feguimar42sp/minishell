@@ -3,42 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:30:07 by feguimar          #+#    #+#             */
-/*   Updated: 2024/11/27 20:20:36 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/01/25 21:33:53 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	heredoc(t_pipe *file, t_args_lst **ptr)
+void	heredoc(t_command *command, t_args_lst **ptr)
 {
 	char		*line;
-	char		*line_add;
-	int			i;
 
 	line = NULL;
 	(*ptr) = (*ptr)->next;
 	while (1)
 	{
-		line = readline(">>");
-		if ((line != NULL) && (ft_strcmp((*ptr)->arg, line) != 0))
+		if (isatty(STDIN_FILENO))
+			write_human_stdout(">>", 0);
+		line = get_next_line(STDIN_FILENO);
+		line[ft_strlen(line) - 1] = '\0';
+		if ((line != NULL) && ((ft_strcmp((*ptr)->arg, line) != 0)))
 		{
-			line_add = malloc(ft_strlen(line) + 1);
-			i = 0;
-			while(line[i] != '\0')
-			{
-				line_add[i] = line[i];
-				i++;
-			}
-			line_add[i++] = '\n';
-			line_add[i] = '\0';
-			write((*file)[1], line_add, ft_strlen(line_add));
+			line[ft_strlen(line) - 1] = '\n';
+			write(command->here[1], line, ft_strlen(line));
 		}
 		else
 			break ;
 		free(line);
 	}
 	free(line);
+	exit(0);
 }

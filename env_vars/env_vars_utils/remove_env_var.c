@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_env_var.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 16:37:08 by feguimar          #+#    #+#             */
-/*   Updated: 2024/12/06 15:56:54 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:44:24 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,16 @@ void	remove_env_var(char *name)
 	var_to_remove = find_var_node(name);
 	if (var_to_remove == NULL)
 	{
-		printf("No such variable found\n");
+		*current_exit_code() = 1;
 		return ;
 	}
+	else
+		*current_exit_code() = 0;
 	prev_var_on_list = find_previous_var_in_list(name);
-	prev_var_on_list->next = var_to_remove->next;
+	if (*env_vars_list(0) == var_to_remove)
+		*env_vars_list(0) = var_to_remove->next;
+	else
+		prev_var_on_list->next = var_to_remove->next;
 	free(var_to_remove->var);
 	free(var_to_remove->value);
 	free(var_to_remove);

@@ -3,40 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   add_env_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 20:34:55 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/06 15:57:26 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:44:08 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	add_env_var(char *var)
+/*
+	LEAK FOUND WITH FREE_SPLIT() IN THIS FILE
+	leak found when commenting of the free_split() calls.
+
+	to see leak: export HELLO=123
+
+
+	DOUBLE FREE WITH FREE_SPLIT() IN THIS FILE
+	to see double free: export HELLO=123
+						export HELLO=456 (overwrite the 123)
+*/
+
+void	add_variable(char **elements, char *var)
 {
-	char		**elements;
 	t_envp_lst	*ptr;
 
-	elements = ft_split(var, '=');
-	if (is_valid_var(elements))
+	ptr = find_var_node(elements[0]);
+	if (var[ft_strlen(var) - 1] == '=')
+		elements[1] = ft_strdup("");
+	if (ptr != NULL)
 	{
-		ptr = find_var_node(elements[0]);
-		if (ptr != NULL)
-		{
-			free(ptr->value);
-			ptr->value = ft_strdup(elements[1]);
-			free(elements);
-			return ;
-		}
-		ptr = *env_vars_list();
-		while (ptr->next != NULL)
-			ptr = ptr->next;
-		ptr->next = malloc(sizeof(t_envp_lst));
-		ptr->next->var = ft_strdup(elements[0]);
-		ptr->next->value = ft_strdup(elements[1]);
-		ptr->next->next = NULL;
+		free(ptr->value);
+		ptr->value = ft_strdup(elements[1]);
+		free(elements[1]);
+		elements[1] = NULL;
+		return ;
 	}
-	free(elements);
+	ptr = *env_vars_list(0);
+	while (ptr->next != NULL)
+		ptr = ptr->next;
+	ptr->next = malloc(sizeof(t_envp_lst));
+	ptr->next->var = ft_strdup(elements[0]);
+	ptr->next->value = ft_strdup(elements[1]);
+	ptr->next->next = NULL;
+	free(elements[1]);
+	elements[1] = NULL;
+}
+
+void	add_env_var(char *var)
+{
+	char	**elements;
+	int		i;
+
+	elements = ft_split(var, '=');
+	i = 0;
+	while (elements[i] != NULL)
+		i++;
+	if (is_valid_var(elements))
+		add_variable(elements, var);
+	else
+	{
+		*current_exit_code() = 1;
+		write_stderr(" not a valid identifier", 1);
+	}
+	free_split(&elements);
 }
 
 int	is_valid_var(char **elements)
@@ -48,7 +78,7 @@ int	is_valid_var(char **elements)
 	i = 0;
 	while (elements[i] != NULL)
 		i++;
-	if (i != 2)
+	if (i > 2)
 		return (0);
 	if (!((elements[0][0] == '_') || ft_isalpha(elements[0][0])))
 		return (0);

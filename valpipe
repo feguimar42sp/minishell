@@ -1,0 +1,61 @@
+==1024303== Memcheck, a memory error detector
+==1024303== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==1024303== Using Valgrind-3.24.0 and LibVEX; rerun with -h for copyright info
+==1024303== Command: ./minishell minishell_tester/pipes
+==1024303== 
+==1024308== Warning: invalid file descriptor -1 in syscall close()
+==1024309== Warning: invalid file descriptor -1 in syscall close()
+==1024310== Warning: invalid file descriptor -1 in syscall close()
+==1024311== Warning: invalid file descriptor -1 in syscall close()
+==1024311== 
+==1024311== HEAP SUMMARY:
+==1024311==     in use at exit: 10,798 bytes in 250 blocks
+==1024311==   total heap usage: 306 allocs, 56 frees, 15,964 bytes allocated
+==1024311== 
+==1024311== LEAK SUMMARY:
+==1024311==    definitely lost: 0 bytes in 0 blocks
+==1024311==    indirectly lost: 0 bytes in 0 blocks
+==1024311==      possibly lost: 0 bytes in 0 blocks
+==1024311==    still reachable: 10,798 bytes in 250 blocks
+==1024311==         suppressed: 0 bytes in 0 blocks
+==1024311== Rerun with --leak-check=full to see details of leaked memory
+==1024311== 
+==1024311== For lists of detected and suppressed errors, rerun with: -s
+==1024311== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==1024312== Warning: invalid file descriptor -1 in syscall close()
+==1024313== Warning: invalid file descriptor -1 in syscall close()
+cat: ./test_files/infile_big: No such file or directory
+==1024314== Warning: invalid file descriptor -1 in syscall close()
+==1024315== Warning: invalid file descriptor -1 in syscall close()
+==1024316== Warning: invalid file descriptor -1 in syscall close()
+==1024317== Warning: invalid file descriptor -1 in syscall close()
+==1024317== 
+==1024317== HEAP SUMMARY:
+==1024317==     in use at exit: 10,965 bytes in 254 blocks
+==1024317==   total heap usage: 480 allocs, 226 frees, 15,188 bytes allocated
+==1024317== 
+==1024317== LEAK SUMMARY:
+==1024317==    definitely lost: 0 bytes in 0 blocks
+==1024317==    indirectly lost: 0 bytes in 0 blocks
+==1024317==      possibly lost: 0 bytes in 0 blocks
+==1024317==    still reachable: 10,965 bytes in 254 blocks
+==1024317==         suppressed: 0 bytes in 0 blocks
+==1024317== Rerun with --leak-check=full to see details of leaked memory
+==1024317== 
+==1024317== For lists of detected and suppressed errors, rerun with: -s
+==1024317== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==1024303== 
+==1024303== HEAP SUMMARY:
+==1024303==     in use at exit: 4,056 bytes in 3 blocks
+==1024303==   total heap usage: 478 allocs, 475 frees, 15,194 bytes allocated
+==1024303== 
+==1024303== LEAK SUMMARY:
+==1024303==    definitely lost: 0 bytes in 0 blocks
+==1024303==    indirectly lost: 0 bytes in 0 blocks
+==1024303==      possibly lost: 0 bytes in 0 blocks
+==1024303==    still reachable: 4,056 bytes in 3 blocks
+==1024303==         suppressed: 0 bytes in 0 blocks
+==1024303== Rerun with --leak-check=full to see details of leaked memory
+==1024303== 
+==1024303== For lists of detected and suppressed errors, rerun with: -s
+==1024303== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

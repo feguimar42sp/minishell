@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:32:58 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/09 14:33:00 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:16:11 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,19 +87,11 @@ int	check_multiple_operators_in_node(t_args_lst **arg_lst)
 	args = *arg_lst;
 	while (args)
 	{
+		if (quotes_are_balanced(args->arg))
+			return (1);
 		if (!check_multiples(args->arg))
 			return (0);
 		args = args->next;
 	}
-	return (1);
-}
-
-int	single_pipe_at_beginning(t_args_lst **args_lst)
-{
-	t_args_lst	*args;
-
-	args = *args_lst;
-	if (args->type == operators && args->arg[0] == '|')
-		return (0);
 	return (1);
 }

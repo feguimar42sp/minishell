@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_previous_var_in_list.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 20:34:55 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/02 13:45:26 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:44:12 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_envp_lst	*find_previous_var_in_list(char *name)
 	t_envp_lst	*ptr;
 	t_envp_lst	*prev;
 
-	prev = *env_vars_list();
+	prev = *env_vars_list(0);
 	ptr = prev->next;
 	while (ptr != NULL)
 	{

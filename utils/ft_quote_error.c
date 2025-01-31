@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:50:35 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/06 17:22:24 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/19 21:55:26 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_quote_error(void)
 {
-	printf("quote_error\n");
+	write_stderr("quote_error", 1);
 }

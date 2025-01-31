@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   search_in_path.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 22:32:47 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/11/12 23:09:25 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/01/29 04:31:17 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,32 +35,28 @@ char	*find_path(char *pathname, char **envp)
 	return (temp);
 }
 
-void	search_in_path(char *pathname, char **argv, char **envp, char **real_envp_arr)
+void	write_stderr_and_exit(char *str, int err_value)
+{
+	write_stderr(str, 1);
+	exit(err_value);
+}
+
+void	search_in_path(char *pathname, char **argv, char **envp,
+		char **real_envp_arr)
 {
 	struct stat	path_data;
 	char		*path;
 
 	path = find_path(pathname, envp);
 	if (path == NULL)
-	{
-		printf("if (path == NULL)\n");
-		exit(127);
-	}
+		write_stderr_and_exit(" command not found", 127);
 	if (access(path, F_OK) != 0)
-	{
-		printf("if (access(temp, F_OK) != 0)\n");
-		exit(127);
-	}
+		write_stderr_and_exit(" No such file or directory", 127);
 	stat(path, &path_data);
 	if (S_ISDIR(path_data.st_mode) != 0)
-	{
-		printf("if (S_ISDIR(path_data.st_mode) != 0)\n");
-		exit(126);
-	}
+		write_stderr_and_exit(" Is a directory", 126);
 	if (access(path, X_OK) != 0)
-	{
-		printf("if (access(temp, X_OK) != 0)\n");
-		exit(126);
-	}
+		write_stderr_and_exit(" Permission denied", 126);
 	execve(path, argv, real_envp_arr);
+	exit(127);
 }

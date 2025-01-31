@@ -12,14 +12,17 @@
 
 #include "handle_syntax.h"
 
+/*
+2.
+command: echo hi |  "|"
+error message: if (path == NULL)
+exit code: 127 - should be 2
+*/
+
 int	handle_syntax(t_args_lst **arg_lst)
 {
-	if (!check_sequential_operators(arg_lst))
-	{
-		*current_exit_code() = 2;
-		return (0);
-	}
-	if (!check_unique_operator(arg_lst))
+	if ((!check_sequential_operators(arg_lst))
+		|| (!check_unique_operator(arg_lst)))
 	{
 		*current_exit_code() = 2;
 		return (0);
@@ -30,6 +33,11 @@ int	handle_syntax(t_args_lst **arg_lst)
 		return (0);
 	}
 	if (!single_pipe_at_beginning(arg_lst))
+	{
+		*current_exit_code() = 2;
+		return (0);
+	}
+	if (!check_input_redirect(arg_lst))
 	{
 		*current_exit_code() = 2;
 		return (0);

@@ -2,76 +2,15 @@
        					TO-DO LIST
 ========================================================================================
 
+[ ] built-ins
+	[ ] mensagem de erro no cd
+	[ ] corrigir segfault do unset PATH
+	[x] mensagem de erro do export
+	[ ] entender o erro do cd
 
-[X] Display a prompt when waiting for a new command.
-	- [X] delete or correct where its written 'HOSTNAME'.
-	- [X] added a colour to the prompt
+[ ] redirect
+	[ ] problema com arquivos grandes nos pipes
+	[ ] verificar permissoes redirect
+	[ ] verificar as linhas "echo hi >./outfiles/outfile01 | echo bye" e "echo hi | echo bye >>./test_files/invalid_permission"
 
-[X] Have a working history
-	- [ ] test.
-
-[X] Parsing
-	- [X] separate command line by spaces and quotes
-	- [X] tokenize strings by strings, operators.
-	- [X] also tokenize when a string has quotes around it
-
-[ ] Syntax
-	- [X] remove outer quotes
-	- [X] remove quotes within string, without removing quotes that are only chars
-
-[X] Program is able to search and find the right executable based on the PATH variable
-	- [ ] test.
-	- [ ] return correct signals
-
-[X] Program is able to search and search the right executable based on an absolute path.
-	- [ ] test.
-	- [ ] return correct signals
-
-[X] Implement redirections
-	- [X] < - redirect input
-	- [X] > - redirect output
-		- [ ] should return error when there's no file to output. examples: 'cat <Makefile >'
-	- [X] >> - redirect output in append mode.
-	- [X] << - HEREDOC
-		- [X] implement variable expansion
-		- [X] implement when it should NOT expand variables (identify delimeter enclosed
-			by single or double quotes)
-		- [X] test single and double quotes
-		- [ ] test signals
-
-[ ] Implement pipes
-	- [ ] the redirection of pipe to another
-
-[X] Handle environment variables
-	- [X] variable expansion
-	- [X] handle expansion of $?
-
-[X] Signals
-	- [X] ctrl-c
-	- [X] ctrl-d
-	- [X] ctrl-\
-
-[ ] Builtins
-	- [X] echo with option -n
-	- [X] cd with only a relative or absolute path
-	- [X] pwd with no options
-	- [X] export with no options
-	- [X] unset with no options
-	- [X] env with no options or arguments
-	- [X] exit with no options
-
-[ ] Exit code
-	- [ ] builtins return correct exit code
-	- [ ] external commands return values different than 0 and 1
-	- [ ] external commands return error messages along with different values mentioned above
-	- [ ] exit + some digits return correct exit code
-
-
-----------------------------------------------------------------------------------------
-
-[ ] Create a generic function to count size of different types of linked lists. 
-	[ ] Replace these ones for the new generic function: ft_lstsize / get_lstsize / get_args_size
-
-----------------------------------------------------------------------------------------
-Notes: Mark tasks with [x].
-
+[x] verificar erros de syntaxe
