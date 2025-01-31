@@ -37,7 +37,7 @@ OBJECTS = $(SOURCES:.c=.o)
 BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
 
 %.o: %.c
-	$(COMPILER) $(FLAGS) -c $< -o $@
+	@$(COMPILER) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJECTS)
 	$(CREATE_LIB) $(NAME) $(OBJECTS)
