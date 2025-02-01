@@ -21,8 +21,14 @@ exit code: 127 - should be 2
 
 int	handle_syntax(t_args_lst **arg_lst)
 {
-	if ((!check_sequential_operators(arg_lst))
-		|| (!check_unique_operator(arg_lst)))
+	if (!check_redirect_and_pipe(arg_lst))
+	{
+		*current_exit_code() = 2;
+		return (0);
+	}
+	//if ((!check_sequential_operators(arg_lst))
+	//	|| (!check_unique_operator(arg_lst)))
+	if (!check_unique_operator(arg_lst))
 	{
 		*current_exit_code() = 2;
 		return (0);

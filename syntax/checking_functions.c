@@ -6,7 +6,7 @@
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:32:58 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/28 14:16:11 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/01 13:21:09 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,28 @@ int	check_sequential_operators(t_args_lst **arg_lst)
 	}
 	return (1);
 }
+
+int	check_redirect_and_pipe(t_args_lst **arg_lst)
+{
+	t_args_lst	*args;
+
+	args = *arg_lst;
+	while (args && args->next)
+	{
+		if (!ft_strcmp(args->arg, "<<") || !ft_strcmp(args->arg, ">>"))
+		{
+			if (!ft_strcmp(args->next->arg, "|"))
+				return (0);
+		}
+		args = args->next;
+	}
+	return (1);
+}
+/*
+sabrifer@minishell: <<| echo wtf
+>>|
+wtf
+sabrifer@minishell: >>| echo wtf */
 
 int	get_args_size(t_args_lst *lst)
 {
