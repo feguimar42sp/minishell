@@ -6,7 +6,7 @@
 /*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 15:20:58 by rleite-s         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:17:10 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		count_blocks(t_args_lst *ptr);
 void	make_pipes(t_pipe **pipeline);
 void	call_list_commands(void);
 void	print_split(char **tokens);
-void	execute_built_ins(
-            t_command *c, char **command_line, char ***e, t_pipe **pipeline);
+void	execute_built_ins(t_command *c, char **command_line, char ***e,
+			t_pipe **pipeline);
 
 #endif

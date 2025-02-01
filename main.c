@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/02/01 16:06:59 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:17:40 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ static int	validate_args_list(void)
 
 static int	parse_line_and_create_struct(char *line)
 {
+	t_args_lst	*temp;
+
 	free_args_list(args_list());
 	*args_list() = ft_lst_split(line);
 	free(line);
@@ -67,7 +69,6 @@ static int	parse_line_and_create_struct(char *line)
 	handle_environment_vars_expansion(args_list());
 	if (!validate_args_list())
 	{
-		t_args_lst	*temp;
 		temp = *args_list();
 		while (temp)
 		{

@@ -19,7 +19,6 @@ char	*remove_quotes(char **str);
 void	check_quotes_and_remove(char **str);
 void	remove_outer_quotes(t_args_lst **args_lst);
 int		handle_syntax(t_args_lst **arg_lst);
-int		check_sequential_operators(t_args_lst **arg_lst);
 int		get_args_size(t_args_lst *lst);
 int		check_unique_operator(t_args_lst **arg_lst);
 int		check_multiples(char *str);

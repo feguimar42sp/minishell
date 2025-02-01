@@ -37,5 +37,4 @@ void	heredoc_expand(t_command *c, t_args_lst **ptr, char *line, char *e_l)
 			break ;
 	}
 	free(line);
-	//exit(0);
 }

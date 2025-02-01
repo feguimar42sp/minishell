@@ -36,5 +36,4 @@ void	heredoc(t_command *command, t_args_lst **ptr, char *line)
 		free(line);
 	}
 	free(line);
-	//exit(0);
 }

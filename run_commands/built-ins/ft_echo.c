@@ -38,5 +38,4 @@ void	ft_echo(char **argv)
 	}
 	if (new_line_flag)
 		write(STDOUT_FILENO, "\n", 1);
-	//exit(0);
 }
