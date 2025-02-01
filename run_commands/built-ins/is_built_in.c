@@ -12,18 +12,6 @@
 
 #include "../../minishell.h"
 
-void	free_commands(t_built_in *cmds)
-{
-	free(cmds[0].name);
-	free(cmds[1].name);
-	free(cmds[2].name);
-	free(cmds[3].name);
-	free(cmds[4].name);
-	free(cmds[5].name);
-	free(cmds[6].name);
-	free(cmds);
-}
-
 int	is_built_in(char *pathname, char **argv, t_command *c, char **envp)
 {
 	t_built_in	*cmds;
