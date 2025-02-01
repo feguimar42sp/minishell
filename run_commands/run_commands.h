@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_commands.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 16:17:10 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/01 18:19:40 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ void	call_list_commands(void);
 void	print_split(char **tokens);
 void	execute_built_ins(t_command *c, char **command_line, char ***e,
 			t_pipe **pipeline);
+void	free_process_io(t_command *c, char ***command_line, char ***env_path);
 
 #endif

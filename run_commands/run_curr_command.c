@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 17:43:33 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 18:26:53 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
 	if (pid == 0)
 	{
 		rl_clear_history();
-		set_process_io(c, pipeline, total_blocks);
+		if (!set_process_io(c, pipeline, total_blocks))
+			free_process_io(c, &command_line, &env_path);
 		if (!is_built_in(command_line[0], command_line, c, env_path))
 			execute_command(command_line, env_path);
 		exit(*current_exit_code());
@@ -103,4 +104,16 @@ void	close_all(void)
 			close(i);
 		i++;
 	}
+}
+
+void	free_process_io(t_command *c, char ***command_line, char ***env_path)
+{
+	free_split(command_line);
+	free_split(env_path);
+	free_t_command(c);
+	free_env_lst(env_vars_list(0));
+	env_vars_list(1);
+	close_all();
+	free_args_list(args_list());
+	exit(127);
 }

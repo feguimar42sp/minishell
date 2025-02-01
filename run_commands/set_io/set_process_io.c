@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_process_io.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:56:36 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 15:18:31 by rleite-s         ###   ########.fr       */
+/*   Updated: 2025/02/01 18:23:31 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@ void	close_pipes(t_command *command, t_pipe **pipeline, int t)
 	}
 }
 
-void	set_process_io(t_command *command, t_pipe **pipeline, int t)
+int	set_process_io(t_command *command, t_pipe **pipeline, int t)
 {
 	if ((command->input == -1) || (command->output == -1))
-		exit(1);
+	{
+		close_pipes(command, pipeline, t);
+		free(*pipeline);
+		return (0);
+	}
 	if (command->output != STDOUT_FILENO)
 	{
 		dup2(command->output, STDOUT_FILENO);
@@ -46,6 +50,7 @@ void	set_process_io(t_command *command, t_pipe **pipeline, int t)
 		dup2((*pipeline)[command->run - 1][0], STDIN_FILENO);
 	close_pipes(command, pipeline, t);
 	free(*pipeline);
+	return (1);
 }
 
 void	close_t_pipe(t_pipe pipe)

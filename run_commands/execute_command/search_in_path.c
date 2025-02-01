@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   search_in_path.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 22:32:47 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/29 04:31:17 by fernando         ###   ########.fr       */
+/*   Updated: 2025/02/01 18:01:05 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	search_in_path(char *pathname, char **argv, char **envp,
 	path = find_path(pathname, envp);
 	if (path == NULL)
 		write_stderr_and_exit(" command not found", 127);
-	if (access(path, F_OK) != 0)
-		write_stderr_and_exit(" No such file or directory", 127);
+	// if (access(path, F_OK) != 0)
+	// 	write_stderr_and_exit(" No such file or directory", 127);
 	stat(path, &path_data);
 	if (S_ISDIR(path_data.st_mode) != 0)
 		write_stderr_and_exit(" Is a directory", 126);
