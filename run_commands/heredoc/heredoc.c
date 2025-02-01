@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:30:07 by feguimar          #+#    #+#             */
-/*   Updated: 2025/02/01 12:29:48 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:36:07 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	heredoc(t_command *command, t_args_lst **ptr, char *line)
 		line = get_next_line(STDIN_FILENO);
 		if (line == NULL)
 		{
-			write_stderr("Warning: here-document ended by EOF",1);
+			write_stderr("Warning: here-document ended by EOF", 1);
 			break ;
 		}
 		line[ft_strlen(line) - 1] = '\0';

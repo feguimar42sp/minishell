@@ -22,7 +22,7 @@ void	heredoc_expand(t_command *c, t_args_lst **ptr, char *line, char *e_l)
 		line = get_next_line(STDIN_FILENO);
 		if (line == NULL)
 		{
-			write_stderr("Warning: here-document ended by EOF",1);
+			write_stderr("Warning: here-document ended by EOF", 1);
 			break ;
 		}
 		line[ft_strlen(line) - 1] = '\0';
