@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 17:01:45 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 17:29:48 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	execute_built_ins(t_command *c, char **command_line, char ***e,
 	{
 		if (count_blocks(*args_list()) != 1)
 			return ;
-		close_all();
 		free(*pipeline);
 		free_split(e);
 		free_t_command(c);

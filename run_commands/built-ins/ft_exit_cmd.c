@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 16:58:50 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 17:30:07 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,16 @@ void	ft_exit_cmd(char **argv)
 	free_t_command(*command_lst());
 	rl_clear_history();
 	if ((argv == NULL) || (argv[1] == NULL))
-	{
-		free_split(&argv);
-		exit(*current_exit_code());
-	}
-	if (argv[0] && argv[1] && argv[2] == NULL)
+		*current_exit_code() = 0;
+	else if (argv[0] && argv[1] && argv[2] == NULL)
 		*current_exit_code() = convert_exit_value(argv[1]);
 	else
 	{
 		write_stderr(" too many arguments", 1);
-		free_split(&argv);
-		exit(1);
+		*current_exit_code() = 1;
 	}
 	free_split(&argv);
+	close_all();
 	exit(*current_exit_code());
 }
 
