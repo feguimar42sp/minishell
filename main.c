@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/02/01 11:50:30 by rleite-s         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:06:59 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ int	main(int ac, char **av, char **envp)
 		line = init_program();
 		if (!line)
 			break ;
-		add_history(line);
+		if (line[0] != '\0')
+			add_history(line);
 		if (!parse_line_and_create_struct(line))
 			continue ;
 		run_commands(*args_list(), NULL);
