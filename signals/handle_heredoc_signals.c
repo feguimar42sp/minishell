@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:29:23 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/02/01 19:38:47 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 20:03:01 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	free_heredoc(void)
 	free_env_lst(env_vars_list(0));
 	free_cmd_lst(*command_lst());
 	free_t_command(*curr_cmd());
+	close_all();
 }

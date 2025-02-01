@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:48:51 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/19 21:27:40 by fernando         ###   ########.fr       */
+/*   Updated: 2025/02/01 19:56:40 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # include "run_commands/heredoc/heredoc.h"
 # include "env_vars/env_vars_utils/env_vars_utils.h"
 # include "env_vars/env_vars_utils/lst_env_vars_ordered/lst_env_vars_ordered.h"
-# include "gnl/get_next_line_bonus.h"
+# include "gnl/get_next_line/get_next_line.h"
 # include "stdin_func/stdin_func.h"
 
 void	print_args_lst(t_args_lst	*ptr);

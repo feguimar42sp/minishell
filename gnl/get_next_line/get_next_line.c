@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 21:38:46 by sabrifer          #+#    #+#             */
-/*   Updated: 2023/12/07 21:32:23 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/01 20:07:56 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	store_remainder(char **string_of_read)
 
 	if (!*string_of_read)
 		return ;
-	pos = ft_strchr(*string_of_read, '\n');
+	pos = ft_strchr_gnl(*string_of_read, '\n');
 	if (pos)
 	{
 		pos_nl = pos - *string_of_read;
-		temp = ft_strdup(*string_of_read + pos_nl + 1);
+		temp = ft_strdup_gnl(*string_of_read + pos_nl + 1);
 		free(*string_of_read);
 		*string_of_read = temp;
 	}
@@ -40,7 +40,7 @@ void	store_line_with_newline(char *string_of_read, char **line)
 
 	if (!string_of_read)
 		return ;
-	pos = ft_strchr(string_of_read, '\n');
+	pos = ft_strchr_gnl(string_of_read, '\n');
 	if (pos)
 	{
 		pos_nl = pos - string_of_read;
@@ -68,13 +68,13 @@ void	read_buffer_and_store(int fd, char **string_of_read)
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (buffer == NULL)
 		return ;
-	while (ft_strchr(*string_of_read, '\n') == NULL)
+	while (ft_strchr_gnl(*string_of_read, '\n') == NULL)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read <= 0)
 			break ;
 		buffer[bytes_read] = '\0';
-		joined_str = ft_strjoin(*string_of_read, buffer);
+		joined_str = ft_strjoin_gnl(*string_of_read, buffer);
 		free(*string_of_read);
 		*string_of_read = joined_str;
 	}
@@ -89,7 +89,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (string_of_read == NULL)
-		string_of_read = ft_strdup("");
+		string_of_read = ft_strdup_gnl("");
 	read_buffer_and_store(fd, &string_of_read);
 	if (string_of_read[0] == '\0')
 	{
@@ -103,7 +103,7 @@ char	*get_next_line(int fd)
 		store_remainder(&string_of_read);
 	if (string_of_read && !line)
 	{
-		line = ft_strdup(string_of_read);
+		line = ft_strdup_gnl(string_of_read);
 		free(string_of_read);
 		string_of_read = NULL;
 	}

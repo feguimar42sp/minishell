@@ -6,7 +6,7 @@
 #    By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:29:33 by feguimar          #+#    #+#              #
-#    Updated: 2025/02/01 16:49:00 by feguimar         ###   ########.fr        #
+#    Updated: 2025/02/01 19:55:38 by feguimar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ LST_ENV_VARS_ORDERED_FOLDER := env_vars/env_vars_utils/lst_env_vars_ordered/add_
 	
 STDIN_FUNC_FOLDER := stdin_func/script_files.c stdin_func/stdin_gnl.c stdin_func/not_tty_gnl.c
 
-GNL_FOLDER := gnl/get_next_line_bonus.c gnl/get_next_line_utils_bonus.c
+GNL_FOLDER := gnl/get_next_line/get_next_line_utils.c gnl/get_next_line/get_next_line.c
 
 SRCS := main.c $(ENV_VARS_FOLDER) $(PROMPT_FOLDER) $(STATICS_FOLDER) \
 	$(UTILS_FOLDER) $(PARSING_FOLDER) $(RUN_COMMANDS_FOLDER) $(BUILT_INS_FOLDER) \

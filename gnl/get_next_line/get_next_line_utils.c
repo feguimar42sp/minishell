@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 21:39:52 by sabrifer          #+#    #+#             */
-/*   Updated: 2023/12/05 20:52:22 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/01 19:59:16 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen_gnl(const char *str)
 {
 	size_t	i;
 
@@ -22,13 +22,13 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strdup(const char *src)
+char	*ft_strdup_gnl(const char *src)
 {
 	char	*buffer;
 	int		size;
 	int		i;
 
-	size = ft_strlen(src);
+	size = ft_strlen_gnl(src);
 	buffer = (char *)malloc((size + 1) * sizeof(char));
 	if (buffer == NULL)
 		return (NULL);
@@ -42,7 +42,7 @@ char	*ft_strdup(const char *src)
 	return (buffer);
 }
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_strchr_gnl(const char *str, int c)
 {
 	unsigned char	uc;
 	int				i;
@@ -50,7 +50,7 @@ char	*ft_strchr(const char *str, int c)
 	i = 0;
 	uc = (unsigned char)c;
 	if (uc == 0)
-		return ((char *)str + ft_strlen(str));
+		return ((char *)str + ft_strlen_gnl(str));
 	while (str[i])
 	{
 		if (str[i] == uc)
@@ -60,14 +60,14 @@ char	*ft_strchr(const char *str, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_gnl(char const *s1, char const *s2)
 {
 	char	*new;
 	int		max_length;
 	int		i;
 	int		j;
 
-	max_length = ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1;
+	max_length = ft_strlen_gnl((char *)s1) + ft_strlen_gnl((char *)s2) + 1;
 	i = 0;
 	j = 0;
 	new = (char *)malloc(max_length * sizeof(char));
