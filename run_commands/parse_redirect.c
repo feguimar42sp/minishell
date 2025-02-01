@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 20:14:22 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 11:46:47 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:31:38 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	call_heredoc(t_command *command, t_args_lst **ptr)
 	{
 		handle_signals_heredoc();
 		if (((*ptr)->next->is_quoted) == false)
-			heredoc(command, ptr);
+			heredoc(command, ptr, NULL);
 		else
-			heredoc_expand(command, ptr);
+			heredoc_expand(command, ptr, NULL, NULL);
 	}
 	waitpid(pid, NULL, 0);
 	kill(pid, SIGKILL);

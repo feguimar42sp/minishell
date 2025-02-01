@@ -6,17 +6,14 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:30:07 by feguimar          #+#    #+#             */
-/*   Updated: 2025/02/01 12:26:59 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:29:48 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	heredoc(t_command *command, t_args_lst **ptr)
+void	heredoc(t_command *command, t_args_lst **ptr, char *line)
 {
-	char		*line;
-
-	line = NULL;
 	(*ptr) = (*ptr)->next;
 	while (1)
 	{

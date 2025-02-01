@@ -6,18 +6,14 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:30:07 by feguimar          #+#    #+#             */
-/*   Updated: 2025/02/01 12:02:44 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:34:34 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	heredoc_expand(t_command *command, t_args_lst **ptr)
+void	heredoc_expand(t_command *c, t_args_lst **ptr, char *line, char *e_l)
 {
-	char		*line;
-	char		*expan_line;
-
-	line = NULL;
 	(*ptr) = (*ptr)->next;
 	while (1)
 	{
@@ -32,10 +28,10 @@ void	heredoc_expand(t_command *command, t_args_lst **ptr)
 		line[ft_strlen(line) - 1] = '\0';
 		if ((line != NULL) && (ft_strcmp((*ptr)->arg, line) != 0))
 		{
-			expan_line = expand_env_vars_heredoc(line);
+			e_l = expand_env_vars_heredoc(line);
 			free(line);
-			write(command->here[1], expan_line, ft_strlen(expan_line));
-			free(expan_line);
+			write(c->here[1], e_l, ft_strlen(e_l));
+			free(e_l);
 		}
 		else
 			break ;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:14:21 by feguimar          #+#    #+#             */
-/*   Updated: 2025/01/31 15:00:30 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:31:23 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "../../minishell.h"
 
-void	heredoc(t_command *command, t_args_lst **ptr);
-void	heredoc_expand(t_command *command, t_args_lst **ptr);
+void	heredoc(t_command *command, t_args_lst **ptr, char *line);
+void	heredoc_expand(t_command *command, t_args_lst **ptr, char *line, char *expan_line);
 char	*expand_env_vars_heredoc(char *line);
 int		strlen_expanded(char *line);
 int		ft_envlen(char *line, int i);
