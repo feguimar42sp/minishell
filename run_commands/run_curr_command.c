@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/31 14:01:15 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/01 13:10:25 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,17 @@ void	print_split(char **tokens)
 void	close_all(void)
 {
 	int	i;
+	int	r;
 
 	i = 0;
 	while (i < 10000)
 	{
-		close(i);
+		r = read(i, NULL, 0);
+		if (r == 0)
+			close(i);
+		r = write(i, NULL, 0);
+		if (r == 0)
+			close(i);
 		i++;
 	}
 }
