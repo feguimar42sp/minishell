@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 16:47:50 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 17:01:45 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
 		env_path = ft_split(ft_getenv("PATH"), ':');
 	command_line = make_array(c->comm);
 	execute_built_ins(c, command_line, &env_path, pipeline);
-	handle_signals_exec();
 	pid = fork();
 	if (pid == 0)
 	{
@@ -55,7 +54,6 @@ void	run_curr_command(t_command *c, t_pipe **pipeline, int total_blocks)
 			execute_command(command_line, env_path);
 		exit(*current_exit_code());
 	}
-	handle_signals();
 	if (c->not_last == 0)
 		*last_pid() = pid;
 	free_t_command(c);

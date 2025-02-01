@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:14:21 by feguimar          #+#    #+#             */
-/*   Updated: 2025/02/01 12:36:30 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:55:49 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	expand_vars_to_string(char *dst, char *src);
 char	*get_var_value_heredoc(char *line, int i);
 int		not_end_env_var(char c);
 char	*heredoc_gnl(int fd);
-void	call_heredoc(t_command *command, t_args_lst **ptr);
+void	call_heredoc(t_command *command, t_args_lst **ptr, pid_t	pid);
 int		expand_var_value(char *dst, int i, char *src, int *j);
 
 #endif

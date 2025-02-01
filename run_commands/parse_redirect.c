@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redirect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 20:14:22 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 16:16:00 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:56:51 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ void	parse_redirect(t_command *command, t_args_lst **ptr)
 	if (is_input_from_file((*ptr)->arg))
 		redirect_input(command, ptr);
 	if (is_input_from_heredoc((*ptr)->arg))
-		call_heredoc(command, ptr);
+		call_heredoc(command, ptr, 0);
 }
 
-void	call_heredoc(t_command *command, t_args_lst **ptr)
+void	call_heredoc(t_command *command, t_args_lst **ptr, pid_t pid)
 {
-	pid_t	pid;
-
 	close_t_pipe(command->here);
 	pipe(command->here);
 	command->input = command->here[0];
@@ -49,7 +47,6 @@ void	call_heredoc(t_command *command, t_args_lst **ptr)
 		exit(0);
 	}
 	waitpid(pid, NULL, 0);
-	kill(pid, SIGKILL);
 	if (*running_loop() == 1)
 		return ;
 	(*ptr) = (*ptr)->next;
