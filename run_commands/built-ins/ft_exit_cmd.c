@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 17:30:07 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 17:38:53 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	convert_exit_value(char *c_value)
 	int	current_value;
 
 	current_value = ft_atoi(c_value);
-	if (current_value == 0)
+	if ((current_value == 0) && (ft_strcmp("0", c_value) != 0))
 	{
 		write_stderr(" numeric argument required", 1);
 		return (2);

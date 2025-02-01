@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 17:29:48 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 17:43:33 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,17 @@ void	execute_built_ins(t_command *c, char **command_line, char ***e,
 	if (((c->comm) != NULL) && (ft_strcmp((c->comm)->arg, "exit") == 0))
 	{
 		if (count_blocks(*args_list()) != 1)
+		{
+			if ((command_line[1] != NULL) && (command_line[2] != NULL))
+			{
+				write_stderr(" too many arguments",1);
+				*current_exit_code() = 1;
+			}
+			else if ((command_line[1] != NULL) && (command_line[2] == NULL))
+				*current_exit_code() = convert_exit_value(command_line[1]);
+			else *current_exit_code() = 0;
 			return ;
+		}
 		free(*pipeline);
 		free_split(e);
 		free_t_command(c);
