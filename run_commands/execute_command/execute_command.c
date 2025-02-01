@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 16:10:28 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/30 14:45:14 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:55:48 by rleite-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	execute_command(char **command_line, char **env_path)
 	char	**envp_array;
 	char	*temp;
 
+	if (!command_line || !*command_line)
+		return ;
 	envp_array = envp_lst_to_array(env_vars_list(0));
 	if (command_line[0][0] == '/')
 	{

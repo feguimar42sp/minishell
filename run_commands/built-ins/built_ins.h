@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/31 14:32:03 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/01 15:11:07 by rleite-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		ft_cd(char **argv);
 void		ft_exit_cmd(char **argv);
 void		ft_export(char **argv);
 void		ft_pwd(char **argv);
-int			is_built_in(char *pathname, char **argv);
+int			is_built_in(char *pathname, char **argv, t_command *c, char **envp);
 void		ft_echo(char **argv);
 void		ft_env(char **argv);
 void		ft_unset(char **argv);

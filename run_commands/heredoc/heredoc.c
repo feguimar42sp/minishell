@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:30:07 by feguimar          #+#    #+#             */
-/*   Updated: 2025/02/01 12:36:07 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:15:54 by rleite-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void	heredoc(t_command *command, t_args_lst **ptr, char *line)
 		free(line);
 	}
 	free(line);
-	exit(0);
+	//exit(0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/30 19:55:56 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/01 11:50:30 by rleite-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,24 @@ static int	parse_line_and_create_struct(char *line)
 {
 	free_args_list(args_list());
 	*args_list() = ft_lst_split(line);
+	free(line);
 	if (*args_list() == NULL)
 		return (0);
-	free(line);
 	ft_lexer(args_list());
 	handle_environment_vars_expansion(args_list());
 	if (!validate_args_list())
+	{
+		t_args_lst	*temp;
+		temp = *args_list();
+		while (temp)
+		{
+			*args_list() = temp->next;
+			free(temp->arg);
+			free(temp);
+			temp = *args_list();
+		}
 		return (0);
+	}
 	remove_outer_quotes(args_list());
 	return (1);
 }

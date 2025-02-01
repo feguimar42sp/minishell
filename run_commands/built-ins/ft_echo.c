@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:31:02 by feguimar          #+#    #+#             */
-/*   Updated: 2025/01/28 16:52:52 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/01 15:41:20 by rleite-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	ft_echo(char **argv)
 	}
 	while (argv[i] != NULL)
 	{
+		if (write(STDOUT_FILENO, NULL, 0) == -1)
+			return ;
 		write(STDOUT_FILENO, argv[i], ft_strlen(argv[i]));
 		if (argv[i + 1])
 			write(STDOUT_FILENO, " ", 1);
@@ -36,5 +38,5 @@ void	ft_echo(char **argv)
 	}
 	if (new_line_flag)
 		write(STDOUT_FILENO, "\n", 1);
-	exit(0);
+	//exit(0);
 }

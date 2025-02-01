@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_process_io.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:56:36 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/31 14:00:35 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/01 15:18:31 by rleite-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	set_process_io(t_command *command, t_pipe **pipeline, int t)
 	else if (command->run != 0)
 		dup2((*pipeline)[command->run - 1][0], STDIN_FILENO);
 	close_pipes(command, pipeline, t);
+	free(*pipeline);
 }
 
 void	close_t_pipe(t_pipe pipe)

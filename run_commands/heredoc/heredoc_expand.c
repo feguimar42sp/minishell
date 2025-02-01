@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_expand.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:30:07 by feguimar          #+#    #+#             */
-/*   Updated: 2025/02/01 12:34:34 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:15:55 by rleite-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ void	heredoc_expand(t_command *c, t_args_lst **ptr, char *line, char *e_l)
 			break ;
 	}
 	free(line);
-	exit(0);
+	//exit(0);
 }

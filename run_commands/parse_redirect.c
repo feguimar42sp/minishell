@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redirect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 20:14:22 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 12:31:38 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:35:00 by rleite-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,18 @@ void	call_heredoc(t_command *command, t_args_lst **ptr)
 	handle_signals_exec();
 	if (pid == 0)
 	{
+		rl_clear_history();
 		handle_signals_heredoc();
 		if (((*ptr)->next->is_quoted) == false)
 			heredoc(command, ptr, NULL);
 		else
 			heredoc_expand(command, ptr, NULL, NULL);
+		close(command->here[0]);
+		close(command->here[1]);
+		free(command);
+		free_args_list(args_list());
+		free_env_lst(env_vars_list(0));
+		exit(0);
 	}
 	waitpid(pid, NULL, 0);
 	kill(pid, SIGKILL);
