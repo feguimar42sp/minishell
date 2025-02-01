@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:30:07 by feguimar          #+#    #+#             */
-/*   Updated: 2025/01/25 21:33:53 by fernando         ###   ########.fr       */
+/*   Updated: 2025/02/01 11:27:49 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	heredoc(t_command *command, t_args_lst **ptr)
 			write(command->here[1], line, ft_strlen(line));
 		}
 		else
+		{
+
 			break ;
+		}
 		free(line);
 	}
 	free(line);

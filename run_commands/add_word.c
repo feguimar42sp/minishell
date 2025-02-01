@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:44:17 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/30 16:18:15 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 11:17:34 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,4 @@ void	add_word(t_args_lst **block, t_args_lst **ptr)
 			temp = temp->next;
 		temp->next = new;
 	}
-	if (*ptr)
-		(*ptr) = (*ptr)->next;
 }
