@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 15:11:07 by rleite-s         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:52:08 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ void		ft_unset_run(char **argv);
 void		ft_cd_run(char **argv);
 void		update_env_vars(void);
 int			convert_exit_value(char *c_value);
+void		ft_exit_dmm(char **argv);
 
 #endif
