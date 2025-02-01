@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 20:14:22 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 18:07:41 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 19:43:01 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 void	parse_redirect(t_command *command, t_args_lst **ptr)
 {
 	if (is_input_from_heredoc((*ptr)->arg))
+	{
+		*curr_cmd() = command;
 		call_heredoc(command, ptr, 0);
+	}
 	if ((command->input == -1) || (command->output == -1))
 		return ;
 	if (is_output_to_file((*ptr)->arg))

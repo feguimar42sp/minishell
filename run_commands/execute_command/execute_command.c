@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 16:10:28 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 18:04:55 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 19:18:19 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	execute_command(char **command_line, char **env_path)
 	char	**envp_array;
 	char	*temp;
 
-	printf("exectute command\n");
 	if (!command_line || !*command_line)
 		return ;
 	envp_array = envp_lst_to_array(env_vars_list(0));
