@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:12:46 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/31 14:01:33 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/01 11:18:26 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	run_commands(t_args_lst *ptr, t_command *command)
 		}
 		else if (ptr->type == string)
 			add_word(&(command->comm), &ptr);
+		if (ptr)
+			(ptr) = (ptr)->next;
 	}
 	command->not_last = 0;
 	push_command(command);
