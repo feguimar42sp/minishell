@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 21:29:44 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 18:00:58 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/01 18:29:36 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	run_from_root(char *pathname, char **argv, char **env_path,
 	(void)env_path;
 	if (pathname == NULL)
 		write_stderr_and_exit(" command not found", 127);
-	// if (access(pathname, F_OK) != 0)
-	// 	write_stderr_and_exit(" No such file or directory", 127);
+	if (access(pathname, F_OK) != 0)
+		write_stderr_and_exit(" No such file or directory", 127);
 	stat(pathname, &path_data);
 	if (S_ISDIR(path_data.st_mode) != 0)
 		write_stderr_and_exit(" Is a directory", 126);
