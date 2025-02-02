@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:12:46 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/02 18:47:37 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/02 19:42:42 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	run_commands(t_args_lst *ptr)
 		if (ptr)
 			(ptr) = (ptr)->next;
 	}
+	if ((*curr_cmd()) == NULL)
+		return ;
 	(*curr_cmd())->not_last = 0;
 	push_command(*curr_cmd());
 	call_list_commands();

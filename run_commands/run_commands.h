@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/02 18:46:36 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/02 19:09:19 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ void	call_list_commands(void);
 void	print_split(char **tokens);
 void	execute_built_ins(char **command_line, char ***e, t_pipe **pipeline);
 void	call_heredoc(t_args_lst **ptr, pid_t pid);
+void	free_all(void);
 
 #endif

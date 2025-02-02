@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 20:14:22 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/02 18:58:27 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/02 20:02:02 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,50 @@ void	parse_redirect(t_args_lst **ptr)
 
 void	call_heredoc(t_args_lst **ptr, pid_t pid)
 {
+	int	status;
+
 	close_t_pipe((*curr_cmd())->here);
 	pipe((*curr_cmd())->here);
 	(*curr_cmd())->input = (*curr_cmd())->here[0];
+	handle_signals_heredoc();
 	pid = fork();
-	handle_signals_exec();
 	if (pid == 0)
 	{
+		*child_process() = 1;
 		rl_clear_history();
-		handle_signals_heredoc();
 		if (((*ptr)->next->is_quoted) == false)
 			heredoc( ptr, NULL);
 		else
 			heredoc_expand( ptr, NULL, NULL);
 		close((*curr_cmd())->here[0]);
 		close((*curr_cmd())->here[1]);
-		close_all();
-		free_t_command((curr_cmd()));
-		free_cmd_lst(command_lst());
-		free_args_list(args_list());
-		free_env_lst(env_vars_list(0));
+		free_all();
 		exit(0);
 	}
-	waitpid(pid, NULL, 0);
+	while (waitpid(pid, &status, 0) == -1 && errno == EINTR)
+		;
+	if (WIFEXITED(status))
+		status = WEXITSTATUS(status);
 	if (*running_loop() == 1)
 		return ;
 	(*ptr) = (*ptr)->next;
+	if (status == 130)
+	{
+		(*ptr) = NULL;
+		free_args_list(args_list());
+		free_t_command(curr_cmd());
+		*curr_cmd() = NULL;
+		free_cmd_lst(command_lst());
+		write_human_stdout("", 1);
+	}
 	handle_signals();
+}
+
+void	free_all(void)
+{
+	close_all();
+	free_t_command((curr_cmd()));
+	free_cmd_lst(command_lst());
+	free_args_list(args_list());
+	free_env_lst(env_vars_list(0));
 }
