@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:09:05 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/31 13:59:59 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/02 17:50:26 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ t_command	**command_lst(void);
 pid_t		*last_pid(void);
 void		free_statics(void);
 int			*child_process(void);
+t_command	**curr_cmd(void);
 
 #endif

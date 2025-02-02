@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 16:52:08 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/02 18:06:22 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		ft_cd(char **argv);
 void		ft_exit_cmd(char **argv);
 void		ft_export(char **argv);
 void		ft_pwd(char **argv);
-int			is_built_in(char *pathname, char **argv, t_command *c, char **envp);
+int			is_built_in(char *pathname, char **argv, char **envp);
 void		ft_echo(char **argv);
 void		ft_env(char **argv);
 void		ft_unset(char **argv);

@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:37:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 17:38:53 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/02 18:26:47 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_exit_cmd(char **argv)
 	write_human_stdout("exit", 1);
 	free_env_lst(env_vars_list(0));
 	free_args_list(args_list());
-	free_t_command(*command_lst());
+	free_t_command(command_lst());
 	rl_clear_history();
 	if ((argv == NULL) || (argv[1] == NULL))
 		*current_exit_code() = 0;

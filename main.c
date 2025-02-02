@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/02/01 16:17:40 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/02 17:43:03 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	*init_program(void)
 	*running_loop() = 0;
 	*child_process() = 0;
 	prompt = get_prompt();
-	line = stdin_gnl(prompt);
+	line = readline(prompt);
 	free(prompt);
 	return (line);
 }
@@ -87,8 +87,8 @@ int	main(int ac, char **av, char **envp)
 {
 	char	*line;
 
-	if (ac > 1)
-		script_files(av);
+	(void)ac;
+	(void)av;
 	line = NULL;
 	init_envinroment_vars(envp);
 	while (1)

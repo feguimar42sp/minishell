@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:01:47 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 16:59:19 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/02 18:08:58 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void		ft_free_split(char **arr);
 void		push_command(t_command *new_command);
 t_command	*pop_command(void);
 t_command	*new_command(int run);
-void		free_t_command(t_command *cmd);
-void		free_cmd_lst(t_command *head);
+void		free_t_command(t_command **cmd);
+void		free_cmd_lst(t_command **head);
 
 // function to free builtins
 void		free_commands(t_built_in *cmds);

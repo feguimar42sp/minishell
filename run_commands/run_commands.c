@@ -6,38 +6,38 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:12:46 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/01 11:18:26 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/02 18:47:37 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	run_commands(t_args_lst *ptr, t_command *command)
+void	run_commands(t_args_lst *ptr)
 {
 	int	run;
 
 	run = 0;
-	command = new_command(run);
+	*curr_cmd() = new_command(run);
 	while (ptr)
 	{
 		if (ptr->type == operators)
 		{
 			if (ft_strcmp(ptr->arg, "|") == 0)
 			{
-				push_command(command);
+				push_command(*curr_cmd());
 				run++;
-				command = new_command(run);
+				*curr_cmd() = new_command(run);
 			}
 			else
-				parse_redirect(command, &ptr);
+				parse_redirect(&ptr);
 		}
 		else if (ptr->type == string)
-			add_word(&(command->comm), &ptr);
+			add_word(&((*curr_cmd())->comm), &ptr);
 		if (ptr)
 			(ptr) = (ptr)->next;
 	}
-	command->not_last = 0;
-	push_command(command);
+	(*curr_cmd())->not_last = 0;
+	push_command(*curr_cmd());
 	call_list_commands();
 }
 
@@ -81,7 +81,6 @@ void	make_pipes(t_pipe **pipeline)
 void	call_list_commands(void)
 {
 	static t_pipe	*pipeline;
-	t_command		*command;
 	int				total_blocks;
 	int				i;
 
@@ -89,8 +88,8 @@ void	call_list_commands(void)
 	total_blocks = count_blocks(*args_list());
 	while (*command_lst() != NULL)
 	{
-		command = pop_command();
-		run_curr_command(command, &pipeline, total_blocks);
+		pop_command();
+		run_curr_command(&pipeline, total_blocks);
 	}
 	i = 0;
 	while ((i < (total_blocks - 1)))
