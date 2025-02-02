@@ -38,6 +38,8 @@ char	*find_path(char *pathname, char **envp)
 void	write_stderr_and_exit(char *str, int err_value)
 {
 	write_stderr(str, 1);
+	free_args_list(args_list());
+	free_env_lst(env_vars_list(0));
 	exit(err_value);
 }
 
