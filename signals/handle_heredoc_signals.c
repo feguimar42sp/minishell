@@ -16,6 +16,7 @@ void	handle_sigint_heredoc(int sig)
 {
 	(void)sig;
 	free_heredoc();
+	get_next_line(-1);
 	exit(130);
 }
 

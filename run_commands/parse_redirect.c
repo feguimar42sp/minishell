@@ -47,6 +47,7 @@ void	call_heredoc(t_command *command, t_args_lst **ptr, pid_t pid)
 		free(command);
 		free_args_list(args_list());
 		free_env_lst(env_vars_list(0));
+		get_next_line(-1);
 		exit(0);
 	}
 	waitpid(pid, NULL, 0);
@@ -54,4 +55,5 @@ void	call_heredoc(t_command *command, t_args_lst **ptr, pid_t pid)
 		return ;
 	(*ptr) = (*ptr)->next;
 	handle_signals();
+	get_next_line(-1);
 }

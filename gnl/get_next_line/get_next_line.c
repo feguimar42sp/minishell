@@ -87,7 +87,14 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
+	{
+		if (string_of_read)
+		{
+			free(string_of_read);
+			string_of_read = NULL;
+		}
 		return (NULL);
+	}
 	if (string_of_read == NULL)
 		string_of_read = ft_strdup_gnl("");
 	read_buffer_and_store(fd, &string_of_read);

@@ -104,6 +104,7 @@ int	main(int ac, char **av, char **envp)
 		free_args_list(args_list());
 	}
 	close_all();
+	get_next_line(-1);
 	free_env_lst(env_vars_list(0));
 	rl_clear_history();
 }
