@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:30:07 by feguimar          #+#    #+#             */
-/*   Updated: 2025/02/01 19:50:11 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/02 17:33:08 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,12 @@ void	heredoc_expand(t_command *c, t_args_lst **ptr, char *line, char *e_l)
 	(*ptr) = (*ptr)->next;
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
-			write_human_stdout(">>", 0);
-		line = get_next_line(STDIN_FILENO);
+		line = readline(">>");
 		if (line == NULL)
 		{
 			write_stderr("Warning: here-document ended by EOF", 1);
 			break ;
 		}
-		line[ft_strlen(line) - 1] = '\0';
 		if ((line != NULL) && (ft_strcmp((*ptr)->arg, line) != 0))
 		{
 			e_l = expand_env_vars_heredoc(line);

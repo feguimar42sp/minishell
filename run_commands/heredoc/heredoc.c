@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:30:07 by feguimar          #+#    #+#             */
-/*   Updated: 2025/02/01 19:50:17 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/02 17:31:40 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,16 @@ void	heredoc(t_command *command, t_args_lst **ptr, char *line)
 	(*ptr) = (*ptr)->next;
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
-			write_human_stdout(">>", 0);
-		line = get_next_line(STDIN_FILENO);
+		line = readline(">>");
 		if (line == NULL)
 		{
 			write_stderr("Warning: here-document ended by EOF", 1);
 			break ;
 		}
-		line[ft_strlen(line) - 1] = '\0';
 		if ((line != NULL) && ((ft_strcmp((*ptr)->arg, line) != 0)))
 		{
-			line[ft_strlen(line)] = '\n';
 			write(command->here[1], line, ft_strlen(line));
+			write(command->here[1], "\n", 1);
 		}
 		else
 			break ;
