@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 21:29:44 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/02 21:14:52 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:15:15 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ void	run_from_root(char *command, char **cmd_flags, char **envp_arr)
 	execve(command, cmd_flags, envp_arr);
 	free_env_lst(env_vars_list(0));
 	close_all();
-	exit(127);
+	//exit(127);
 }

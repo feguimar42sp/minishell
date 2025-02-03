@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 22:32:47 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/02/02 21:18:54 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:28:46 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ char	*find_path(char *pathname, char **envp)
 
 void	write_stderr_and_exit(char *str, int err_value, char ***argv, char **path)
 {
+	write_stderr(str, 1);
 	free_split(argv);
 	*argv = NULL;
 	free(*path);
 	*path = NULL;
-	write_stderr(str, 1);
+	close_all();
 	exit(err_value);
 }
 
@@ -56,7 +57,6 @@ void	search_in_path(char *command, char **cmd_flags, char **path,
 	free_split(&path);
 	if ((path_found == NULL) || (access(path_found, F_OK) != 0))
 	{
-		close_all();
 		free_env_lst(env_vars_list(0));
 		free_split(&envp_arr);
 		if (path_found == NULL)
@@ -67,7 +67,6 @@ void	search_in_path(char *command, char **cmd_flags, char **path,
 	stat(path_found, &path_data);
 	if ((S_ISDIR(path_data.st_mode) != 0) || (access(path_found, X_OK) != 0))
 	{
-		close_all();
 		free_env_lst(env_vars_list(0));
 		free_split(&envp_arr);
 		if (S_ISDIR(path_data.st_mode) != 0)
