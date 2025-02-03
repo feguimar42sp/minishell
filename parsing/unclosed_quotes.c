@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unclosed_quotes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:05:21 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/05 20:05:23 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/03 19:26:47 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ bool	quotes_are_balanced(char *str)
 	bool	s_quotes;
 	bool	d_quotes;
 
+	if (str == NULL)
+		return (true);
 	i = 0;
 	s_quotes = false;
 	d_quotes = false;

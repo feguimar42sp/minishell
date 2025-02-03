@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_split.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:06:18 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/29 00:21:36 by fernando         ###   ########.fr       */
+/*   Updated: 2025/02/03 20:02:33 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,15 @@ t_args_lst	*ft_lst_split(char *str)
 			split_by_spaces(&split, str, i);
 			while (!ends_space_block(str[i]))
 				i++;
+			while (!quotes_are_balanced(str + i))
+			{
+				i++;
+				while (!ends_space_block(str[i]))
+					i++;
+				if ((i) >= ft_strlen(str))
+					break ;
+			}
 		}
 	}
-	concat_if_export(&split);
 	return (split);
 }

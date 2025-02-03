@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 01:05:51 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/02/02 19:06:28 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/03 19:24:05 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ static int	parse_line_and_create_struct(char *line)
 {
 	t_args_lst	*temp;
 
+	search_and_expand(&line);
 	free_args_list(args_list());
 	*args_list() = ft_lst_split(line);
 	free(line);
 	if (*args_list() == NULL)
 		return (0);
 	ft_lexer(args_list());
-	handle_environment_vars_expansion(args_list());
 	if (!validate_args_list())
 	{
 		temp = *args_list();
@@ -81,7 +81,6 @@ static int	parse_line_and_create_struct(char *line)
 		}
 		return (0);
 	}
-	remove_outer_quotes(args_list());
 	return (1);
 }
 
