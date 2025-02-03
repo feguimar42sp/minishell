@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_by_quotes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:01:26 by sabrifer          #+#    #+#             */
-/*   Updated: 2024/12/06 16:01:29 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/03 20:08:35 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	split_by_quotes(t_args_lst **split, char *str, int *i)
 {
 	char	*temp;
 	int		next_char;
+	t_args_lst	*ptr;
 
 	next_char = (*i) + 1;
 	temp = NULL;
@@ -36,4 +37,8 @@ void	split_by_quotes(t_args_lst **split, char *str, int *i)
 	}
 	create_node(split, str, *i, next_char - (*i));
 	*i = next_char + 1;
+	ptr = *split;
+	while(ptr->next != NULL)
+		ptr = ptr->next;
+	check_quotes_and_remove(&(ptr->arg));
 }
