@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   search_in_path.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 22:32:47 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/29 04:31:17 by fernando         ###   ########.fr       */
+/*   Updated: 2025/02/02 21:18:54 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,48 @@ char	*find_path(char *pathname, char **envp)
 	return (temp);
 }
 
-void	write_stderr_and_exit(char *str, int err_value)
+void	write_stderr_and_exit(char *str, int err_value, char ***argv, char **path)
 {
+	free_split(argv);
+	*argv = NULL;
+	free(*path);
+	*path = NULL;
 	write_stderr(str, 1);
 	exit(err_value);
 }
 
-void	search_in_path(char *pathname, char **argv, char **envp,
-		char **real_envp_arr)
+void	search_in_path(char *command, char **cmd_flags, char **path,
+		char **envp_arr)
 {
 	struct stat	path_data;
-	char		*path;
+	char		*path_found;
 
-	path = find_path(pathname, envp);
-	if (path == NULL)
-		write_stderr_and_exit(" command not found", 127);
-	if (access(path, F_OK) != 0)
-		write_stderr_and_exit(" No such file or directory", 127);
-	stat(path, &path_data);
-	if (S_ISDIR(path_data.st_mode) != 0)
-		write_stderr_and_exit(" Is a directory", 126);
-	if (access(path, X_OK) != 0)
-		write_stderr_and_exit(" Permission denied", 126);
-	execve(path, argv, real_envp_arr);
+	path_found = find_path(command, path);
+	free(command);
+	free_split(&path);
+	if ((path_found == NULL) || (access(path_found, F_OK) != 0))
+	{
+		close_all();
+		free_env_lst(env_vars_list(0));
+		free_split(&envp_arr);
+		if (path_found == NULL)
+			write_stderr_and_exit(" command not found", 127, &cmd_flags, &path_found);
+		if (access(path_found, F_OK) != 0)
+			write_stderr_and_exit(" No such file or directory", 127, &cmd_flags, &path_found);
+	}
+	stat(path_found, &path_data);
+	if ((S_ISDIR(path_data.st_mode) != 0) || (access(path_found, X_OK) != 0))
+	{
+		close_all();
+		free_env_lst(env_vars_list(0));
+		free_split(&envp_arr);
+		if (S_ISDIR(path_data.st_mode) != 0)
+			write_stderr_and_exit(" Is a directory", 126, &cmd_flags, &path_found);
+		if (access(path_found, X_OK) != 0)
+			write_stderr_and_exit(" Permission denied", 126, &cmd_flags, &path_found);
+	}
+	execve(path_found, cmd_flags, envp_arr);
+	close_all();
+	free_env_lst(env_vars_list(0));
 	exit(127);
 }
