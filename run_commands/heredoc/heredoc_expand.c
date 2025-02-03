@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:30:07 by feguimar          #+#    #+#             */
-/*   Updated: 2025/02/03 12:17:55 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:04:01 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	heredoc_expand(t_args_lst **ptr, char *line, char *e_l)
 	(*ptr) = (*ptr)->next;
 	while (1)
 	{
-		line = readline(">>");
+		line = readline("> ");
 		if (line == NULL)
 		{
 			write_stderr("Warning: here-document ended by EOF", 1);

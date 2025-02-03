@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 20:14:22 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/03 12:25:05 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:01:03 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	call_heredoc(t_args_lst **ptr, pid_t pid)
 	close_t_pipe((*curr_cmd())->here);
 	pipe((*curr_cmd())->here);
 	(*curr_cmd())->input = (*curr_cmd())->here[0];
-	close((*curr_cmd())->here[1]);
 	handle_signals_heredoc();
 	pid = fork();
 	if (pid == 0)
@@ -49,6 +48,7 @@ void	call_heredoc(t_args_lst **ptr, pid_t pid)
 	}
 	while (waitpid(pid, &status, 0) == -1 && errno == EINTR)
 		;
+	close((*curr_cmd())->here[1]);
 	if (WIFEXITED(status))
 		status = WEXITSTATUS(status);
 	if (*running_loop() == 1)
