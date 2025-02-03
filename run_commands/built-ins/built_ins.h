@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:51 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/02 18:06:22 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:59:40 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void		ft_cd_run(char **argv);
 void		update_env_vars(void);
 int			convert_exit_value(char *c_value);
 void		ft_exit_dmm(char **argv);
+void		cd_to_home(void);
 
 #endif

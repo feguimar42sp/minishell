@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:35:44 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 18:36:02 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:01:13 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,17 @@ void	update_env_vars(void)
 
 void	ft_cd_run(char **argv)
 {
-	if (argv[2] != NULL)
+	if ((argv[1] == NULL) || (ft_strcmp(argv[1], "~") == 0))
+	{
+		cd_to_home();
+	}
+	else if (argv[2] != NULL)
 	{
 		write_stderr(" too many arguments", 1);
 		*current_exit_code() = 1;
 		return ;
 	}
-	if (chdir(argv[1]) == 0)
+	else if (chdir(argv[1]) == 0)
 	{
 		update_env_vars();
 		*current_exit_code() = 0;
@@ -53,4 +57,17 @@ void	ft_cd_run(char **argv)
 void	ft_cd(char **argv)
 {
 	(void)argv;
+}
+
+void	cd_to_home(void)
+{
+	char	*temp;
+
+	temp = ft_getenv("HOME");
+	if (chdir(temp) == 0)
+	{
+		update_env_vars();
+		*current_exit_code() = 0;
+	} else
+	*current_exit_code() = 1;
 }
