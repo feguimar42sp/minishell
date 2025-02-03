@@ -77,13 +77,13 @@ for testfile in ${test_lists[*]}; do
 		printf $YELLOW
 		printf "Test %3s: " $i
 		if [[ "$MINI_OUTPUT" == "$BASH_OUTPUT" && "$MINI_EXIT_CODE" == "$BASH_EXIT_CODE" && -z "$OUTFILES_DIFF" ]]; then
-			printf ✅
+			printf "PASS"
 			((ok++))
 			if [ "$MINI_ERROR_MSG" != "$BASH_ERROR_MSG" ]; then
 				printf "⚠️ "
 			fi
 		else
-			printf ❌
+			printf "FAIL"
 		fi
 		printf "$GREY $teste \n$END"
 		if [ "$OUTFILES_DIFF" ]; then
