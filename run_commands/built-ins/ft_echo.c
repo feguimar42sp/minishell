@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:31:02 by feguimar          #+#    #+#             */
-/*   Updated: 2025/02/01 15:41:20 by rleite-s         ###   ########.fr       */
+/*   Updated: 2025/02/04 19:50:15 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ void	ft_echo(char **argv)
 	}
 	if (new_line_flag)
 		write(STDOUT_FILENO, "\n", 1);
+	*current_exit_code() = 0;
 }
