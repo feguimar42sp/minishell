@@ -6,11 +6,30 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:12:46 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/02 19:42:42 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/04 18:58:35 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	update_commands_list(t_args_lst **ptr, int run)
+{
+	if ((*ptr)->type == operators)
+	{
+		if (ft_strcmp((*ptr)->arg, "|") == 0)
+		{
+			push_command(*curr_cmd());
+			run++;
+			*curr_cmd() = new_command(run);
+		}
+		else
+			parse_redirect(ptr);
+	}
+	else if ((*ptr)->type == string)
+		add_word(&((*curr_cmd())->comm), ptr);
+	if (*ptr)
+		(*ptr) = (*ptr)->next;
+}
 
 void	run_commands(t_args_lst *ptr)
 {
@@ -20,21 +39,7 @@ void	run_commands(t_args_lst *ptr)
 	*curr_cmd() = new_command(run);
 	while (ptr)
 	{
-		if (ptr->type == operators)
-		{
-			if (ft_strcmp(ptr->arg, "|") == 0)
-			{
-				push_command(*curr_cmd());
-				run++;
-				*curr_cmd() = new_command(run);
-			}
-			else
-				parse_redirect(&ptr);
-		}
-		else if (ptr->type == string)
-			add_word(&((*curr_cmd())->comm), &ptr);
-		if (ptr)
-			(ptr) = (ptr)->next;
+		update_commands_list(&ptr, run);
 	}
 	if ((*curr_cmd()) == NULL)
 		return ;
