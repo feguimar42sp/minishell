@@ -12,51 +12,18 @@
 
 #include "../minishell.h"
 
-void	join_nodes(t_args_lst **split, int node)
+void	skip_spaces(char *str, int *i)
 {
-	char		*new_str;
-	t_args_lst	*current;
-	t_args_lst	*node_1;
-	t_args_lst	*node_2;
-	int			i;
-
-	current = *split;
-	i = 0;
-	while (current && i < node)
+	while (!ends_space_block(str[*i]))
+		(*i)++;
+	while (!quotes_are_balanced(str + *i))
 	{
-		current = current->next;
-		i++;
-	}
-	if (!current || !current->next)
-		return ;
-	node_1 = current;
-	node_2 = current->next;
-	new_str = ft_strjoin(node_1->arg, node_2->arg);
-	free(node_1->arg);
-	node_1->arg = new_str;
-	node_1->next = node_2->next;
-	free(node_2->arg);
-	free(node_2);
-}
-
-void	concat_if_export(t_args_lst **split)
-{
-	t_args_lst	*lst;
-	int			i;
-
-	lst = *split;
-	i = 0;
-	while (lst != NULL)
-	{
-		if (ft_strcmp(lst->arg, "export") == 0)
-		{
-			i++;
+		(*i)++;
+		while (!ends_space_block(str[*i]))
+			(*i)++;
+		if ((*i) >= ft_strlen(str))
 			break ;
-		}
-		i++;
-		lst = lst->next;
 	}
-	join_nodes(split, i);
 }
 
 t_args_lst	*ft_lst_split(char *str)
@@ -79,16 +46,7 @@ t_args_lst	*ft_lst_split(char *str)
 		else
 		{
 			split_by_spaces(&split, str, i);
-			while (!ends_space_block(str[i]))
-				i++;
-			while (!quotes_are_balanced(str + i))
-			{
-				i++;
-				while (!ends_space_block(str[i]))
-					i++;
-				if ((i) >= ft_strlen(str))
-					break ;
-			}
+			skip_spaces(str, &i);
 		}
 	}
 	return (split);

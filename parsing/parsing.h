@@ -27,7 +27,5 @@ void		split_by_spaces(t_args_lst **split, char *str, int i);
 bool		quotes_are_balanced(char *str);
 int			is_operator(char *str);
 int			is_str_quoted(char *str);
-void		join_nodes(t_args_lst **split, int node);
-void		concat_if_export(t_args_lst **split);
 
 #endif

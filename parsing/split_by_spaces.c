@@ -12,6 +12,20 @@
 
 #include "../minishell.h"
 
+void	skip_spaces_version2(char *str, int *len, int i)
+{
+	while (!ends_space_block(str[i + *len]))
+		(*len)++;
+	while ((!quotes_are_balanced(str + i + *len)) && (str[*len + i] != '\0'))
+	{
+		(*len)++;
+		while (!ends_space_block(str[i + *len]))
+			(*len)++;
+		if ((*len) >= ft_strlen(str + i))
+			break ;
+	}
+}
+
 int	ends_space_block(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\0' || c == '<' || c == '>' || c == '|')
@@ -25,16 +39,7 @@ void	split_by_spaces(t_args_lst **split, char *str, int i)
 	t_args_lst	*ptr;
 
 	len = 0;
-	while (!ends_space_block(str[i + len]))
-		len++;
-	while ((!quotes_are_balanced(str + i + len)) && (str[len + i] != '\0'))
-	{
-		len++;
-		while (!ends_space_block(str[i + len]))
-			len++;
-		if ((len) >= ft_strlen(str + i))
-			break ;
-	}
+	skip_spaces_version2(str, &len, i);
 	create_node(split, str, i, len);
 	ptr = *split;
 	while (ptr->next != NULL)

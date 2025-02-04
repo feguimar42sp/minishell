@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:35:44 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/04 17:08:47 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:57:03 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ void	update_env_vars(char **temp, char **old_pwd)
 	free(*temp);
 	free(pwd);
 	free(*old_pwd);
+}
+
+void	ft_cd_helper_function(void)
+{
+	write_stderr(" No such file or directory", 1);
+	*current_exit_code() = 1;
 }
 
 void	ft_cd_run(char **argv)
@@ -50,10 +56,7 @@ void	ft_cd_run(char **argv)
 		*current_exit_code() = 0;
 	}
 	else
-	{
-		write_stderr(" No such file or directory", 1);
-		*current_exit_code() = 1;
-	}
+		ft_cd_helper_function();
 }
 
 void	ft_cd(char **argv)
