@@ -6,11 +6,24 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/04 15:46:53 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/04 18:53:24 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	update_exit_code_builtins(char **command_line)
+{
+	if ((command_line[1] != NULL) && (command_line[2] != NULL))
+	{
+		write_stderr(" too many arguments", 1);
+		*current_exit_code() = 1;
+	}
+	else if ((command_line[1] != NULL) && (command_line[2] == NULL))
+		*current_exit_code() = convert_exit_value(command_line[1]);
+	else
+		*current_exit_code() = 0;
+}
 
 void	execute_built_ins(char **command_line, char ***e, t_pipe **pipeline)
 {
@@ -28,15 +41,7 @@ void	execute_built_ins(char **command_line, char ***e, t_pipe **pipeline)
 	{
 		if (count_blocks(*args_list()) != 1)
 		{
-			if ((command_line[1] != NULL) && (command_line[2] != NULL))
-			{
-				write_stderr(" too many arguments", 1);
-				*current_exit_code() = 1;
-			}
-			else if ((command_line[1] != NULL) && (command_line[2] == NULL))
-				*current_exit_code() = convert_exit_value(command_line[1]);
-			else
-				*current_exit_code() = 0;
+			update_exit_code_builtins(command_line);
 			return ;
 		}
 		free(*pipeline);
