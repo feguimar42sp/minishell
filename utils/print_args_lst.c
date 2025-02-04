@@ -16,9 +16,9 @@ void	print_args_lst(t_args_lst *ptr)
 {
 	while (ptr)
 	{
-		write_human_stdout("\"", 0);
+		write_human_stdout("-", 0);
 		write_stderr(ptr->arg, 0);
-		write_human_stdout("\"", 1);
+		write_human_stdout("-", 1);
 		if (ptr->is_quoted)
 			write_stderr("is quoted", 1);
 		if (ptr->type == string)

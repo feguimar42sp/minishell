@@ -18,7 +18,7 @@
 // expand_environment_vars.c
 void		handle_environment_vars_expansion(t_args_lst **arg_lst);
 void		search_and_expand(char **str);
-void		handle_dollar_expansion(char **str, int index, bool *single_quotes);
+int		handle_dollar_expansion(char **str, int index, bool *single_quotes);
 void		update_quotes(char c, bool *single_quotes, bool *double_quotes);
 char		*ft_expand(char **str, int *i);
 

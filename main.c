@@ -46,9 +46,9 @@ static int	validate_args_list(void)
 		*args_list() = (*args_list())->next;
 		free(temp);
 	}
-	if ((*args_list())->arg[0] == '#')
-		return (0);
 	if (*args_list() == NULL)
+		return (0);
+	if ((*args_list())->arg[0] == '#')
 		return (0);
 	if (!handle_syntax(args_list()))
 	{
@@ -81,6 +81,7 @@ static int	parse_line_and_create_struct(char *line)
 		}
 		return (0);
 	}
+
 	return (1);
 }
 

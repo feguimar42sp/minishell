@@ -100,15 +100,17 @@ void	remove_dollar_sign(char **str, int i)
 	*str = new_str;
 }
 
-void	handle_dollar_expansion(char **str, int index, bool *single_quotes)
+int	handle_dollar_expansion(char **str, int index, bool *single_quotes)
 {
 	char	*temp;
+	char	*original;
 
 	temp = NULL;
+	original = *str;
 	if ((*str)[index] == '$' && !*single_quotes)
 	{
 		if (is_single_quote(*str, index))
-			return ;
+			return (1);
 		if ((*str)[index + 1] == '$')
 			index++;
 		else if ((*str)[index + 1] == '\"')
@@ -122,6 +124,9 @@ void	handle_dollar_expansion(char **str, int index, bool *single_quotes)
 			temp = NULL;
 		}
 	}
+	if (original != *str)
+		return (0);
+	return (1);
 }
 
 void	search_and_expand(char **str)
@@ -136,8 +141,8 @@ void	search_and_expand(char **str)
 	while ((*str)[i] && (*str)[i + 1])
 	{
 		update_quotes((*str)[i], &single_quotes, &double_quotes);
-		handle_dollar_expansion(str, i, &single_quotes);
-		i++;
+		if (handle_dollar_expansion(str, i, &single_quotes))
+			i++;
 	}
 }
 
