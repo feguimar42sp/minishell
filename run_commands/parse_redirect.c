@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 20:14:22 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/04 15:46:07 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/04 18:44:46 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,25 @@ void	parse_redirect(t_args_lst **ptr)
 		redirect_input((*curr_cmd()), ptr);
 	if (is_input_from_heredoc((*ptr)->arg))
 		call_heredoc(ptr, 0);
+}
+
+void	call_heredoc_continue(int *status, t_args_lst **ptr)
+{
+	if (WIFEXITED(*status))
+		*status = WEXITSTATUS(*status);
+	if (*running_loop() == 1)
+		return ;
+	(*ptr) = (*ptr)->next;
+	if (*status == 130)
+	{
+		(*ptr) = NULL;
+		free_args_list(args_list());
+		free_t_command(curr_cmd());
+		*curr_cmd() = NULL;
+		free_cmd_lst(command_lst());
+		write_human_stdout("", 1);
+	}
+	handle_signals();
 }
 
 void	call_heredoc(t_args_lst **ptr, pid_t pid)
@@ -49,21 +68,7 @@ void	call_heredoc(t_args_lst **ptr, pid_t pid)
 	while (waitpid(pid, &status, 0) == -1 && errno == EINTR)
 		;
 	close((*curr_cmd())->here[1]);
-	if (WIFEXITED(status))
-		status = WEXITSTATUS(status);
-	if (*running_loop() == 1)
-		return ;
-	(*ptr) = (*ptr)->next;
-	if (status == 130)
-	{
-		(*ptr) = NULL;
-		free_args_list(args_list());
-		free_t_command(curr_cmd());
-		*curr_cmd() = NULL;
-		free_cmd_lst(command_lst());
-		write_human_stdout("", 1);
-	}
-	handle_signals();
+	call_heredoc_continue(&status, ptr);
 }
 
 void	free_all(void)
