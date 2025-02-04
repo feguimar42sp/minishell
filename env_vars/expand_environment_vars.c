@@ -6,11 +6,13 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:00:57 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/29 03:39:31 by fernando         ###   ########.fr       */
+/*   Updated: 2025/02/03 21:31:44 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+// /bin/echo $"HOM"E$USER ----> needs quotes removed
 
 char	*ft_expand(char **str, int *i)
 {
@@ -43,6 +45,61 @@ void	update_quotes(char c, bool *single_quotes, bool *double_quotes)
 		*single_quotes = !*single_quotes;
 }
 
+// handles echo "$", " $ ", " $"
+int	is_single_quote(char *str, int i)
+{
+	if (str[i] == '$')
+	{
+		if (str[i + 1] == ' ' || str[i + 1] == '\0')
+			return (1);
+		if (str[i - 1] == '\'' && str[i + 1] == '\'')
+			return (1);
+		if (str[i - 1] == '\"' && str[i + 1] == '\"')
+			return (1);
+	}
+	return (0);
+}
+
+// two functions handles these examples:
+// /bin/echo $"HOME"$USER
+// /bin/echo $"HOME"
+// /bin/echo $"42$"
+
+int	is_inside_double_quotes(char *str, int pos)
+{
+	int	i;
+	int	check;
+
+	i = 0;
+	check = 0;
+	while (str[i])
+	{
+		if (str[i] == '\"')
+			check = !check;
+		if (i == pos && str[i] == '$' && check)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void	remove_dollar_sign(char **str, int i)
+{
+	char	*new_str;
+	int		len;
+
+	if (is_inside_double_quotes(*str, i))
+		return ;
+	len = ft_strlen(*str);
+	new_str = (char *)malloc(len);
+	if (!new_str)
+		return ;
+	memcpy(new_str, *str, i);
+	memcpy(new_str + i, *str + i + 1, len - i);
+	free(*str);
+	*str = new_str;
+}
+
 void	handle_dollar_expansion(char **str, int index, bool *single_quotes)
 {
 	char	*temp;
@@ -50,13 +107,12 @@ void	handle_dollar_expansion(char **str, int index, bool *single_quotes)
 	temp = NULL;
 	if ((*str)[index] == '$' && !*single_quotes)
 	{
+		if (is_single_quote(*str, index))
+			return ;
 		if ((*str)[index + 1] == '$')
 			index++;
 		else if ((*str)[index + 1] == '\"')
-		{
-			free(*str);
-			(*str) = ft_strdup("");
-		}
+			remove_dollar_sign(str, index);
 		else if ((*str)[index + 1] != ' ' && (*str)[index + 1] != '\"')
 		{
 			temp = ft_expand(str, &index);
