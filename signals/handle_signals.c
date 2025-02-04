@@ -24,11 +24,12 @@ void	handle_sigint_signal(int sig)
 		return ;
 	if (*child_process() == 0)
 	{
+
 		write(1, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		*current_exit_code() = 130;
+		*current_exit_code() = 128 + sig;
 	}
 }
 
@@ -38,24 +39,6 @@ void	handle_signals(void)
 
 	handle_sigquit_signal();
 	action.sa_handler = handle_sigint_signal;
-	sigemptyset(&action.sa_mask);
-	action.sa_flags = SA_SIGINFO;
-	sigaction(SIGINT, &action, NULL);
-}
-
-void	handle_sigint_exec(int sig)
-{
-	(void)sig;
-	write(1, "\n", 1);
-	*running_loop() = 1;
-}
-
-void	handle_signals_exec(void)
-{
-	struct sigaction	action;
-
-	handle_sigquit_signal();
-	action.sa_handler = handle_sigint_exec;
 	sigemptyset(&action.sa_mask);
 	action.sa_flags = SA_SIGINFO;
 	sigaction(SIGINT, &action, NULL);

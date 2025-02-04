@@ -13,7 +13,6 @@
 #ifndef MINISHELL_TYPEDEFS_H
 # define MINISHELL_TYPEDEFS_H
 
-// que tipo de typedef é esse?
 typedef void			(*t_function_built_in)(char **);
 
 typedef int				t_pipe[2];

@@ -18,8 +18,6 @@
 void	handle_sigquit_signal(void);
 void	handle_signals(void);
 void	handle_sigint_signal(int sig);
-void	handle_sigint_exec(int sig);
-void	handle_signals_exec(void);
 void	handle_sigint_heredoc(int sig);
 void	handle_signals_heredoc(void);
 

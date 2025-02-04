@@ -66,6 +66,7 @@ void	run_curr_command(t_pipe **pipeline, int total_blocks)
 	pid = fork();
 	if (pid == 0)
 	{
+		signal(SIGQUIT, handle_sigint_signal);
 		rl_clear_history();
 		set_process_io(pipeline, total_blocks);
 		if (!is_built_in(command_line[0], command_line, env_path))
