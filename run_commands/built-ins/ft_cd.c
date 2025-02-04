@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:35:44 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/03 12:01:13 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:48:41 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	cd_to_home(void)
 	{
 		update_env_vars();
 		*current_exit_code() = 0;
-	} else
-	*current_exit_code() = 1;
+	}
+	else
+		*current_exit_code() = 1;
 }

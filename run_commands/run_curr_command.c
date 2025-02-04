@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 01:36:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/02 18:05:58 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:46:53 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,29 @@
 
 void	execute_built_ins(char **command_line, char ***e, t_pipe **pipeline)
 {
-	if ((((*curr_cmd())->comm) != NULL) && (ft_strcmp(((*curr_cmd())->comm)->arg, "export") == 0))
+	if ((((*curr_cmd())->comm) != NULL)
+		&& (ft_strcmp(((*curr_cmd())->comm)->arg, "export") == 0))
 		ft_export_run(command_line);
-	if ((((*curr_cmd())->comm) != NULL) && (ft_strcmp(((*curr_cmd())->comm)->arg, "unset") == 0))
+	if ((((*curr_cmd())->comm) != NULL)
+		&& (ft_strcmp(((*curr_cmd())->comm)->arg, "unset") == 0))
 		ft_unset_run(command_line);
-	if ((((*curr_cmd())->comm) != NULL) && (ft_strcmp(((*curr_cmd())->comm)->arg, "cd") == 0))
+	if ((((*curr_cmd())->comm) != NULL)
+		&& (ft_strcmp(((*curr_cmd())->comm)->arg, "cd") == 0))
 		ft_cd_run(command_line);
-	if ((((*curr_cmd())->comm) != NULL) && (ft_strcmp(((*curr_cmd())->comm)->arg, "exit") == 0))
+	if ((((*curr_cmd())->comm) != NULL)
+		&& (ft_strcmp(((*curr_cmd())->comm)->arg, "exit") == 0))
 	{
 		if (count_blocks(*args_list()) != 1)
 		{
 			if ((command_line[1] != NULL) && (command_line[2] != NULL))
 			{
-				write_stderr(" too many arguments",1);
+				write_stderr(" too many arguments", 1);
 				*current_exit_code() = 1;
 			}
 			else if ((command_line[1] != NULL) && (command_line[2] == NULL))
 				*current_exit_code() = convert_exit_value(command_line[1]);
-			else *current_exit_code() = 0;
+			else
+				*current_exit_code() = 0;
 			return ;
 		}
 		free(*pipeline);

@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:07:01 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/02/03 20:03:19 by feguimar         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:50:06 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	split_by_spaces(t_args_lst **split, char *str, int i)
 	len = 0;
 	while (!ends_space_block(str[i + len]))
 		len++;
-	while ((!quotes_are_balanced(str + i + len)) && (str[len + i]!='\0'))
+	while ((!quotes_are_balanced(str + i + len)) && (str[len + i] != '\0'))
 	{
 		len++;
 		while (!ends_space_block(str[i + len]))
@@ -37,7 +37,7 @@ void	split_by_spaces(t_args_lst **split, char *str, int i)
 	}
 	create_node(split, str, i, len);
 	ptr = *split;
-	while(ptr->next != NULL)
+	while (ptr->next != NULL)
 		ptr = ptr->next;
 	check_quotes_and_remove(&(ptr->arg));
 }

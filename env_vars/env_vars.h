@@ -6,7 +6,7 @@
 /*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 21:00:40 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/31 14:27:46 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:48:54 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@
 # include "../minishell.h"
 
 // expand_environment_vars.c
-void		handle_environment_vars_expansion(t_args_lst **arg_lst);
-void		search_and_expand(char **str);
-int		handle_dollar_expansion(char **str, int index, bool *single_quotes);
+void		handle_environment_vars_expansion(char **str);
+int			handle_dollar_expansion(char **str, int index, bool *single_quotes);
 void		update_quotes(char c, bool *single_quotes, bool *double_quotes);
 char		*ft_expand(char **str, int *i);
+
+// env_validation_functions.c
+int			is_single_quote(char *str, int i);
+int			is_inside_double_quotes(char *str, int pos);
+void		remove_dollar_sign(char **str, int i);
 
 // free_env_list.c
 void		env_free_lst(t_envp_lst **node);

@@ -56,15 +56,3 @@ void	check_quotes_and_remove(char **str)
 			i++;
 	}
 }
-
-void	remove_outer_quotes(t_args_lst **args_lst)
-{
-	t_args_lst	*args;
-
-	args = *args_lst;
-	while (args)
-	{
-		check_quotes_and_remove(&args->arg);
-		args = args->next;
-	}
-}

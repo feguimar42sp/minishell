@@ -21,7 +21,7 @@ CFLAGS := -g -Wall -Wextra -Werror
 LINKER_FLAGS := -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft -lreadline
 
 ENV_VARS_FOLDER := env_vars/expand_environment_vars.c  env_vars/ft_getenv.c \
-				env_vars/store_environment_vars.c \
+				env_vars/store_environment_vars.c env_vars/env_validation_functions.c \
 				env_vars/free_env_list.c env_vars/get_variable_and_value.c 
 
 ENV_VARS_UTILS_FOLDER := env_vars/env_vars_utils/add_env_var.c env_vars/env_vars_utils/find_previous_var_in_list.c \
@@ -63,7 +63,7 @@ SET_IO_FOLDER := run_commands/set_io/input_from_file.c run_commands/set_io/input
 
 SIGNALS_FOLDER := signals/handle_signals.c signals/handle_heredoc_signals.c
 
-SYNTAX_FOLDER := syntax/handle_syntax.c syntax/checking_functions.c syntax/remove_outer_quotes.c \
+SYNTAX_FOLDER := syntax/handle_syntax.c syntax/checking_functions.c syntax/remove_quotes.c \
 				 syntax/checking_functions2.c
 
 HEREDOC_FOLDER := run_commands/heredoc/expand_env_vars_heredoc.c run_commands/heredoc/expand_vars_to_string.c \
