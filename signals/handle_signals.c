@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_signals.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feguimar <feguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:56:29 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/01/28 14:28:53 by sabrifer         ###   ########.fr       */
+/*   Updated: 2025/02/04 19:58:00 by feguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	handle_sigint_signal(int sig)
 		return ;
 	if (*child_process() == 0)
 	{
-
 		write(1, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
